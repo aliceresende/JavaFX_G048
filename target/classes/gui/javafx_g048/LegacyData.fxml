@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<AnchorPane prefHeight="452.0" prefWidth="600.0" style="-fx-background-color: #90C2BE;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.javafx_g048.LegacyDataGUI">
+
+    <children>
+        <VBox layoutX="20.0" layoutY="122.0" prefHeight="297.0" prefWidth="448.0" spacing="10.0">
+            <children>
+                <Label text=" Day: ">
+                    <font>
+                        <Font name="Arial Bold" size="21.0" />
+                    </font>
+                </Label>
+                <DatePicker fx:id="datePickerDay" prefHeight="29.0" prefWidth="259.0" style="-fx-border-color: #7fb5b1;" />
+                <Label text=" Interval:  ">
+                    <font>
+                        <Font name="Arial Bold" size="21.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="lblInterval" prefHeight="24.0" prefWidth="303.0" style="-fx-border-color: #7fb5b1;">
+                    <VBox.margin>
+                        <Insets right="350.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial" size="14.0" />
+                    </font>
+                </TextField>
+                <Label layoutX="10.0" layoutY="84.0" text=" Analyze:  ">
+                    <font>
+                        <Font name="Arial Bold" size="21.0" />
+                    </font>
+                </Label>
+                <VBox fx:id="vboxSubsequence" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #bce8e5;" />
+            </children></VBox>
+        <Label layoutX="20.0" layoutY="25.0" prefHeight="72.0" prefWidth="558.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffff;" text="          Analyze the performance of a Center" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="160.0" fitWidth="216.0" layoutX="330.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/graphic.png" />
+            </image></ImageView>
+        <Button layoutX="499.0" layoutY="390.0" mnemonicParsing="false" onAction="#seeButton" prefHeight="29.0" prefWidth="69.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="See">
+            <font>
+                <Font name="Arial Bold" size="14.0" />
+            </font>
+        </Button>
+    </children>
+
+</AnchorPane>

@@ -1,39 +1,18 @@
 package app.controller;
 
-import app.domain.algorithms.sorting.SortingAlgorithm;
+
 import app.domain.model.*;
 import app.domain.store.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * The type Load legacy data controller.
  */
 public class LoadLegacyDataController {
-    /*
-    @FXML
-    private AnchorPane anchorID;
 
-    @FXML
-    private TextField performanceDataFileTxtField;
-
-    @FXML
-    private void performanceDataFileButton (){
-        final DirectoryChooser dirChooser = new DirectoryChooser();
-        Stage stage = (Stage) anchorID.getScene().getWindow();
-        File file = dirChooser.showDialog(stage);
-
-        if(file != null){
-            System.out.println("Path: " + file.getAbsolutePath());
-            performanceDataFileTxtField.setText(file.getAbsolutePath());
-        }
-    }*/
 
     //=========================================================
 
@@ -111,34 +90,13 @@ public class LoadLegacyDataController {
                 System.out.println("Directory " + listOfFiles[i].getName());
             }
         }
+
+            long startTime = System.currentTimeMillis();
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
     }*/
 
 
-    /**
-     * Sort list list.
-     *
-     * @param array the array
-     * @return the list
-     * @throws IOException            the io exception
-     * @throws ClassNotFoundException the class not found exception
-     * @throws InstantiationException the instantiation exception
-     * @throws IllegalAccessException the illegal access exception
-     */
-    public List<List<String>> sortList(String[] array) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        Properties properties = new Properties();
-        InputStream in = new FileInputStream("config.properties");
-        properties.load(in);
-        Class<?> sortClass = Class.forName(properties.getProperty("Company.Algorithms.sorting"));
-        SortingAlgorithm sortAlgorithm = null;
-        try {
-            sortAlgorithm = (SortingAlgorithm)  sortClass.getDeclaredConstructor().newInstance();
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-        in.close();
-        return sortAlgorithm.sort(array);
-    }
+
 }
 

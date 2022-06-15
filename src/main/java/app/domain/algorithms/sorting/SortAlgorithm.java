@@ -5,12 +5,12 @@ import java.util.List;
 /**
  * The interface Sorting algorithm.
  */
-public interface SortingAlgorithm {
+public interface SortAlgorithm {
     /**
      * Sort list.
      *
      * @param array the array
      * @return the list
      */
-    public List<List<String>> sort(String[] array);
+    public int[] sort(int[] array);
 }

@@ -18,8 +18,8 @@
             <Image url="@../../images/DGSlogo.png" />
          </image>
       </ImageView>
-      <TextField alignment="CENTER" layoutX="136.0" layoutY="177.0" prefHeight="39.0" prefWidth="267.0" promptText="email" />
-      <PasswordField alignment="CENTER" layoutX="137.0" layoutY="240.0" prefHeight="39.0" prefWidth="267.0" promptText="password" />
+      <TextField fx:id="email" alignment="CENTER" layoutX="136.0" layoutY="177.0" onKeyPressed="#keyPressed" prefHeight="39.0" prefWidth="267.0" promptText="email" />
+      <PasswordField fx:id="password" alignment="CENTER" layoutX="137.0" layoutY="240.0" onKeyPressed="#keyPressed" prefHeight="39.0" prefWidth="267.0" promptText="password" />
       <ImageView fitHeight="83.0" fitWidth="80.0" layoutX="293.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/vaccine.png" />

@@ -1,12 +1,15 @@
 package gui.javafx_g048;
 
+import app.controller.App;
 import app.controller.PerformanceAnalysisController;
+import app.domain.model.Company;
 import app.domain.shared.Constants;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import pt.isep.lei.esoft.auth.AuthFacade;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -23,12 +26,18 @@ public class SubsequenceUI implements Initializable {
     public DatePicker datePickerDay;
     public TextField lblInterval;
     public VBox vboxSubsequence;
+    private Company company;
+    private AuthFacade authFacade;
 
     private PerformanceAnalysisController controller;
+    private gui.javafx_g048.App mainApp;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
+            company = App.getInstance().getCompany();
+            authFacade = company.getAuthFacade();
 
         }catch(Exception e){
             Alert.AlertType type = Alert.AlertType.WARNING;
@@ -38,7 +47,9 @@ public class SubsequenceUI implements Initializable {
             alert.showAndWait();
         }
     }
-
+    public void setMainApp(gui.javafx_g048.App mainApp) {
+        this.mainApp = mainApp;
+    }
 
     public void seeButton(ActionEvent actionEvent) {
         try{
@@ -62,7 +73,6 @@ public class SubsequenceUI implements Initializable {
             vboxSubsequence.getChildren().add(labelSubsequence);
             vboxSubsequence.getChildren().add(labelSum);
             vboxSubsequence.getChildren().add(labelInterval);
-
 
 
         }catch(Exception e){

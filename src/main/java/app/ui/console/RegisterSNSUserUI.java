@@ -11,7 +11,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Register sns user ui.
+ */
 public class RegisterSNSUserUI implements Runnable{
+    /**
+     * The Read.
+     */
     static Scanner read = new Scanner(System.in);
     private final RegisterSNSUserController snsUserC = new RegisterSNSUserController();
 

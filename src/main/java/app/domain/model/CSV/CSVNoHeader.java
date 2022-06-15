@@ -7,9 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Csv no header.
+ */
 public class CSVNoHeader implements CSV {
     final private String splitBy = ",";
 
+    /**
+     * Instantiates a new Csv no header.
+     */
     public CSVNoHeader() {
     }
 

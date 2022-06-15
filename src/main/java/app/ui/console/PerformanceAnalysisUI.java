@@ -1,6 +1,6 @@
 package app.ui.console;
 
-import app.controller.PerformanceAnalyzeController;
+import app.controller.PerformanceAnalysisController;
 import app.domain.shared.Constants;
 import app.ui.console.utils.Utils;
 
@@ -13,8 +13,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class PerformanceAnalyzeUI implements Runnable {
-    private final PerformanceAnalyzeController controller = new PerformanceAnalyzeController();
+/**
+ * The type Performance analyze ui.
+ */
+public class PerformanceAnalysisUI implements Runnable {
+    private final PerformanceAnalysisController controller = new PerformanceAnalysisController();
     @Override
     public void run() {
         try {
@@ -68,7 +71,14 @@ public class PerformanceAnalyzeUI implements Runnable {
     private int[] getMaxSublist(int[] subsequence) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         return controller.getMaxSublist(subsequence);
     }
-    public int sum(int[] arr)
+
+    /**
+     * Sum int.
+     *
+     * @param arr the arr
+     * @return the int
+     */
+    public static int sum(int[] arr)
     {
         int sum = 0;
 
@@ -77,11 +87,25 @@ public class PerformanceAnalyzeUI implements Runnable {
 
         return sum;
     }
-    public String fromMinutesToHHmm(int minutes) {
+
+    /**
+     * From minutes to h hmm string.
+     *
+     * @param minutes the minutes
+     * @return the string
+     */
+    public static String fromMinutesToHHmm(int minutes) {
         long hours = TimeUnit.MINUTES.toHours(Long.valueOf(minutes));
         long remainMinutes = minutes - TimeUnit.HOURS.toMinutes(hours);
         return  String.format("%02d:%02d", hours, remainMinutes);
     }
+
+    /**
+     * Gets minute.
+     *
+     * @param timeString the time string
+     * @return the minute
+     */
     public static int getMinute(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[HH][H]:mm");
         LocalTime time = LocalTime.parse(timeString, formatter);

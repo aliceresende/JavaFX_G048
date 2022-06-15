@@ -7,6 +7,9 @@ import app.domain.store.ArrivalOfSNSUserStore;
 import app.domain.store.VaccineScheduleStore;
 import app.mappers.VaccinationCenterMapper;
 
+/**
+ * The type Register arrival of sns user controller.
+ */
 public class RegisterArrivalOfSNSUserController {
     private App app;
     private VaccineSchedule vaccineSchedule;
@@ -17,6 +20,11 @@ public class RegisterArrivalOfSNSUserController {
     private ArrivalOfSNSUserStore storeArrival;
 
 
+    /**
+     * Gets company.
+     *
+     * @return the company
+     */
     public Company getCompany() { return this.company; }
 
     /**
@@ -27,7 +35,8 @@ public class RegisterArrivalOfSNSUserController {
 
     /**
      * Constructor defining company, store and arrival
-     * @param company
+     *
+     * @param company the company
      */
     public RegisterArrivalOfSNSUserController(Company company) {
         this.vaccineSchedule = null;
@@ -40,6 +49,7 @@ public class RegisterArrivalOfSNSUserController {
 
     /**
      * This method gets the Vaccination Schedule of a chosen SNS User and prints
+     *
      * @param SNSUserNumber SNS User number of the SNS User
      * @return the vaccine schedule
      */
@@ -56,6 +66,7 @@ public class RegisterArrivalOfSNSUserController {
 
     /**
      * This method gets the Vaccination Schedule of a chosen SNS User
+     *
      * @param SNSUserNumber SNS User number of the SNS User
      * @return the vaccine schedule
      */
@@ -65,17 +76,20 @@ public class RegisterArrivalOfSNSUserController {
 
     /**
      * This method registers the arrival of an SNS User
-     * @param SNSUserNumber SNS User number of the SNS User
-     * @param timeOfArrival Time of arrival to the vaccination center
+     *
+     * @param SNSUserNumber         SNS User number of the SNS User
+     * @param timeOfArrival         Time of arrival to the vaccination center
      * @param vaccinationCenterName Vaccination center where the SNS User are
      */
     public void registerArrivalUser(String SNSUserNumber, String timeOfArrival, String vaccinationCenterName){
         arrivalU = storeArrival.createArrivalOfSNSUser(SNSUserNumber,timeOfArrival,vaccinationCenterName);
 
     }
+
     /**
      * This method saves the arrival of an SNS User
-     * @param SNSUserNumber SNS User number of the SNS User
+     *
+     * @param SNSUserNumber         SNS User number of the SNS User
      * @param vaccinationCenterName Vaccination center name where the user are
      */
     public void saveArrival(String SNSUserNumber,String vaccinationCenterName){

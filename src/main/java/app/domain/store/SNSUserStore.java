@@ -13,11 +13,21 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
+/**
+ * The type Sns user store.
+ */
 public class SNSUserStore extends PasswordGenerator {
     private ArrayList<SNSUser> knows = new ArrayList<>();
     private AuthFacade auth;
     private PasswordGenerator pwd;
 
+    /**
+     * Instantiates a new Sns user store.
+     *
+     * @param knows the knows
+     * @param auth  the auth
+     * @param pwd   the pwd
+     */
     public SNSUserStore(ArrayList<SNSUser> knows, AuthFacade auth, PasswordGenerator pwd) {
         this.knows = knows;
         this.auth = auth;
@@ -32,10 +42,14 @@ public class SNSUserStore extends PasswordGenerator {
      * @param SNSUserNumber     the SNS user number of the SNS user
      * @param phoneNumber       the phone number of the SNS user
      * @param email             the email of the SNS user
-     *
+     * @param street            the street
+     * @param doornumber        the doornumber
+     * @param postCode          the post code
+     * @param city              the city
      * @param sex               the sex of the SNS user
      * @param citizenCardNumber the citizen card number of the SNS user
      * @return the SNS user information
+     * @throws ParseException the parse exception
      */
     public SNSUser createSNSUser(String name, Date birthdate, String SNSUserNumber, String phoneNumber, String email, String street, String doornumber ,String postCode, String city , String sex, String citizenCardNumber) throws ParseException {
         return new SNSUser(name, birthdate, SNSUserNumber, phoneNumber, email, street, doornumber, postCode, city,sex, citizenCardNumber);
@@ -50,6 +64,10 @@ public class SNSUserStore extends PasswordGenerator {
      * @param SNSUserNumber     the SNS user number of the SNS user
      * @param phoneNumber       the phone number of the SNS user
      * @param email             the email of the SNS user
+     * @param street            the street
+     * @param doornumber        the doornumber
+     * @param postCode          the post code
+     * @param city              the city
      * @param citizenCardNumber the citizen card number of the SNS user
      * @return the SNS user information
      */
@@ -78,6 +96,12 @@ public class SNSUserStore extends PasswordGenerator {
         return !this.knows.contains(snsuser);
     }
 
+    /**
+     * Validate sns users boolean.
+     *
+     * @param listUsers the list users
+     * @return the boolean
+     */
     public boolean validateSNSUsers(List<SNSUser> listUsers){
         boolean validation = false;
         for(SNSUser user: listUsers){
@@ -92,6 +116,11 @@ public class SNSUserStore extends PasswordGenerator {
     public SNSUserStore() {
     }
 
+    /**
+     * Gets sns user list.
+     *
+     * @return the sns user list
+     */
     public List<SNSUser> getSnsUserList() {
         return knows;
     }
@@ -105,7 +134,12 @@ public class SNSUserStore extends PasswordGenerator {
         addSNSUser(snsuser);
     }
 
-    //Extends PasswordGenerator Polimorfism
+    /**
+     * Generate password string.
+     *
+     * @return the string
+     */
+//Extends PasswordGenerator Polimorfism
     public static String generatePassword() {
 
         return PasswordGenerator.generatePassword();
@@ -139,9 +173,9 @@ public class SNSUserStore extends PasswordGenerator {
     /**
      * Show the authentication data of the SNS User
      *
-     * @param snsUser
-     * @param pwd
-     * @return
+     * @param snsUser the sns user
+     * @param pwd     the pwd
+     * @return string
      */
     public String showAuthenticationData(SNSUser snsUser, String pwd) {
         return String.format("\n\nSNS USER AUTHENTICATION DATA\n\nName: %s\nEmail: %s\nPassword: %s\n",
@@ -150,6 +184,13 @@ public class SNSUserStore extends PasswordGenerator {
 
 //==================== CSV FILE ================================================
 
+    /**
+     * Register csv users list.
+     *
+     * @param listcsvInfo the listcsv info
+     * @return the list
+     * @throws ParseException the parse exception
+     */
     public List<SNSUser> registerCSVUsers(List<List<String>> listcsvInfo) throws ParseException {
         List<SNSUser> listSNSUsers = new ArrayList<SNSUser>();
         for (List<String> user : listcsvInfo) {
@@ -163,7 +204,20 @@ public class SNSUserStore extends PasswordGenerator {
     }
 
 
-
+    /**
+     * File treatment users list.
+     *
+     * @param filePath the file path
+     * @param csv      the csv
+     * @return the list
+     * @throws IOException               the io exception
+     * @throws ClassNotFoundException    the class not found exception
+     * @throws InvocationTargetException the invocation target exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
+     * @throws ParseException            the parse exception
+     */
     public List<SNSUser> fileTreatmentUsers(String filePath, CSV csv) throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, ParseException {
         List<List<String>> listcsvInfo = new ArrayList<>();
         List<SNSUser> listSNSUsers = new ArrayList<>();
@@ -177,8 +231,13 @@ public class SNSUserStore extends PasswordGenerator {
     }
 
 
-
-
+    /**
+     * Validate csv users boolean.
+     *
+     * @param listSNSUsers the list sns users
+     * @return the boolean
+     * @throws ParseException the parse exception
+     */
     public boolean validateCSVUsers(List<SNSUser> listSNSUsers) throws ParseException {
         boolean valid = true;
         for (SNSUser u : listSNSUsers)

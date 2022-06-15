@@ -1,5 +1,8 @@
 package app.domain.model;
 
+/**
+ * The type Administration process.
+ */
 public class AdministrationProcess {
 
     private String Processcode;
@@ -10,6 +13,16 @@ public class AdministrationProcess {
     private String description;
 
 
+    /**
+     * Instantiates a new Administration process.
+     *
+     * @param Processcode  the processcode
+     * @param vaccine_name the vaccine name
+     * @param doses        the doses
+     * @param ageGroup     the age group
+     * @param dosage       the dosage
+     * @param description  the description
+     */
     public AdministrationProcess(String Processcode, String vaccine_name, int doses, String ageGroup, int dosage, String description){
         this.Processcode = Processcode;
         this.vaccine_name = vaccine_name;

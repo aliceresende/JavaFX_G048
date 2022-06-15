@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * The type Load legacy data controller.
+ */
 public class LoadLegacyDataController {
     /*
     @FXML
@@ -55,14 +58,27 @@ public class LoadLegacyDataController {
 
     private List<SNSUser> listSNSUsers = new ArrayList<>();
 
+    /**
+     * Gets company.
+     *
+     * @return the company
+     */
     public Company getCompany() {
         return this.company;
     }
 
-   public LoadLegacyDataController(){
+    /**
+     * Instantiates a new Load legacy data controller.
+     */
+    public LoadLegacyDataController(){
         this(App.getInstance().getCompany());
    }
 
+    /**
+     * Instantiates a new Load legacy data controller.
+     *
+     * @param company the company
+     */
     public LoadLegacyDataController(Company company){
         this.company = company;
         userStore = company.getSNSUserStore();
@@ -98,8 +114,16 @@ public class LoadLegacyDataController {
     }*/
 
 
-
-
+    /**
+     * Sort list list.
+     *
+     * @param array the array
+     * @return the list
+     * @throws IOException            the io exception
+     * @throws ClassNotFoundException the class not found exception
+     * @throws InstantiationException the instantiation exception
+     * @throws IllegalAccessException the illegal access exception
+     */
     public List<List<String>> sortList(String[] array) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         Properties properties = new Properties();
         InputStream in = new FileInputStream("config.properties");

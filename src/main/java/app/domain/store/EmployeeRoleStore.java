@@ -5,10 +5,16 @@ import pt.isep.lei.esoft.auth.domain.model.UserRole;
 
 import java.util.ArrayList;
 
+/**
+ * The type Employee role store.
+ */
 public class EmployeeRoleStore {
 
     private ArrayList<UserRole> roles = new ArrayList<>();
 
+    /**
+     * Instantiates a new Employee role store.
+     */
     public EmployeeRoleStore(){
         roles.add(new UserRole(Constants.ROLE_RECEPT, "Responsible for scheduling appointments and registering the arrival of the patients."));
         roles.add(new UserRole(Constants.ROLE_CENTER_COORDINATOR,"Responsible for coordinating the Vaccination Center"));
@@ -40,9 +46,11 @@ public class EmployeeRoleStore {
         return false;
 
     }
+
     /**
      * This method returns a list with all the roles
-     * @return
+     *
+     * @return roles
      */
     public ArrayList<UserRole> getRoles() {
         return roles;

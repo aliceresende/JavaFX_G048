@@ -6,12 +6,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The type New vaccine store.
+ */
 public class NewVaccineStore {
+    /**
+     * The Array 1.
+     */
     List<Vaccine> array1;
+    /**
+     * The Age.
+     */
     ArrayList<String> age;
+    /**
+     * The Adm.
+     */
     ArrayList<AdministrationProcess> adm;
+    /**
+     * The V.
+     */
     Vaccine v;
 
+    /**
+     * Instantiates a new New vaccine store.
+     */
     public NewVaccineStore() {
         this.array1 = new ArrayList<Vaccine>();
         this.age = new ArrayList<String>();
@@ -31,12 +49,30 @@ public class NewVaccineStore {
 
     }
 
+    /**
+     * Create vaccine vaccine.
+     *
+     * @param code           the code
+     * @param designation    the designation
+     * @param VaccineType    the vaccine type
+     * @param AgeGroup       the age group
+     * @param intv           the intv
+     * @param disease        the disease
+     * @param description    the description
+     * @param administration the administration
+     * @return the vaccine
+     */
     public Vaccine createVaccine(String code, String designation, String VaccineType, ArrayList<String> AgeGroup, String intv, String disease,
                                  String description, ArrayList<AdministrationProcess> administration) {
         this.v = new Vaccine(code, designation, VaccineType, AgeGroup, intv, disease,  description, administration);
         return this.v;
     }
 
+    /**
+     * Array list list.
+     *
+     * @return the list
+     */
     public List<Vaccine> ArrayList(){
         return this.array1;
     }
@@ -49,6 +85,12 @@ public class NewVaccineStore {
         }
     }
 
+    /**
+     * Validate vaccine boolean.
+     *
+     * @param v the v
+     * @return the boolean
+     */
     public boolean ValidateVaccine(Vaccine v) {
         if (v == null || contains(v)) {
             return false;
@@ -56,6 +98,11 @@ public class NewVaccineStore {
         return true;
     }
 
+    /**
+     * Save vaccine boolean.
+     *
+     * @return the boolean
+     */
     public boolean saveVaccine() {
         if (ValidateVaccine(this.v)) {
             add(v);
@@ -65,15 +112,31 @@ public class NewVaccineStore {
         }
     }
 
+    /**
+     * Add boolean.
+     *
+     * @param v the v
+     * @return the boolean
+     */
     public boolean add(Vaccine v) {
         array1.add(v);
         return true;
     }
 
+    /**
+     * Gets v.
+     *
+     * @return the v
+     */
     public Vaccine getV() {
         return v;
     }
 
+    /**
+     * Sets v.
+     *
+     * @param v the v
+     */
     public void setV(Vaccine v) {
         this.v = v;
     }
@@ -89,7 +152,13 @@ public class NewVaccineStore {
 
         return String.valueOf(listString);
     }
-    /** This method searchs for a type name in NewVaccineType Store that equals to @param type*/
+
+    /**
+     * This method searchs for a type name in NewVaccineType Store that equals to @param type @param type the type
+     *
+     * @param st_type the st type
+     * @return the string
+     */
     public String findType(String type, NewVaccineTypeStore st_type){
         String res=("\nno type found");
         for (int i=0; i<st_type.array.size(); i++){
@@ -101,13 +170,16 @@ public class NewVaccineStore {
         }
         return res;
     }
-    /**This method sorts the arraylist of vaccines using the ordering method in Vaccine.order*/
+
+    /**
+     * This method sorts the arraylist of vaccines using the ordering method in Vaccine.order
+     */
     public void sort_ArrayList(){Collections.sort(array1, Vaccine.order);}
 
-    /**This method Lists all the vaccines registered in the system divided by type
+    /**
+     * This method Lists all the vaccines registered in the system divided by type
      *
      * @param st_type represents a object of the class NewVaccineTypeStore
-     *
      */
     public void ListAll(NewVaccineTypeStore st_type){
         Vaccine Vtype;

@@ -5,23 +5,29 @@ import app.domain.model.ArrivalOfSNSUser;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Arrival of sns user store.
+ */
 public class ArrivalOfSNSUserStore {
     private ArrayList<ArrivalOfSNSUser> knows = new ArrayList<>();
 
+    /**
+     * Instantiates a new Arrival of sns user store.
+     */
     public ArrivalOfSNSUserStore() {
        // knows.add(new ArrivalOfSNSUser("1234567890","21:05","Unilabs Aveiro"));
        // knows.add(new ArrivalOfSNSUser("1234567891","22:05","Unilabs Aveiro"));
        // knows.add(new ArrivalOfSNSUser("0987654321","22:00","Centro de Vacinação Coimbra"));
-        knows.add(new ArrivalOfSNSUser("1234567890","06/06/2020 8:00","Unilabs Aveiro"));
-        knows.add(new ArrivalOfSNSUser("1234567891","06/06/2020 8:01","Unilabs Aveiro"));
-        knows.add(new ArrivalOfSNSUser("0987654321","06/06/2020 8:02","Centro de Vacinação Coimbra"));
-        knows.add(new ArrivalOfSNSUser("1987654321","06/06/2020 8:04","Centro de Vacinação Porto"));
-        knows.add(new ArrivalOfSNSUser("9987654321","06/06/2020 8:10","Centro de Vacinação Porto"));
-        knows.add(new ArrivalOfSNSUser("9987654311","06/06/2020 8:16","Centro de Vacinação Porto"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 8:20","Centro de Vacinação Braga"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:10","Centro de Vacinação Braga"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:11","Centro de Vacinação Braga"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:12","Centro de Vacinação Braga"));
+        knows.add(new ArrivalOfSNSUser("1234567890","14/06/2022 8:00","Unilabs Aveiro"));
+        knows.add(new ArrivalOfSNSUser("1234567891","14/06/2022 8:01","Unilabs Aveiro"));
+        knows.add(new ArrivalOfSNSUser("0987654321","14/06/2022 8:02","Centro de Vacinação Coimbra"));
+        knows.add(new ArrivalOfSNSUser("1987654321","14/06/2022 8:04","Centro de Vacinação Porto"));
+        knows.add(new ArrivalOfSNSUser("9987654321","14/06/2022 8:10","Centro de Vacinação Porto"));
+        knows.add(new ArrivalOfSNSUser("9987654311","14/06/2022 8:16","Centro de Vacinação Porto"));
+        knows.add(new ArrivalOfSNSUser("098765432","14/06/2022 8:20","Centro de Vacinação Braga"));
+        knows.add(new ArrivalOfSNSUser("098765432","14/06/2022 9:10","Centro de Vacinação Braga"));
+        knows.add(new ArrivalOfSNSUser("098765432","14/06/2022 9:11","Centro de Vacinação Braga"));
+        knows.add(new ArrivalOfSNSUser("098765432","14/06/2022 9:12","Centro de Vacinação Braga"));
         knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:13","Centro de Vacinação Braga"));
         knows.add(new ArrivalOfSNSUser("098765432","07/06/2020 9:13","Centro de Vacinação Braga"));
 
@@ -30,7 +36,7 @@ public class ArrivalOfSNSUserStore {
     /**
      * Lists the arrivals of the SNS Users
      *
-     * @param knows
+     * @param knows the knows
      */
     public ArrivalOfSNSUserStore(ArrayList<ArrivalOfSNSUser> knows) {
         this.knows = knows;
@@ -56,6 +62,7 @@ public class ArrivalOfSNSUserStore {
 
     /**
      * Checks the existence of duplicate entries
+     *
      * @param arrival the arrival of the SNS User Arrival
      * @return true and warn that are duplicate entries, otherwise return false
      */
@@ -73,8 +80,9 @@ public class ArrivalOfSNSUserStore {
 
     /**
      * Checks if the SNS User is in the right center
+     *
      * @param vCenterNameSchedule the vaccination center name of the schedule
-     * @param arrival the arrival of the SNS user
+     * @param arrival             the arrival of the SNS user
      * @return true if the SNS user isn't in the schedule vaccination center, otherwise return false
      */
     public boolean validateArrivalOfSNSUser(String vCenterNameSchedule, ArrivalOfSNSUser arrival){
@@ -89,7 +97,8 @@ public class ArrivalOfSNSUserStore {
     /**
      * Saves the SNS User arrival if there are no duplicate entries
      * and if the user is in the right vaccination center
-     * @param arrival the arrival of the SNS User Arrival
+     *
+     * @param arrival               the arrival of the SNS User Arrival
      * @param vaccinationCenterName the vaccination center of the SNS User arrival
      */
     public void saveArrivalOfSNSUser(ArrivalOfSNSUser arrival, String vaccinationCenterName){
@@ -104,12 +113,19 @@ public class ArrivalOfSNSUserStore {
 
     /**
      * This method returns the list of SNSUsers that have arrived
+     *
      * @return the ArrayList containing the SNSUsers that have arrived
      */
     public ArrayList<ArrivalOfSNSUser> GetArrivalOfSNSUsers(){
         return knows;
     }
 
+    /**
+     * Arrival by day list.
+     *
+     * @param day the day
+     * @return the list
+     */
     public List<ArrivalOfSNSUser> ArrivalByDay(String day){
         List<ArrivalOfSNSUser> arrivalDay=new ArrayList<>();
         for(int i=0;i<knows.size();i++) {

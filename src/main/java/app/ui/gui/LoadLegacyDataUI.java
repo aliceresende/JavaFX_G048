@@ -8,8 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The type Load legacy data ui.
+ */
 public class LoadLegacyDataUI extends Application implements Runnable {
 
+    /**
+     * The Controller.
+     */
     LoadLegacyDataController controller = new LoadLegacyDataController();
 
     public void run(){

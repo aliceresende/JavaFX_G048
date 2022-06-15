@@ -8,12 +8,20 @@ import app.mappers.dto.VaccinationCenterDTO;
 
 import java.util.List;
 
+/**
+ * The type Select vaccination center controller.
+ */
 public class SelectVaccinationCenterController {
     private Company company;
     private ComunityMassVaccinationCenter vCenter;
     private VaccinationCenterMapper vCenterMapper = new VaccinationCenterMapper();
     private VaccinationCenterStore store;
 
+    /**
+     * Gets company.
+     *
+     * @return the company
+     */
     public Company getCompany() {
         return this.company;
     }
@@ -25,7 +33,8 @@ public class SelectVaccinationCenterController {
 
     /**
      * Constructor
-     * @param company
+     *
+     * @param company the company
      */
     public SelectVaccinationCenterController(Company company) {
         this.company = company;
@@ -36,6 +45,7 @@ public class SelectVaccinationCenterController {
 
     /**
      * Gets the list of vaccination centers
+     *
      * @return list of vaccination centers
      */
     public List<VaccinationCenterDTO> getVaccinationCenter() {
@@ -45,7 +55,8 @@ public class SelectVaccinationCenterController {
 
     /**
      * Modified the current vaccination center
-     * @param vCenterDTO
+     *
+     * @param vCenterDTO the v center dto
      */
     public void currentCenter(VaccinationCenterDTO vCenterDTO) {
         store.setCurrentCenter(vCenterMapper.toCenter(vCenterDTO));
@@ -53,6 +64,7 @@ public class SelectVaccinationCenterController {
 
     /**
      * Gets the information from the store of the current vaccination center
+     *
      * @return the information of the current vaccination center
      */
     public VaccinationCenterDTO getCurrentCenter(){ return vCenterMapper.toDTO(store.getCurrentCenter());}

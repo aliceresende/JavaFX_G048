@@ -4,12 +4,19 @@ package app.mappers;
 import app.domain.model.VaccineSchedule;
 import app.mappers.dto.VaccineScheduleDTO;
 
+/**
+ * The type Vaccine schedule mapper.
+ */
 public class VaccineScheduleMapper {
+    /**
+     * Instantiates a new Vaccine schedule mapper.
+     */
     public VaccineScheduleMapper() {
     }
 
     /**
      * This method converts the vaccine schedule to DTO
+     *
      * @param vS the vaccine schedule
      * @return the DTO of the vaccine schedule
      */

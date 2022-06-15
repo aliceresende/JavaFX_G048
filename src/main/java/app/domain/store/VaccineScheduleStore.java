@@ -6,9 +6,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The type Vaccine schedule store.
+ */
 public class VaccineScheduleStore {
     private ArrayList<VaccineSchedule> knows = new ArrayList<>();
 
+    /**
+     * Instantiates a new Vaccine schedule store.
+     */
     public VaccineScheduleStore() { //<--(ArrayList<VaccineSchedule> knows)
         knows.add(new VaccineSchedule("Covid-19", "14-09-2022", "12:00", "Unilabs Aveiro", "1234567890"));
         knows.add(new VaccineSchedule("Hepatite B", "15-09-2022","13:00","Centro de Vacinação Coimbra","0987654321"));
@@ -17,14 +23,14 @@ public class VaccineScheduleStore {
 
     /**
      * Create a vaccine schedule with vaccine name, date, hour, vaccination center name and sns user number
-     * @param vaccineName the name of the virus the vaccine was made for confronting
-     * @param date the day scheduled for the vaccine
-     * @param hour the hour scheduled for the vaccine
+     *
+     * @param vaccineName           the name of the virus the vaccine was made for confronting
+     * @param date                  the day scheduled for the vaccine
+     * @param hour                  the hour scheduled for the vaccine
      * @param vaccinationCenterName the name of the vaccination center
-     * @param snsUserNumber the number of the sns user that made the schedule
+     * @param snsUserNumber         the number of the sns user that made the schedule
      * @return the Vaccine Schedule information
      */
-
     public VaccineSchedule createVaccineSchedule(String vaccineName, String date, String hour, String vaccinationCenterName, String snsUserNumber) {
         knows.add(new VaccineSchedule(vaccineName, date, hour, vaccinationCenterName, snsUserNumber));
         return new VaccineSchedule(vaccineName, date, hour, vaccinationCenterName, snsUserNumber);
@@ -32,11 +38,11 @@ public class VaccineScheduleStore {
 
     /**
      * Validates the vaccine schedule data and increments it
+     *
      * @param vaccineSchedule the scheduled vaccine data
      * @return true if the vaccine schedule data is valid false otherwise
      * @throws IllegalArgumentException if the vaccine was already scheduled
      */
-
     public boolean validateVaccineSchedule(VaccineSchedule vaccineSchedule) {
         if (vaccineSchedule == null) {
             return false;
@@ -53,18 +59,18 @@ public class VaccineScheduleStore {
 
     /**
      * returns the vaccine schedule list
+     *
      * @return the vaccine schedule list
      */
-
     public List<VaccineSchedule> getVaccineScheduleList() {
         return knows;
     }
 
     /**
      * Saves a Vaccine Schedule
+     *
      * @param vaccineSchedule the vaccine schedule data
      */
-
     public void saveVaccineSchedule(VaccineSchedule vaccineSchedule) {
         validateVaccineSchedule(vaccineSchedule);
         if (validateVaccineSchedule(vaccineSchedule)) {
@@ -99,10 +105,10 @@ public class VaccineScheduleStore {
 
     /**
      * Show the vaccine schedule data to the sns user
+     *
      * @param vaccineSchedule the vaccine schedule data
      * @return the data
      */
-
     public String showAuthenticationData(VaccineSchedule vaccineSchedule) {
         return String.format("\n\nVACCINE SCHEDULE DATA\n\nVaccine: %s\nDay: %s\nHour: %s\nCenter: %s\n",
                 vaccineSchedule.getVaccineName(), vaccineSchedule.getDate(), vaccineSchedule.getHour(), (vaccineSchedule.getVaccinationCenterName()));
@@ -110,6 +116,7 @@ public class VaccineScheduleStore {
 
     /**
      * Returns the list of vaccine schedules
+     *
      * @return the list of vaccine schedules
      */
     public ArrayList<VaccineSchedule> getKnows() {
@@ -119,7 +126,8 @@ public class VaccineScheduleStore {
 
     /**
      * Gets the list of the vaccine schedules
-     * @param knows
+     *
+     * @param knows the knows
      */
     public VaccineScheduleStore(ArrayList<VaccineSchedule> knows) {
         this.knows = knows;
@@ -127,6 +135,7 @@ public class VaccineScheduleStore {
 
     /**
      * Returns the schedule of the SNS User by the SNS User number
+     *
      * @param SNSUserNumber the SNS user number from the vaccine schedule
      * @return the schedule of the SNS User by the SNS User number
      * @throws IllegalArgumentException if the SNS user doesn't exist
@@ -139,6 +148,13 @@ public class VaccineScheduleStore {
         }
         throw new IllegalArgumentException("The SNS user number provided doesn't exist");
     }
+
+    /**
+     * Gets vaccine schedule.
+     *
+     * @param SNSUserNumber the sns user number
+     * @return the vaccine schedule
+     */
     public VaccineSchedule getVaccineSchedule(String SNSUserNumber) {
         for(VaccineSchedule vSchedule : knows) {
             if(vSchedule.getSNSUserNumber().equals(SNSUserNumber)){
@@ -150,10 +166,11 @@ public class VaccineScheduleStore {
 
     /**
      * Returns the list with -1 element from the list
+     *
      * @param SNSUserNumber the SNS user number of the vaccine schedule
      * @return the list with -1 element from the list
      */
-   public ArrayList<VaccineSchedule> removeVaccineSchedule(String SNSUserNumber){
+    public ArrayList<VaccineSchedule> removeVaccineSchedule(String SNSUserNumber){
         knows.removeAll(Collections.singleton(SNSUserNumber));
         return knows;
    }

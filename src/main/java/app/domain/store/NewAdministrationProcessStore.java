@@ -1,5 +1,8 @@
 package app.domain.store;
 
+/**
+ * The type New administration process store.
+ */
 public class NewAdministrationProcessStore {
    /* List<AdministrationProcess> array;
     AdministrationProcess ap;

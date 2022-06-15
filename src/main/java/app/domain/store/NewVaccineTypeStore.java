@@ -6,8 +6,17 @@ import app.domain.shared.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type New vaccine type store.
+ */
 public class NewVaccineTypeStore {
+    /**
+     * The Array.
+     */
     List<VaccineType> array;
+    /**
+     * The Vt.
+     */
     VaccineType vt;
 
     /**
@@ -57,7 +66,6 @@ public class NewVaccineTypeStore {
      * @param vt Vaccine type object
      * @return boolean value that is true if the object already exists in the ArrayList
      */
-
     public boolean contains(VaccineType vt) {
         if (this.array.contains(vt)) {
             return true;
@@ -118,6 +126,8 @@ public class NewVaccineTypeStore {
     }
 
     /**
+     * Gets vt.
+     *
      * @return VaccineType object
      */
     public VaccineType getVt() {

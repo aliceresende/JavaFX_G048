@@ -2,11 +2,24 @@ package app.domain.algorithms.subsequence;
 
 import java.util.Arrays;
 
+/**
+ * The type Benchmark.
+ */
 public class Benchmark implements Subsequence{
+    /**
+     * Instantiates a new Benchmark.
+     */
     public Benchmark() {}
 
     @Override
     public int[] getSubsequence(int[] array) { return Max(array);}
+
+    /**
+     * Max int [ ].
+     *
+     * @param seq the seq
+     * @return the int [ ]
+     */
     public static int[] Max(int[] seq) {
         int maxSoFar = 0;
         int maxEndingHere = 0;

@@ -8,6 +8,9 @@ import app.mappers.dto.ArrivalOfSNSUserDTO;
 import java.util.ArrayList;
 
 
+/**
+ * The type Show arrived sns user controller.
+ */
 public class ShowArrivedSNSUserController {
     private ArrivalOfSNSUserStore aStore = new ArrivalOfSNSUserStore();
     private ArrivalOfSNSUserMapper aMapper = new ArrivalOfSNSUserMapper();
@@ -17,9 +20,9 @@ public class ShowArrivedSNSUserController {
 
     /**
      * Sends the list of the waiting room to the mapper
+     *
      * @return the DTO list of people waiting in the waiting room
      */
-
     public ArrayList<ArrivalOfSNSUserDTO> ToRegisterArraivalOfSNSUserMapper(){
         ArrayList<ArrivalOfSNSUser> listOfWaitingRoom = GetWaitingList();
         for (ArrivalOfSNSUser waitingUser:listOfWaitingRoom){
@@ -30,9 +33,9 @@ public class ShowArrivedSNSUserController {
 
     /**
      * Gets the list of the waiting room
+     *
      * @return list of waitingRoom
      */
-
     public ArrayList<ArrivalOfSNSUser> GetWaitingList(){
         listOfWaitingRoomFromStore = aStore.GetArrivalOfSNSUsers();
         return listOfWaitingRoomFromStore;

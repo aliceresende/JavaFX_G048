@@ -5,9 +5,15 @@ import app.ui.console.utils.Utils;
 import pt.isep.lei.esoft.auth.domain.model.UserRole;
 
 
+/**
+ * The type List employees by role ui.
+ */
 public class ListEmployeesByRoleUI implements Runnable{
     private final ListEmployeesByRoleController controller = new ListEmployeesByRoleController();
 
+    /**
+     * Instantiates a new List employees by role ui.
+     */
     public ListEmployeesByRoleUI() {
     }
 

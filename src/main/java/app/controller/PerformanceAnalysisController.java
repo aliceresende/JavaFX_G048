@@ -13,19 +13,36 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
-public class PerformanceAnalyzeController {
+/**
+ * The type Performance analyze controller.
+ */
+public class PerformanceAnalysisController {
     private Company company;
     private ArrivalOfSNSUserStore storeArrival;
     private AdministrationStore storeAdmin;
 
     private VaccinationCenterStore storeCenter;
 
-    public PerformanceAnalyzeController() {
+    /**
+     * Instantiates a new Performance analyze controller.
+     */
+    public PerformanceAnalysisController() {
         company = App.getInstance().getCompany();
         storeArrival = company.getArrivalStore();
         storeAdmin = company.getAdministrationStore();
         storeCenter = company.getRegisterCenterStore();
     }
+
+    /**
+     * Get max sublist int [ ].
+     *
+     * @param subsequence the subsequence
+     * @return the int [ ]
+     * @throws IOException            the io exception
+     * @throws ClassNotFoundException the class not found exception
+     * @throws InstantiationException the instantiation exception
+     * @throws IllegalAccessException the illegal access exception
+     */
     public int[] getMaxSublist(int[] subsequence) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         Properties properties = new Properties();
@@ -43,6 +60,14 @@ public class PerformanceAnalyzeController {
         in.close();
         return subsequenceAlgorithm.getSubsequence(subsequence);
     }
+
+    /**
+     * Input list int [ ].
+     *
+     * @param interval the interval
+     * @param day      the day
+     * @return the int [ ]
+     */
     public int[] inputList(int interval,String day){
        return storeCenter.inputtedList(interval,storeArrival.ArrivalByDay(day),storeAdmin.ExitByDay(day));
     }

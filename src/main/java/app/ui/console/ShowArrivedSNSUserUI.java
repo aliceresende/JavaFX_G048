@@ -7,6 +7,9 @@ import app.mappers.dto.VaccinationCenterDTO;
 
 import java.util.ArrayList;
 
+/**
+ * The type Show arrived sns user ui.
+ */
 public class ShowArrivedSNSUserUI implements Runnable{
 
     private final ShowArrivedSNSUserController showArrivalController = new ShowArrivedSNSUserController();
@@ -27,10 +30,10 @@ public class ShowArrivedSNSUserUI implements Runnable{
 
     /**
      * prints the waiting room
-     * @param waitingRoom
-     * @param currentCenter
+     *
+     * @param waitingRoom   the waiting room
+     * @param currentCenter the current center
      */
-
     public void ShowWaitingRoom(ArrayList<ArrivalOfSNSUserDTO> waitingRoom,VaccinationCenterDTO currentCenter){
         for (ArrivalOfSNSUserDTO waiting: waitingRoom){
             if (waiting.getvCenterDTO().equals(currentCenter.getName())){

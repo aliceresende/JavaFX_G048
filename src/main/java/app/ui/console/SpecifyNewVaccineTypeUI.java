@@ -7,9 +7,15 @@ import app.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Specify new vaccine type ui.
+ */
 public class SpecifyNewVaccineTypeUI implements Runnable {
     private SpecifyNewVaccineTypeController ctrl;
 
+    /**
+     * Instantiates a new Specify new vaccine type ui.
+     */
     public SpecifyNewVaccineTypeUI() {
         this.ctrl = new SpecifyNewVaccineTypeController();
 
@@ -17,6 +23,7 @@ public class SpecifyNewVaccineTypeUI implements Runnable {
 
     /**
      * Menu for the admin to choose witch tech the vaccine will have.
+     *
      * @return String that represents tech
      */
     public String ChooseTech() {

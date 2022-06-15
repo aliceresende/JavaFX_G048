@@ -6,6 +6,9 @@ import app.ui.console.utils.Utils;
 
 import java.io.IOException;
 
+/**
+ * The type Register center ui.
+ */
 public class RegisterCenterUI implements Runnable {
 
     private RegisterCenterController centerC = new RegisterCenterController();

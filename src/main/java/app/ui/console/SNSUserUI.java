@@ -5,8 +5,14 @@ import app.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Sns user ui.
+ */
 public class SNSUserUI implements Runnable{
 
+    /**
+     * Instantiates a new Sns user ui.
+     */
     public SNSUserUI(){}
 
 

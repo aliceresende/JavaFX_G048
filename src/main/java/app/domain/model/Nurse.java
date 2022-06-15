@@ -1,5 +1,8 @@
 package app.domain.model;
 
+/**
+ * The type Nurse.
+ */
 public class Nurse extends Employee{
     /**
      * Builds an instance of the Employee receiving the name, phone number, email, address, citizen card number and role

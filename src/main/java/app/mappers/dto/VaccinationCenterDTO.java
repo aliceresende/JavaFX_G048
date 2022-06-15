@@ -2,6 +2,9 @@ package app.mappers.dto;
 
 import app.domain.model.Schedule;
 
+/**
+ * The type Vaccination center dto.
+ */
 public class VaccinationCenterDTO {
     private String id;
     private String name;
@@ -16,15 +19,16 @@ public class VaccinationCenterDTO {
 
     /**
      * Builds an instance of the Vaccination Center DTO receiving the id, name, address, phone number, email, fax, website, center schedule, slot duration and max of vaccines per slot
-     * @param id the id of the Vaccination center DTO
-     * @param name the name of the Vaccination center DTO
-     * @param address the address of the Vaccination center DTO
-     * @param phoneNumber the phone number of the Vaccination center DTO
-     * @param email the email of the Vaccination center DTO
-     * @param faxNumber the fax number of the Vaccination center DTO
-     * @param websiteAddress the website address of the Vaccination center DTO
-     * @param centerSchedule the center schedule of the Vaccination center DTO
-     * @param slotDuration the slot duration of the Vaccination center DTO
+     *
+     * @param id               the id of the Vaccination center DTO
+     * @param name             the name of the Vaccination center DTO
+     * @param address          the address of the Vaccination center DTO
+     * @param phoneNumber      the phone number of the Vaccination center DTO
+     * @param email            the email of the Vaccination center DTO
+     * @param faxNumber        the fax number of the Vaccination center DTO
+     * @param websiteAddress   the website address of the Vaccination center DTO
+     * @param centerSchedule   the center schedule of the Vaccination center DTO
+     * @param slotDuration     the slot duration of the Vaccination center DTO
      * @param maxNumVaxPerSlot the max number of vaccines per slot of the Vaccination center DTO
      */
     public VaccinationCenterDTO(String id, String name, String address, String phoneNumber, String email, String faxNumber, String websiteAddress, Schedule centerSchedule, String slotDuration, String maxNumVaxPerSlot) {
@@ -42,6 +46,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the id of the vaccination center DTO
+     *
      * @return the id of the vaccination center DTO
      */
     public String getId() {
@@ -50,6 +55,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the name of the vaccination center DTO
+     *
      * @return the name of the vaccination center DTO
      */
     public String getName() {
@@ -58,6 +64,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the address of the vaccination center DTO
+     *
      * @return the address of the vaccination center DTO
      */
     public String getAddress() {
@@ -66,6 +73,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the phone number of the vaccination center DTO
+     *
      * @return the phone number of the vaccination center DTO
      */
     public String getPhoneNumber() {
@@ -74,6 +82,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the email of the vaccination center DTO
+     *
      * @return the email of the vaccination center DTO
      */
     public String getEmail() {
@@ -82,6 +91,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the fax number of the vaccination center DTO
+     *
      * @return the fax number of the vaccination center DTO
      */
     public String getFaxNumber() {
@@ -90,6 +100,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the website address of the vaccination center DTO
+     *
      * @return the website of the vaccination center DTO
      */
     public String getWebsiteAddress() {
@@ -98,6 +109,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the center schedule of the vaccination center DTO
+     *
      * @return the center schedule of the vaccination center DTO
      */
     public Schedule getCenterSchedule() {
@@ -106,6 +118,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the slot duration of the vaccination center DTO
+     *
      * @return the slot duration of the vaccination center DTO
      */
     public String getSlotDuration() {
@@ -114,6 +127,7 @@ public class VaccinationCenterDTO {
 
     /**
      * Returns the max number of vaccines per slot of the vaccination center DTO
+     *
      * @return the max number of vaccines per slot of the vaccination center DTO
      */
     public String getMaxNumVaxPerSlot() {

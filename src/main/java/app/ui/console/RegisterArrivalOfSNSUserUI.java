@@ -13,7 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Register arrival of sns user ui.
+ */
 public class RegisterArrivalOfSNSUserUI implements Runnable{
+    /**
+     * The Read.
+     */
     static Scanner read = new Scanner(System.in);
     private final RegisterArrivalOfSNSUserController arrivalUserC = new RegisterArrivalOfSNSUserController();
     private final SelectVaccinationCenterController selectCenterController = new SelectVaccinationCenterController();

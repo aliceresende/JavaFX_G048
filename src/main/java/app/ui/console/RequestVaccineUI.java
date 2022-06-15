@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Request vaccine ui.
+ */
 public class RequestVaccineUI implements Runnable{
+    /**
+     * The Read.
+     */
     static Scanner read = new Scanner(System.in);
     private final RequestVaccineController vaccineSC = new RequestVaccineController();
 
@@ -112,6 +118,12 @@ public class RequestVaccineUI implements Runnable{
         }
     }
 
+    /**
+     * Vaccination center name list.
+     *
+     * @param vaccinationCenter the vaccination center
+     * @return the list
+     */
     public List<String> vaccinationCenterName(List<ComunityMassVaccinationCenter> vaccinationCenter) {
         List<String> vaccinationCenterName = new ArrayList<>();
         for(ComunityMassVaccinationCenter cmvc : vaccinationCenter) {
@@ -120,6 +132,12 @@ public class RequestVaccineUI implements Runnable{
         return vaccinationCenterName;
     }
 
+    /**
+     * Vaccine name list.
+     *
+     * @param vaccine the vaccine
+     * @return the list
+     */
     public List<String> vaccineName(List<Vaccine> vaccine) {
         List<String> vaccineName = new ArrayList<>();
         for(Vaccine v : vaccine){

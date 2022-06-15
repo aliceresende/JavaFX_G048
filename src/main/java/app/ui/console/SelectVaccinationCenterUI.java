@@ -6,6 +6,9 @@ import app.ui.console.utils.Utils;
 
 import java.util.List;
 
+/**
+ * The type Select vaccination center ui.
+ */
 public class SelectVaccinationCenterUI implements Runnable{
     private SelectVaccinationCenterController selectCenter = new SelectVaccinationCenterController();
     @Override
@@ -19,6 +22,7 @@ public class SelectVaccinationCenterUI implements Runnable{
 
     /**
      * Returns the selected vaccination center
+     *
      * @return the selected vaccination center
      */
     public VaccinationCenterDTO selectVaccinationCenter() {

@@ -2,20 +2,33 @@ package app.domain.model;
 
 import java.util.Random;
 
+/**
+ * The type Password generator.
+ */
 public class PasswordGenerator {
   private static final String ALPHA_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   private static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
   private static final String NUM = "0123456789";
-  final static int numberOfAlphanumericalDigits = 7;
-  final static int numberOfCapitalLetters = 3;
-  final static int numberOfDigits = 2;
+    /**
+     * The constant numberOfAlphanumericalDigits.
+     */
+    final static int numberOfAlphanumericalDigits = 7;
+    /**
+     * The constant numberOfCapitalLetters.
+     */
+    final static int numberOfCapitalLetters = 3;
+    /**
+     * The constant numberOfDigits.
+     */
+    final static int numberOfDigits = 2;
 
-  /**
-   * Generate a password with seven alphanumeric characters,
-   * including three capital letters and two digits.
-   * @return the generated password
-   */
-  public static String generatePassword() {
+    /**
+     * Generate a password with seven alphanumeric characters,
+     * including three capital letters and two digits.
+     *
+     * @return the generated password
+     */
+    public static String generatePassword() {
 
     Random rnd = new Random();
     char[] pass = new char[numberOfAlphanumericalDigits];

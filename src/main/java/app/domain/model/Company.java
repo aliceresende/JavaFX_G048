@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 /**
+ * The type Company.
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
@@ -36,6 +37,7 @@ public class Company {
 
     /**
      * Builds an instance of the Company receiving the designation
+     *
      * @param designation of the Company
      */
     public Company(String designation)
@@ -57,13 +59,26 @@ public class Company {
 
     }
 
+    /**
+     * Get employee role store employee role store.
+     *
+     * @return the employee role store
+     */
     public EmployeeRoleStore getEmployeeRoleStore(){
         return this.roles;
 
     }
+
+    /**
+     * Get vaccine type list new vaccine type store.
+     *
+     * @return the new vaccine type store
+     */
     public NewVaccineTypeStore getVaccineTypeList(){return this.vtstore;}
+
     /**
      * Returns the SNS user store from the company
+     *
      * @return the SNS user store from the company
      */
 
@@ -73,6 +88,7 @@ public class Company {
 
     /**
      * Returns the SNS user store from the company
+     *
      * @return the SNS user store from the company
      */
     public SNSUserStore getSNSUserStore() {
@@ -81,12 +97,14 @@ public class Company {
 
     /**
      * Returns the SNS user store from the company
+     *
      * @return the SNS user store from the company
      */
     public VaccinationCenterStore getRegisterCenterStore(){ return centers;}
 
     /**
      * Returns the SNS user store from the company
+     *
      * @return the SNS user store from the company
      */
     public EmployeeStore getEmployeeStore() {
@@ -95,6 +113,7 @@ public class Company {
 
     /**
      * Returns the designation from the company
+     *
      * @return the designation from the company
      */
     public String getDesignation() {
@@ -104,6 +123,7 @@ public class Company {
 
     /**
      * Returns the auth facade from the company
+     *
      * @return the auth facade from the company
      */
     public AuthFacade getAuthFacade() {
@@ -112,6 +132,7 @@ public class Company {
 
     /**
      * Returns the vaccine schedule store from the company
+     *
      * @return the vaccine schedule store from the company
      */
     public VaccineScheduleStore getVaccineScheduleStore() {
@@ -120,6 +141,7 @@ public class Company {
 
     /**
      * Returns the administration process store from the company
+     *
      * @return the administration process store from the company
      */
     public NewAdministrationProcessStore getAdministrationProcess() {
@@ -128,28 +150,37 @@ public class Company {
 
     /**
      * Returns the arrival of the SNS user store from the company
+     *
      * @return the arrival of the SNS user store from the company
      */
     public ArrivalOfSNSUserStore getArrivalStore() {
         return arrivalStore;
     }
 
+    /**
+     * Gets administration store.
+     *
+     * @return the administration store
+     */
     public AdministrationStore getAdministrationStore() {return administrationStore;}
 
 
+    /**
+     * Instantiates a new Company.
+     */
     public Company() {}
 
     /**
      * Reflection technique to return the instance of the interface CSVFileReader according to the csv file path entered
      *
-     * @param filepath
-     * @return CSVFileReader
-     * @throws IOException
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws InstantiationException
-     * @throws IllegalAccessException
+     * @param filepath the filepath
+     * @return CSVFileReader csv
+     * @throws IOException               the io exception
+     * @throws ClassNotFoundException    the class not found exception
+     * @throws NoSuchMethodException     the no such method exception
+     * @throws InvocationTargetException the invocation target exception
+     * @throws InstantiationException    the instantiation exception
+     * @throws IllegalAccessException    the illegal access exception
      */
     public CSV knowsFileType(String filepath) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> header = Class.forName("app.domain.model.CSVFile.CSVFileReaderWithHeader");

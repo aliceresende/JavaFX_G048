@@ -10,8 +10,14 @@
  import java.util.List;
  import java.util.Scanner;
 
-public class RecepcionistRequestVaccinationUI implements Runnable{
-    static Scanner ler = new Scanner(System.in);
+ /**
+  * The type Recepcionist request vaccination ui.
+  */
+ public class RecepcionistRequestVaccinationUI implements Runnable{
+     /**
+      * The Ler.
+      */
+     static Scanner ler = new Scanner(System.in);
     private final RecepcionistRequestVaccineController vaccineSchedule = new RecepcionistRequestVaccineController();
     private final RecepcionistRequestVaccineController requestVaccineController = new RecepcionistRequestVaccineController();
     private SNSUserMapper SNSUserMapper;
@@ -117,7 +123,13 @@ public class RecepcionistRequestVaccinationUI implements Runnable{
         }
     }
 
-    public List<String> vaccinationCenterName(List<ComunityMassVaccinationCenter> vaccinationCenter) {
+     /**
+      * Vaccination center name list.
+      *
+      * @param vaccinationCenter the vaccination center
+      * @return the list
+      */
+     public List<String> vaccinationCenterName(List<ComunityMassVaccinationCenter> vaccinationCenter) {
         List<String> vaccinationCenterName = new ArrayList<>();
         for(ComunityMassVaccinationCenter vc : vaccinationCenter) {
             vaccinationCenterName.add(vc.getName());
@@ -125,7 +137,13 @@ public class RecepcionistRequestVaccinationUI implements Runnable{
         return vaccinationCenterName;
     }
 
-    public List<String> vaccineName(List<Vaccine> vaccine) {
+     /**
+      * Vaccine name list.
+      *
+      * @param vaccine the vaccine
+      * @return the list
+      */
+     public List<String> vaccineName(List<Vaccine> vaccine) {
         List<String> vaccineName = new ArrayList<>();
         for(Vaccine v : vaccine){
             vaccineName.add(v.get_disease());

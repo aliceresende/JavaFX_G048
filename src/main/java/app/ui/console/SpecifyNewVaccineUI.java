@@ -11,14 +11,25 @@ import java.util.List;
 
 import static app.domain.shared.Constants.*;
 
+/**
+ * The type Specify new vaccine ui.
+ */
 public class SpecifyNewVaccineUI implements Runnable {
 
     private SpecifyNewVaccineController ctrl;
 
+    /**
+     * Instantiates a new Specify new vaccine ui.
+     */
     public SpecifyNewVaccineUI() {
         this.ctrl = new SpecifyNewVaccineController();
     }
 
+    /**
+     * Choose string.
+     *
+     * @return the string
+     */
     public String choose() {
         List<String> options = new ArrayList<String>();
         options.add(AGEGROUP_CHILD);
@@ -41,6 +52,9 @@ public class SpecifyNewVaccineUI implements Runnable {
     }
 
 
+    /**
+     * Gets vaccine data.
+     */
     public void getVaccineData() {
         String code = Utils.readLineFromConsole("Please enter the code of the new Vaccine:");
         String designation = Utils.readLineFromConsole("Please enter the name of the new Vaccine:");

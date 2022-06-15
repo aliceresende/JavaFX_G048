@@ -2,11 +2,24 @@ package app.domain.algorithms.subsequence;
 
 import java.util.Arrays;
 
+/**
+ * The type Brute force algorithm.
+ */
 public class BruteForceAlgorithm implements Subsequence{
 
+    /**
+     * Instantiates a new Brute force algorithm.
+     */
     public BruteForceAlgorithm(){}
     @Override
     public int[] getSubsequence(int[] array) { return Subsequence(array);}
+
+    /**
+     * Subsequence int [ ].
+     *
+     * @param array the array
+     * @return the int [ ]
+     */
     public static int[] Subsequence(int[] array){
         int n = array.length;
         int maxSum = Integer.MIN_VALUE;

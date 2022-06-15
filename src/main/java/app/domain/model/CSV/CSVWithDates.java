@@ -6,9 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The type Csv with dates.
+ */
 public class CSVWithDates implements CSV {
     final private String splitBy = ";";
 
+    /**
+     * Instantiates a new Csv with dates.
+     */
     public CSVWithDates() {
     }
     @Override

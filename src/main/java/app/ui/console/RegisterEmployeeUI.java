@@ -6,7 +6,13 @@ import app.domain.shared.Constants;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * The type Register employee ui.
+ */
 public class RegisterEmployeeUI implements Runnable{
+    /**
+     * The Read.
+     */
     static Scanner read = new Scanner(System.in);
     private final RegisterEmployeeController employeeC = new RegisterEmployeeController();
 

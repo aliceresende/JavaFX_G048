@@ -2,9 +2,9 @@ package gui.javafx_g048;
 
 import app.controller.App;
 import app.domain.model.Company;
-import app.ui.console.RegisterEmployeeUI;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.UserSession;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -90,6 +91,18 @@ public class AuthUI implements Initializable {
 
                 break;
             case "center coordinator":
+                Scene scene = null;
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("CenterCoordinatorDashboard.fxml"));
+                    scene = new Scene(fxmlLoader.load(), 600, 430);
+                    Stage stage = new Stage();
+                    stage.setTitle("Center Coordinator Dashboard");
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 break;
         }
@@ -103,6 +116,5 @@ public class AuthUI implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         company = App.getInstance().getCompany();
         authFacade = company.getAuthFacade();
-        UserSession userSession = authFacade.getCurrentUserSession();
     }
 }

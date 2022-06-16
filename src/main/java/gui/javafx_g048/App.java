@@ -15,8 +15,8 @@ public class App extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("Auth.fxml"));
-            scene = new Scene(fxmlLoader.load(), 600, 450);
-            stage.setTitle("Analyze Performance");
+            scene = new Scene(fxmlLoader.load(), 537, 400);
+            stage.setTitle("Authentication");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

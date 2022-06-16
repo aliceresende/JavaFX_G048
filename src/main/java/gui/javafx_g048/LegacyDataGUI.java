@@ -21,7 +21,7 @@ public class LegacyDataGUI {
     }
 
 
-    @FXML
+    /*@FXML
     public String performanceDataFileButton(){
         String filePerformanceData;
         FileChooser performanceFileChosen = new FileChooser();
@@ -36,5 +36,5 @@ public class LegacyDataGUI {
             return filePerformanceData;
         }
         return null;
-    }
+    }*/
 }

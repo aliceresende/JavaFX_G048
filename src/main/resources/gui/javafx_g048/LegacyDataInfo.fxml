@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="452.0" prefWidth="600.0" style="-fx-background-color: #90C2BE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.javafx_g048.LegacyDataGUI">
+
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="25.0" prefHeight="72.0" prefWidth="558.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffff;" text="Load Legacy Data" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="84.0" fitWidth="138.0" layoutX="407.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/graphic.png" />
+            </image></ImageView>
+        <VBox layoutX="20.0" layoutY="122.0" prefHeight="144.0" prefWidth="448.0" spacing="10.0">
+            <children>
+                <Label text=" Please introduce your email: ">
+                    <font>
+                        <Font name="Arial Bold" size="21.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="email" prefHeight="28.0" prefWidth="206.0" style="-fx-border-color: #7fb5b1;">
+                    <VBox.margin>
+                        <Insets left="5.0" right="150.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial" size="14.0" />
+                    </font>
+                </TextField>
+            <Label layoutX="10.0" layoutY="10.0" text=" Please select the file (csv only): ">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="file" mnemonicParsing="false" onAction="#seeButton" prefHeight="31.0" prefWidth="69.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="File">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="filepath" prefHeight="28.0" prefWidth="206.0" style="-fx-border-color: #7fb5b1;">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </TextField>
+            </children></VBox>
+        <Button layoutX="471.0" layoutY="407.0" mnemonicParsing="false" onAction="#seeButton" prefHeight="29.0" prefWidth="95.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="Confirm">
+            <font>
+                <Font name="Arial Bold" size="14.0" />
+            </font>
+        </Button>
+      <Pane layoutX="27.0" layoutY="273.0" prefHeight="188.0" prefWidth="200.0">
+         <children>
+                <Label layoutX="1.0" layoutY="18.0" text=" Sorting Criteria:  ">
+                    <font>
+                        <Font name="Arial Bold" size="21.0" />
+                    </font>
+                </Label>
+            <MenuButton layoutX="3.0" layoutY="65.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="197.0" text="Criteria ...">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Arrival Time" />
+                <MenuItem mnemonicParsing="false" text="Leaving Time" />
+              </items>
+            </MenuButton>
+         </children>
+      </Pane>
+      <Pane layoutX="251.0" layoutY="273.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="1.0" layoutY="18.0" text=" Sorting Order:  ">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+            </Label>
+            <MenuButton layoutX="3.0" layoutY="65.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="197.0" text="Order ...">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Ascendent" />
+                  <MenuItem mnemonicParsing="false" text="Descendent" />
+               </items>
+            </MenuButton>
+         </children>
+      </Pane>
+    </children>
+
+</AnchorPane>

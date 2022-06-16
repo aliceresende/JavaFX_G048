@@ -14,7 +14,6 @@ public class CenterCoordinatorUI {
     private Label welcomeText;
 
 
-
     public void ActionButton1(ActionEvent actionEvent) {
         Scene scene = null;
         try {
@@ -30,4 +29,22 @@ public class CenterCoordinatorUI {
         }
 
     }
+
+    public void legacyData (ActionEvent actionEvent) {
+        Scene scene = null;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("LegacyDataInfo.fxml"));
+            scene = new Scene(fxmlLoader.load(), 600, 450);
+            Stage stage = new Stage();
+            stage.setTitle("Load Legacy Data");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
 }

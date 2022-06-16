@@ -482,6 +482,20 @@ public class SNSUserStore extends PasswordGenerator {
         }
     }
 
+    //--------------------valid snsuser per number----------------------
+
+    public boolean snsUserNumberExists(List<String> lineInfo){
+        boolean exists = false;
+        String snsUserNumber = lineInfo.get(0);
+        if (validSNSUserNumber(snsUserNumber)){
+            for (SNSUser snsU : knows) {
+                if (snsUserNumber.equals(snsU.getSnsUserNumber())) {  //exist
+                    exists = true;
+                }
+            }
+        }
+        return exists;
+    }
 
 
 }

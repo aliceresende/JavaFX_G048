@@ -15,11 +15,11 @@
                 <Font name="Arial Rounded MT Bold" size="24.0" />
             </font>
         </Label>
-        <ImageView fitHeight="84.0" fitWidth="138.0" layoutX="407.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="144.0" fitWidth="253.0" layoutX="394.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../images/graphic.png" />
+                <Image url="@../../images/csv.png" />
             </image></ImageView>
-        <VBox layoutX="20.0" layoutY="122.0" prefHeight="144.0" prefWidth="448.0" spacing="10.0">
+        <VBox layoutX="20.0" layoutY="122.0" prefHeight="300.0" prefWidth="448.0" spacing="10.0">
             <children>
                 <Label text=" Please introduce your email: ">
                     <font>
@@ -39,55 +39,31 @@
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Label>
-            <Button fx:id="file" mnemonicParsing="false" onAction="#seeButton" prefHeight="31.0" prefWidth="69.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="File">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-            </Button>
-            <TextField fx:id="filepath" prefHeight="28.0" prefWidth="206.0" style="-fx-border-color: #7fb5b1;">
-               <font>
-                  <Font name="Arial" size="14.0" />
-               </font>
-               <VBox.margin>
+            <HBox prefHeight="30.0" prefWidth="448.0">
+               <children>
+                  <Button fx:id="file" mnemonicParsing="false" onAction="#fileButton" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="File">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <ListView fx:id="filename" prefHeight="13.0" prefWidth="395.0">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding></ListView>
+               </children>
+               <padding>
                   <Insets left="5.0" />
-               </VBox.margin>
-            </TextField>
+               </padding>
+            </HBox>
+            <ComboBox fx:id="algorithm" prefHeight="51.0" prefWidth="227.0" />
+            <ComboBox fx:id="criteria" prefHeight="51.0" prefWidth="227.0" />
+            <ComboBox fx:id="order" prefHeight="51.0" prefWidth="227.0" />
             </children></VBox>
         <Button layoutX="471.0" layoutY="407.0" mnemonicParsing="false" onAction="#seeButton" prefHeight="29.0" prefWidth="95.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="Confirm">
             <font>
                 <Font name="Arial Bold" size="14.0" />
             </font>
         </Button>
-      <Pane layoutX="27.0" layoutY="273.0" prefHeight="188.0" prefWidth="200.0">
-         <children>
-                <Label layoutX="1.0" layoutY="18.0" text=" Sorting Criteria:  ">
-                    <font>
-                        <Font name="Arial Bold" size="21.0" />
-                    </font>
-                </Label>
-            <MenuButton layoutX="3.0" layoutY="65.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="197.0" text="Criteria ...">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Arrival Time" />
-                <MenuItem mnemonicParsing="false" text="Leaving Time" />
-              </items>
-            </MenuButton>
-         </children>
-      </Pane>
-      <Pane layoutX="251.0" layoutY="273.0" prefHeight="150.0" prefWidth="200.0">
-         <children>
-            <Label layoutX="1.0" layoutY="18.0" text=" Sorting Order:  ">
-               <font>
-                  <Font name="Arial Bold" size="21.0" />
-               </font>
-            </Label>
-            <MenuButton layoutX="3.0" layoutY="65.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="197.0" text="Order ...">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Ascendent" />
-                  <MenuItem mnemonicParsing="false" text="Descendent" />
-               </items>
-            </MenuButton>
-         </children>
-      </Pane>
     </children>
 
 </AnchorPane>

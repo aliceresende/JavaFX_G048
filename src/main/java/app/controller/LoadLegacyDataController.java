@@ -2,9 +2,12 @@ package app.controller;
 
 
 import app.domain.model.*;
+import app.domain.model.CSV.CSV;
 import app.domain.store.*;
 
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +20,8 @@ public class LoadLegacyDataController {
     //=========================================================
 
     private String filePath;
+    private String centerName;
+
     private Company company;
     private SNSUserStore userStore;
     private SNSUser user;
@@ -35,7 +40,7 @@ public class LoadLegacyDataController {
 
 
 
-    private List<SNSUser> listSNSUsers = new ArrayList<>();
+    private List<List<String>> csvInfo;
 
     /**
      * Gets company.
@@ -74,6 +79,87 @@ public class LoadLegacyDataController {
 
     }
 
+
+    public String getVaccCenterName(String email){
+        return email;
+    }
+    /**
+     * Read file list.
+     *
+     * @param filePath the file path
+     * @return the list
+     */
+    public List<List<String>> readFile(String filePath) {
+
+
+        try {
+            CSV csv = company.knowsFileType(filePath);
+            csvInfo = csv.readFile(filePath,csvInfo);
+
+            List<List<String>> csvUsersVerified = validUser(csvInfo);
+
+            //validVaccine(csvUsersVerified);
+
+            //storing(csvUsersVerified);
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        return csvInfo;
+    }
+
+    public String[] sortingCriteria (String index, String order){
+        String[] criterias = {index,order};
+        return criterias;
+    }
+//================== Validations ==================================
+
+    /**
+     * Valid user list.
+     *
+     * @param csvInfo the csv info
+     * @return the list
+     */
+    public List<List<String>> validUser(List<List<String>> csvInfo){
+        boolean val;
+        for (List<String> lineInfo: csvInfo) {
+            val = userStore.snsUserNumberExists(lineInfo);
+            if(!val){
+                csvInfo.remove(lineInfo);
+            }
+        }
+        return csvInfo;
+    }
+
+    /**
+     * Valid vaccine boolean.
+     * @param csvInfo the csv info
+     * @return the boolean
+     */
+   /* public boolean validVaccine(List<List<String>> csvInfo){
+        boolean val;
+        for(List<String> lineInfo: csvInfo){
+            val = vaccineStore.vaccineNameExists(lineInfo);
+            if(!val){
+                System.out.println("Vaccine does not exist!");
+                break;
+            }
+        }
+        return false;
+    }*/
+//===============================================================
 
 /* private void zzz() {
 

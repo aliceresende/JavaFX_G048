@@ -6,7 +6,7 @@ import app.domain.model.CSV.CSV;
 import app.domain.store.*;
 import app.mappers.PerformanceDataMapper;
 import app.mappers.dto.PerformanceDataDTO;
-import app.services.sortingTreatment.SortingArrivalLeavingTime;
+import app.service.sortingTreatment.SortingArrivalLeavingTime;
 
 
 import java.io.IOException;

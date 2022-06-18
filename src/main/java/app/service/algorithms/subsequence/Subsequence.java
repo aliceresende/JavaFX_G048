@@ -1,4 +1,4 @@
-package app.services.algorithms.subsequence;
+package app.service.algorithms.subsequence;
 
 /**
  * The interface Subsequence.

@@ -11,8 +11,7 @@ public class PerformanceDataStore {
     private ArrayList <PerformanceData> knows = new ArrayList<>();
 
     public PerformanceData createPerformanceData(String snsusernumber, String vaccineName, String dose, String lotNumber, String scheduletime,String arrivaltime, String vaccAdmintime,String leavingTime ){
-        PerformanceData pd = new PerformanceData(snsusernumber,vaccineName,dose,lotNumber,scheduletime,arrivaltime,vaccAdmintime,leavingTime);
-
+       return new PerformanceData(snsusernumber,vaccineName,dose,lotNumber,scheduletime,arrivaltime,vaccAdmintime,leavingTime);
     }
 
     public boolean addPerfData(PerformanceData perfdata){
@@ -35,7 +34,7 @@ public class PerformanceDataStore {
     }
 
     public void savePerformanceData(PerformanceData pd){
-        knows.add(createPerformanceData());
+        knows.add(createPerformanceData(pd.getSnsUserNumber(),pd.getVaccineName(),pd.getDose(),pd.getLotNumber(),pd.getSchedule(),pd.getArrival(),pd.getAdministration(),pd.getLeaving()));
     }
 
 

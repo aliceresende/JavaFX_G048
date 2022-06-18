@@ -10,8 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The type Company.
@@ -31,7 +29,7 @@ public class Company {
     private NewVaccineStore vstore;
     private ArrivalOfSNSUserStore arrivalStore;
     private PerformanceDataStore performanceDataStore;
-    private AdministrationStore administrationStore;
+    private VaccineAdministrationStore administrationStore;
 
 
 
@@ -55,7 +53,7 @@ public class Company {
         this.centers = new VaccinationCenterStore();
         this.arrivalStore = new ArrivalOfSNSUserStore();
         this.vstore= new NewVaccineStore();
-        this.administrationStore = new AdministrationStore();
+        this.administrationStore = new VaccineAdministrationStore();
         this.performanceDataStore = new PerformanceDataStore();
 
     }
@@ -155,7 +153,7 @@ public class Company {
      *
      * @return the administration store
      */
-    public AdministrationStore getAdministrationStore() {return administrationStore;}
+    public VaccineAdministrationStore getAdministrationStore() {return administrationStore;}
 
     public PerformanceDataStore getPerformanceDataStore() {
         return performanceDataStore;

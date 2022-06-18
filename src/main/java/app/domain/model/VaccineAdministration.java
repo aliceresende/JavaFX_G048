@@ -3,7 +3,7 @@ package app.domain.model;
 /**
  * The type Administration.
  */
-public class Administration {
+public class VaccineAdministration {
     private String exitTime;
 
     private String snsUserNumber;
@@ -23,7 +23,7 @@ public class Administration {
      * @param dose            the dose
      * @param additionalNotes the additional notes
      */
-    public Administration(String exitTime, String snsUserNumber, String vaccine, String dose, String additionalNotes) {
+    public VaccineAdministration(String exitTime, String snsUserNumber, String vaccine, String dose, String additionalNotes) {
         this.exitTime = exitTime;
         this.snsUserNumber = snsUserNumber;
         this.vaccine = vaccine;

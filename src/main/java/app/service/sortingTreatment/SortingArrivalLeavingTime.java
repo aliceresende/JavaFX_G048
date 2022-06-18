@@ -1,8 +1,8 @@
-package app.services.sortingTreatment;
+package app.service.sortingTreatment;
 
 import app.domain.model.PerformanceData;
 import app.domain.shared.Constants;
-import app.services.algorithms.sorting.SortAlgorithm;
+import app.service.algorithms.sorting.SortAlgorithm;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-public class SortingArrivalLeavingTime implements ISortingTreatment {
+public class SortingArrivalLeavingTime implements SortingTreatment {
 
     private final String arrival = "Arrival Time";
     private final String leaving = "Leaving Time";

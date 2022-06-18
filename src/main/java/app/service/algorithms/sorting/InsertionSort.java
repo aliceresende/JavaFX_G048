@@ -1,4 +1,4 @@
-package app.services.algorithms.sorting;
+package app.service.algorithms.sorting;
 
 public class InsertionSort implements SortAlgorithm {
 

@@ -1,4 +1,4 @@
-package app.services.sortingTreatment;
+package app.service.sortingTreatment;
 
 import app.domain.model.PerformanceData;
 

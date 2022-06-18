@@ -485,10 +485,10 @@ public class SNSUserStore extends PasswordGenerator {
     //--------------------valid snsuser per number----------------------
 
     public List<List<String>> validPDUser(List<List<String>> csvInfo) {
-        boolean val;
+        boolean val = true;
         for (List<String> lineInfo : csvInfo) {
             val = snsUserNumberExists(lineInfo);
-            if (!val) {
+            if (val = false) {
                 csvInfo.remove(lineInfo);
             }
         }

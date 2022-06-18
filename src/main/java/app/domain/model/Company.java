@@ -179,7 +179,7 @@ public class Company {
     public CSV knowsFileType(String filepath) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> header = Class.forName("app.domain.model.CSV.CSVWithHeader");
         Class<?> noheader = Class.forName("app.domain.model.CSV.CSVNoHeader");
-        Class<?> dates = Class.forName("app.domain.model.CSV.CSVWithHeader");
+        Class<?> dates = Class.forName("app.domain.model.CSV.CSVWithDates");
         CSV csv;
         String line, splitby = "\n";
         BufferedReader br = new BufferedReader(new FileReader(filepath));
@@ -187,9 +187,9 @@ public class Company {
         String line2 = br.readLine();
         String[] headerInformation = line2.split(";");
         if(line2.contains(":")){
-            //csv = (CSV) dates.getDeclaredConstructor().newInstance();
-            CSV cs = new CSVWithDates();
-            return cs;
+            csv = (CSV) dates.getDeclaredConstructor().newInstance();
+            //CSV cs = new CSVWithDates();
+            return csv;
         }else if (line.contains(";")) {
             csv = (CSV) header.getDeclaredConstructor().newInstance();
             return csv;

@@ -4,10 +4,14 @@ package app.controller;
 import app.domain.model.*;
 import app.domain.model.CSV.CSV;
 import app.domain.store.*;
+import app.mappers.PerformanceDataMapper;
+import app.mappers.dto.PerformanceDataDTO;
+import app.services.sortingTreatment.SortingArrivalLeavingTime;
 
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,31 +20,17 @@ import java.util.List;
  */
 public class LoadLegacyDataController {
 
-
-    //=========================================================
-
-    private String filePath;
-    private String centerName;
-
     private Company company;
+    private String filePath;
     private SNSUserStore userStore;
-    private SNSUser user;
-
     private NewVaccineStore vaccineStore;
-    private Vaccine vaccine;
+    private NewVaccineTypeStore typeStore;
+    private String sCriteria;
+    private String sOrder;
+    private PerformanceDataStore perfdataStore;
+    private List<PerformanceData> importedData;
 
-    private VaccineScheduleStore scheduleStore;
-    private VaccineSchedule schedule;
-
-    private ArrivalOfSNSUserStore arrivalStore;
-    private ArrivalOfSNSUser arrival;
-
-    private Administration administration;
-    private AdministrationStore administrationStore;
-
-
-
-    private List<List<String>> csvInfo;
+    private PerformanceDataMapper pdmapper;
 
     /**
      * Gets company.
@@ -51,138 +41,159 @@ public class LoadLegacyDataController {
         return this.company;
     }
 
+
+
     /**
      * Instantiates a new Load legacy data controller.
+     *
      */
     public LoadLegacyDataController(){
-        this(App.getInstance().getCompany());
-   }
+        this.company =  App.getInstance().getCompany();
 
-    /**
-     * Instantiates a new Load legacy data controller.
-     *
-     * @param company the company
-     */
-    public LoadLegacyDataController(Company company){
-        this.company = company;
+        //UserSession cc = App.getInstance().getCurrentUserSession();
+        //this.email = cc.getUserId().getEmail();
+
         userStore = company.getSNSUserStore();
         vaccineStore = company.getVaccineStore();
-        scheduleStore = company.getVaccineScheduleStore();
-        arrivalStore = company.getArrivalStore();
-        administrationStore = company.getAdministrationStore();
+        typeStore = company.getVaccineTypeList();
+        perfdataStore = company.getPerformanceDataStore();
 
-        this.user = null;
-        this.vaccine = null;
-        this.schedule = null;
-        this.arrival = null;
-        this.administration = null;
+        this.importedData = new ArrayList<>();
 
-    }
-
-
-    public String getVaccCenterName(String email){
-        return email;
     }
     /**
-     * Read file list.
-     *
-     * @param filePath the file path
-     * @return the list
+     * method that receives from ui the criteria for sorting
+     * @return
      */
-    public List<List<String>> readFile(String filePath) {
 
+
+
+    public void loadLegacyData(String path, String index, String order) throws IOException, ParseException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+
+        List<List<String>> csvInfo = new ArrayList<>();
+        this.filePath = path;
+        this.sCriteria = index;
+        this.sOrder = order;
+
+        CSV csv;
 
         try {
-            CSV csv = company.knowsFileType(filePath);
-            csvInfo = csv.readFile(filePath,csvInfo);
+            csv = company.knowsFileType(filePath);
 
-            List<List<String>> csvUsersVerified = validUser(csvInfo);
+        } catch (IOException | ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            System.out.println("Something is wrong with the file");
+            return;
+        }
 
-            //validVaccine(csvUsersVerified);
+        csvInfo = readFile(filePath,csv);
+        csvInfo = userStore.validPDUser(csvInfo);
 
-            //storing(csvUsersVerified);
+        if(!vaccineStore.validPDVaccine(csvInfo)){
+            //throw IllegalArgumentException ("The vaccine is not registered in the system!");
+        }else{
+
+            for(List<String> i : csvInfo){
+                PerformanceData pd = perfdataStore.createPerformanceData(i.get(0),i.get(1),i.get(2),i.get(3),i.get(4),i.get(5),i.get(6),i.get(7)) ;
+                this.importedData.add(pd);
+                perfdataStore.savePerformanceData(pd);
+            }
 
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
+            SortingArrivalLeavingTime s = new SortingArrivalLeavingTime();
+            this.importedData = s.sortPerfData(importedData, sCriteria, sOrder);
+        }
+
+
+    }
+
+
+    //-----------------------------------------------------------------------------
+    public List<List<String>> readFile(String filePath, CSV csv) {
+
+        List<List<String>> csvInfo = new ArrayList<>();
+
+        try {
+            csvInfo = csv.readFile(filePath,csvInfo); // using the instance to read the file
+
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
 
         return csvInfo;
     }
+    //--------------------------------------------------------------------------
 
-    public String[] sortingCriteria (String index, String order){
-        String[] criterias = {index,order};
-        return criterias;
+    public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
+        List<PerformanceData> importedData = this.importedData;
+        return pdmapper.multipleToDTO(importedData);
     }
-//================== Validations ==================================
 
+
+    /*public List<List<String>> getPerformanceDataAndExtras(){
+
+        List<List<String>> order = new ArrayList<>();
+        List<String> lineData = new ArrayList<>();
+        for (PerformanceData d: perfdata){
+            lineData.add(d.getSnsUserNumber());
+            lineData.add(username(d.getSnsUserNumber()));
+            lineData.add(d.getVaccineName());
+            lineData.add(vaccDescription(d.getVaccineName()));
+            lineData.add(d.getDose());
+            lineData.add(d.getLotNumber());
+            lineData.add(d.getSchedule());
+            lineData.add(d.getArrival());
+            lineData.add(d.getAdministration());
+            lineData.add(d.getLeaving());
+
+            order.add(lineData);
+        }
+
+        return order;
+
+    }
     /**
-     * Valid user list.
+     * Gets the list of PerformanceData with extras
      *
-     * @param csvInfo the csv info
-     * @return the list
+     * @return list of PerformanceData with extras
      */
-    public List<List<String>> validUser(List<List<String>> csvInfo){
-        boolean val;
-        for (List<String> lineInfo: csvInfo) {
-            val = userStore.snsUserNumberExists(lineInfo);
-            if(!val){
-                csvInfo.remove(lineInfo);
+
+    public String username(String usernumber){
+        List<SNSUser> u = userStore.getSnsUserList();
+        String username = "";
+        for(SNSUser user: u){
+            if(user.getSnsUserNumber().equals(usernumber)){
+                username = user.getName();
             }
         }
-        return csvInfo;
+        return username;
     }
 
-    /**
-     * Valid vaccine boolean.
-     * @param csvInfo the csv info
-     * @return the boolean
-     */
-   /* public boolean validVaccine(List<List<String>> csvInfo){
-        boolean val;
-        for(List<String> lineInfo: csvInfo){
-            val = vaccineStore.vaccineNameExists(lineInfo);
-            if(!val){
-                System.out.println("Vaccine does not exist!");
-                break;
-            }
-        }
-        return false;
-    }*/
-//===============================================================
-
-/* private void zzz() {
-
-        File folder = new File("C:\\Users\\Inês Alves\\OneDrive\\Ambiente de Trabalho\\SPRINTD");
-        File[] listOfFiles = folder.listFiles();
-
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                if(listOfFiles[i].getName().endsWith(".csv")){
-
-                System.out.println("File " + listOfFiles[i].getName());
+    public String vaccDescription (String vaccinename){
+        List<Vaccine> vacc = vaccineStore.ArrayList();
+        List<VaccineType> type = typeStore.getVaccineTypeList();
+        String description = "", id ="";
+        for(Vaccine v: vacc){
+            if(v.get_designation().equals(vaccinename)){
+                id=v.get_code();
+                for(VaccineType t: type){
+                    if(t.getCode().equals(id)) {
+                        description = t.getTech();
+                    }
                 }
-            } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
             }
         }
+        return description;
+    }
 
-            long startTime = System.currentTimeMillis();
-            long endTime = System.currentTimeMillis();
-            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+   /* public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
+        return pdmapper.multipleToDTO(perfdata);
     }*/
 
 
+
+ //============================DTO_TO_PRINT=======================================================
+
+    //=====================================
 
 }
 

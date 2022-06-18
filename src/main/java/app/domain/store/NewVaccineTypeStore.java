@@ -133,4 +133,8 @@ public class NewVaccineTypeStore {
     public VaccineType getVt() {
         return vt;
     }
+
+    public List<VaccineType> getVaccineTypeList() {
+        return array;
+    }
 }

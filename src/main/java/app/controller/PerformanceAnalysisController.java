@@ -1,6 +1,6 @@
 package app.controller;
 
-import app.domain.algorithms.subsequence.Subsequence;
+import app.services.algorithms.subsequence.Subsequence;
 import app.domain.model.Company;
 import app.domain.shared.Constants;
 import app.domain.store.AdministrationStore;

@@ -1,8 +1,9 @@
 package app.controller;
 
 import app.domain.shared.Constants;
-import app.service.CenterPerformanceCSV;
-import app.service.algorithms.subsequence.Subsequence;
+import app.service.algorithm.performance.CenterPerformanceCSV;
+import app.service.algorithm.performance.ICenterPerformance;
+import app.service.algorithm.subsequence.Subsequence;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,7 +13,9 @@ import java.util.Properties;
 
 public class PerformanceAnalysisController {
 
+    private ICenterPerformance iCPerform;
     public PerformanceAnalysisController() {
+        iCPerform = new CenterPerformanceCSV();
 
     }
     public int[] getMaxSublist(int[] subsequence) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -36,11 +39,11 @@ public class PerformanceAnalysisController {
     }
 
     public int[] getInputList(int interval, String day){
-        return new CenterPerformanceCSV().listOfInput(interval,day);
+        return  iCPerform.listOfInput(interval,day);
     }
 
     public int sumSublist(int[] arr) {
-       return new CenterPerformanceCSV().sumSublist(arr);
+        return iCPerform.sumSublist(arr);
     }
 
 

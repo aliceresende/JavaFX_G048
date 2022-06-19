@@ -1,4 +1,4 @@
-package app.controller;/*package app.controller;
+/*package app.controller;
 import app.domain.model.AdministrationProcess;
 import app.domain.model.Company;
 import app.domain.store.NewAdministrationProcessStore;

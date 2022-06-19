@@ -2,11 +2,8 @@ package app.domain.model;
 
 import app.domain.shared.Constants;
 import org.apache.commons.lang3.StringUtils;
-
-/**
- * The type Vaccine type.
- */
-public class VaccineType {
+import java.io.Serializable;
+public class VaccineType implements Serializable{
     /**
      * Class that represents a Vaccine Type
      *
@@ -14,7 +11,7 @@ public class VaccineType {
      */
     private String code;
     private String type;
-    private String tech; //short description
+    private String tech;
 
     /**
      * Constructor of the VaccineType, it calls methods in order to validate the parameters
@@ -23,29 +20,14 @@ public class VaccineType {
      * @param type represents the VaccineType Name
      * @param tech represents the VaccineType tech
      */
+
     public VaccineType(String code, String type, String tech) {
         check_CodeRules(code);
         this.code = code;
         this.type = type;
         this.tech = tech;
     }
-
-    public String getTech() {
-        return tech;
-    }
-
-    /**
-     * Get code string.
-     *
-     * @return the string
-     */
     public String getCode(){return this.code;}
-
-    /**
-     * Get type string.
-     *
-     * @return the string
-     */
     public String getType(){return this.type;}
 
     /**

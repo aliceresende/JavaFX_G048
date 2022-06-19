@@ -83,7 +83,6 @@ public class LegacyDataGUI implements Initializable {
     @FXML
     public void fileButton(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:\\"));
         fileChooser.getExtensionFilters().addAll( new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         File selectedFile = fileChooser.showOpenDialog(null);
         filePath = selectedFile.getAbsolutePath(); //gets absolute path

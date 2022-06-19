@@ -89,6 +89,19 @@ public class AuthUI implements Initializable {
         switch (role) {
             case "nurse":
 
+                Scene s = null;
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("Nurse.fxml"));
+                    s = new Scene(fxmlLoader.load(), 600, 430);
+                    Stage stage = new Stage();
+                    stage.setTitle("Nurse Dashboard");
+                    stage.setScene(s);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
                 break;
             case "center coordinator":
                 Scene scene = null;

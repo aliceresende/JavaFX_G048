@@ -3,9 +3,12 @@ package app.controller;
 
 import app.domain.model.*;
 import app.domain.model.CSV.CSV;
-import app.domain.store.*;
 import app.mappers.PerformanceDataMapper;
 import app.service.algorithms.sorting.SortingTimeService;
+import app.store.NewVaccineStore;
+import app.store.NewVaccineTypeStore;
+import app.store.PerformanceDataStore;
+import app.store.SNSUserStore;
 
 
 import java.io.IOException;
@@ -135,6 +138,7 @@ public class LoadLegacyDataController {
         }
 
         //return pdmapper.multipleToDTO(importedData);
+
         return importedData;
     }
 
@@ -168,8 +172,33 @@ public class LoadLegacyDataController {
      */
 
 
+   /* public String username(String usernumber){
+        List<SNSUser> u = userStore.getSnsUserList();
+        String username = "";
+        for(SNSUser user: u){
+            if(user.getSnsUserNumber().equals(usernumber)){
+                username = user.getName();
+            }
+        }
+        return username;
+    }
 
-
+    public String vaccDescription (String vaccinename){
+        List<Vaccine> vacc = vaccineStore.ArrayList();
+        List<VaccineType> type = typeStore.getVaccineTypeList();
+        String description = "", id ="";
+        for(Vaccine v: vacc){
+            if(v.get_designation().equals(vaccinename)){
+                id=v.get_code();
+                for(VaccineType t: type){
+                    if(t.getCode().equals(id)) {
+                        description = t.getTech();
+                    }
+                }
+            }
+        }
+        return description;
+    }*/
 
    /* public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
         return pdmapper.multipleToDTO(perfdata);
@@ -177,9 +206,9 @@ public class LoadLegacyDataController {
 
 
 
- //============================DTO_TO_PRINT=======================================================
+    //============================DTO_TO_PRINT=======================================================
 
     //=====================================
 
-}
 
+}

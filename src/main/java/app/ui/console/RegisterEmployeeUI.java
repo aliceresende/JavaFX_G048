@@ -2,19 +2,16 @@ package app.ui.console;
 
 import app.controller.RegisterEmployeeController;
 import app.domain.shared.Constants;
+import app.mappers.dto.VaccinationCenterDTO;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * The type Register employee ui.
- */
 public class RegisterEmployeeUI implements Runnable{
-    /**
-     * The Read.
-     */
     static Scanner read = new Scanner(System.in);
     private final RegisterEmployeeController employeeC = new RegisterEmployeeController();
+    private SelectVaccinationCenterUI select_center= new SelectVaccinationCenterUI();
+    private VaccinationCenterDTO center;
 
     /**
      * Asks the information of the employee and reads it
@@ -96,13 +93,19 @@ public class RegisterEmployeeUI implements Runnable{
      * @throws IllegalArgumentException if is selected an invalid option
      */
 
-    private void confirmation(String answer, String name, String phoneNumber, String email, String address, String citizenCardNumber, String role){
+    private void confirmation(String answer, String name, String phoneNumber, String email, String address, String citizenCardNumber, String role) throws IOException {
         if (answer.equals("1")) {
-            employeeC.createEmployee(name,phoneNumber,email,address,citizenCardNumber,role);
-            try {
-                employeeC.saveEmployee();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (role==Constants.ROLE_CENTER_COORDINATOR){
+                center=select_center.selectVaccinationCenter();
+                employeeC.createCenterCoordinator(name,phoneNumber,email,address,citizenCardNumber,role,center);
+                employeeC.setSaveCenterCoordinator();
+            }else {
+                employeeC.createEmployee(name, phoneNumber, email, address, citizenCardNumber, role);
+                try {
+                    employeeC.saveEmployee();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             System.out.print("Success!");
         }

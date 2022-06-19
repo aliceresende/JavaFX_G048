@@ -2,11 +2,9 @@ package app.domain.model;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.io.Serializable;
 
-/**
- * The type Vaccine.
- */
-public class Vaccine {
+public class Vaccine implements Serializable{
 
     private String code;
     private String designation;
@@ -16,19 +14,6 @@ public class Vaccine {
     private String description;
     private String disease;
     private ArrayList<AdministrationProcess> administration = new ArrayList<AdministrationProcess>();
-
-    /**
-     * Instantiates a new Vaccine.
-     *
-     * @param code           the code
-     * @param designation    the designation
-     * @param VaccineType    the vaccine type
-     * @param AgeGroup       the age group
-     * @param intv           the intv
-     * @param disease        the disease
-     * @param description    the description
-     * @param administration the administration
-     */
     public Vaccine( String code, String designation, String VaccineType, ArrayList<String> AgeGroup, String intv, String disease,
                     String description, ArrayList<AdministrationProcess> administration){
         this.code = code;
@@ -41,44 +26,19 @@ public class Vaccine {
         this.administration = administration;
     }
 
+    public ArrayList<AdministrationProcess> getAdministration() {
+        return administration;
+    }
 
-    /**
-     * Get designation string.
-     *
-     * @return the string
-     */
     public String get_designation(){
         return this.designation;
     }
-
-    /**
-     * Get type string.
-     *
-     * @return the string
-     */
     public String get_type(){
         return this.VaccineType;
     }
-
-    /**
-     * Get code string.
-     *
-     * @return the string
-     */
     public String get_code(){return this.code;}
-
-    /**
-     * Get description string.
-     *
-     * @return the string
-     */
     public String get_description(){return this.description;}
 
-    /**
-     * Get disease string.
-     *
-     * @return the string
-     */
     public String get_disease(){return this.disease;}
 
     /**Method to print Objects atributes*/
@@ -87,10 +47,7 @@ public class Vaccine {
                 + "\nAgeGroup:  " + this.AgeGroup + "\ninterval between:" +
                 this.intv + "\ndescription = " + this.description +"\n\n--->" + this.administration + "\n";
     }
-
-    /**
-     * Method that will sort the arraylist objetcs of NewVaccineStore
-     */
+    /** Method that will sort the arraylist objetcs of NewVaccineStore*/
     public static Comparator<Vaccine> order = new Comparator<Vaccine>() {
         @Override
         public int compare(Vaccine o1, Vaccine o2) {

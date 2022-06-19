@@ -11,8 +11,6 @@ public class PerformanceDataMapper {
     public PerformanceDataMapper() {
     }
 
-
-
     /**
      * This method converts the list of vaccination center to DTO
      *

@@ -7,7 +7,8 @@ module gui.javafx_g048 {
     requires AuthLib;
     requires commons.lang3;
     requires java.logging;
-    requires Sum;
+    requires java.desktop;
+
 
     opens gui.javafx_g048 to javafx.fxml;
     exports gui.javafx_g048;

@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * The type Auth ui.
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
@@ -20,9 +19,6 @@ import java.util.Objects;
 public class AuthUI implements Runnable{
     private AuthController ctrl;
 
-    /**
-     * Instantiates a new Auth ui.
-     */
     public AuthUI()
     {
         ctrl = new AuthController();

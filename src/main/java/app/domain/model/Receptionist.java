@@ -1,9 +1,6 @@
 package app.domain.model;
-
-/**
- * The type Receptionist.
- */
-public class Receptionist extends Employee{
+import java.io.Serializable;
+public class Receptionist extends Employee implements Serializable{
     /**
      * Builds an instance of the Employee receiving the name, phone number, email, address, citizen card number and role
      *

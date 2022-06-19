@@ -6,14 +6,8 @@ import app.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The type Nurse ui.
- */
 public class NurseUI implements Runnable {
 
-    /**
-     * Instantiates a new Nurse ui.
-     */
     public NurseUI(){}
     private static VaccinationCenterDTO vCenterDTO = null;
 
@@ -34,6 +28,11 @@ public class NurseUI implements Runnable {
 
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Show waiting room", new ShowArrivedSNSUserUI()));
+
+        options.add(new MenuItem("write adverse reaction formullary", new ReactionsUI()));
+
+        options.add(new MenuItem("Administrate Vaccine", new VaccineAdministrationUI()));
+
 
         int option = 0;
         do

@@ -1,8 +1,7 @@
 package app.mappers.dto;
 
-/**
- * The type Arrival of sns user dto.
- */
+import app.domain.model.VaccinationCenter;
+
 public class ArrivalOfSNSUserDTO {
     private String SNSUserNumber;
     private String timeOfArrival;
@@ -11,10 +10,9 @@ public class ArrivalOfSNSUserDTO {
 
     /**
      * Builds an instance of the SNS user arrival DTO receiving the SNS user number, the time of arrival and the vaccination center
-     *
      * @param SNSUserNumber the SNS user number of the SNS User arrival DTO
      * @param timeOfArrival the time of arrival of the SNS User arrival DTO
-     * @param vCenterName   the vaccination center of the SNS User arrival DTO
+     * @param vCenterName the vaccination center of the SNS User arrival DTO
      */
     public ArrivalOfSNSUserDTO(String SNSUserNumber, String timeOfArrival, String vCenterName) {
         this.SNSUserNumber = SNSUserNumber;
@@ -24,7 +22,6 @@ public class ArrivalOfSNSUserDTO {
 
     /**
      * Returns the SNS User number of the SNS User arrival DTO
-     *
      * @return the SNS User number of the SNS User arrival DTO
      */
     public String getSNSUserNumber() {
@@ -33,7 +30,6 @@ public class ArrivalOfSNSUserDTO {
 
     /**
      * Returns the time of arrival of the SNS User arrival DTO
-     *
      * @return the time of arrival of the SNS User arrival DTO
      */
     public String getTimeOfArrival() {
@@ -42,7 +38,6 @@ public class ArrivalOfSNSUserDTO {
 
     /**
      * Returns the vaccination center DTO of the SNS USer arrival
-     *
      * @return the vaccination center DTO of the SNS USer arrival
      */
     public String getvCenterDTO() {
@@ -56,20 +51,10 @@ public class ArrivalOfSNSUserDTO {
 
     }
 
-    /**
-     * Gets center name.
-     *
-     * @return the center name
-     */
     public String getvCenterName() {
         return vCenterName;
     }
 
-    /**
-     * Sets center name.
-     *
-     * @param vCenterName the v center name
-     */
     public void setvCenterName(String vCenterName) {
         this.vCenterName = vCenterName;
     }

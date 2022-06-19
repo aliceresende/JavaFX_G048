@@ -1,31 +1,22 @@
 package app.ui.console;
 
+import app.ui.Persistence;
 import app.ui.console.utils.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * The type Main menu ui.
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class MainMenuUI {
 
-    /**
-     * Instantiates a new Main menu ui.
-     */
     public MainMenuUI()
     {
     }
 
-    /**
-     * Run.
-     *
-     * @throws IOException the io exception
-     */
     public void run() throws IOException
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
@@ -42,6 +33,7 @@ public class MainMenuUI {
             }
         }
         while (option != -1 );
+        Persistence.saveAllStores();
     }
 
 

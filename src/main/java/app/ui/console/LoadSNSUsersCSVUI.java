@@ -10,15 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * The type Load sns users csvui.
- */
 public class LoadSNSUsersCSVUI implements Runnable{
     private final LoadSNSUsersCSVController controller = new LoadSNSUsersCSVController();
 
-    /**
-     * Instantiates a new Load sns users csvui.
-     */
     public LoadSNSUsersCSVUI() {
     }
 

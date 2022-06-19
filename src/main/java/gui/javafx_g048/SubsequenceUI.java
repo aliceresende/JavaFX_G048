@@ -7,6 +7,7 @@ import app.domain.shared.Constants;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import pt.isep.lei.esoft.auth.AuthFacade;
 
@@ -54,6 +55,9 @@ public class SubsequenceUI implements Initializable {
     public void seeButton(ActionEvent actionEvent) {
         try{
             vboxSubsequence.getChildren().clear();
+            vboxSubsequence.setPrefWidth(600);
+            ListView list = new ListView();
+            vboxSubsequence.setVgrow(list, Priority.ALWAYS);
             vboxSubsequence.setOpacity(1);
             controller = new PerformanceAnalysisController();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -66,10 +70,12 @@ public class SubsequenceUI implements Initializable {
             int DateIMin = getMinute(Constants.OPEN_HOUR) + indexStart * Integer.parseInt(lblInterval.getText());
             int DateEMin = getMinute(Constants.OPEN_HOUR) + indexEnd * Integer.parseInt(lblInterval.getText());
             Label labelInputList = new Label("Input list: "+Arrays.toString(inputList));
-            Label labelSubsequence = new Label("Contiguous sublist of maximum output sum: "+Arrays.toString(subList));
+            Label lblSubsequence = new Label("Contiguous sublist of maximum output sum: ");
+            Label labelSubsequence = new Label(Arrays.toString(subList));
             Label labelSum = new Label("Sum: "+controller.sumSublist(subList));
             Label labelInterval = new Label("Interval: [" + datePickerDay.getValue().format(formatter) + " " + fromMinutesToHHmm(DateIMin) + ", " + datePickerDay.getValue().format(formatter) + " " + fromMinutesToHHmm(DateEMin) + "]");
             vboxSubsequence.getChildren().add(labelInputList);
+            vboxSubsequence.getChildren().add(lblSubsequence);
             vboxSubsequence.getChildren().add(labelSubsequence);
             vboxSubsequence.getChildren().add(labelSum);
             vboxSubsequence.getChildren().add(labelInterval);

@@ -32,7 +32,7 @@ public class Company {
     private VaccineAdministrationStore administrationStore;
 
 
-   
+
     private ReactionStore reactionStore;
 
 

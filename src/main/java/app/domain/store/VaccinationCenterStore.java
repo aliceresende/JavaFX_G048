@@ -1,6 +1,6 @@
 package app.domain.store;
 
-import app.domain.model.Administration;
+import app.domain.model.VaccineAdministration;
 import app.domain.model.ArrivalOfSNSUser;
 import app.domain.model.ComunityMassVaccinationCenter;
 import app.domain.model.Schedule;
@@ -178,7 +178,7 @@ public class VaccinationCenterStore {
      * @param list     the list
      * @return the int [ ]
      */
-    public int[] countExitsByInterval(int interval, List<Administration> list) {
+    public int[] countExitsByInterval(int interval, List<VaccineAdministration> list) {
         int nOfExits, index=0, position;
         int[] exits = new int[Constants.TOTAL_MINUTES/interval];
         for(int i = 0; i < exits.length; i++){
@@ -225,7 +225,7 @@ public class VaccinationCenterStore {
      * @param listL    the list l
      * @return the int [ ]
      */
-    public int[] inputtedList(int interval, List<ArrivalOfSNSUser> listA, List<Administration> listL){
+    public int[] inputtedList(int interval, List<ArrivalOfSNSUser> listA, List<VaccineAdministration> listL){
         int[] differenceForInterval = new int[Constants.TOTAL_MINUTES/interval];
         int[] arrivalForInterval = countArrivalsByInterval(interval, listA);
         int[] exitForInterval = countExitsByInterval(interval, listL);

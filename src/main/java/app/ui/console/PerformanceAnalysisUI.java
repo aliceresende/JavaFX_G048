@@ -11,11 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
-/**
- * The type Performance analyze ui.
- */
 public class PerformanceAnalysisUI implements Runnable {
     private final PerformanceAnalysisController controller = new PerformanceAnalysisController();
     @Override
@@ -50,15 +46,15 @@ public class PerformanceAnalysisUI implements Runnable {
             int[] subList = getMaxSublist(inputList);
             long endTime = System.currentTimeMillis();
             System.out.println("That took " + (endTime - startTime) + " milliseconds");
-            List<Integer> inputArrList = Arrays.stream(inputList).boxed().collect(Collectors.toList());
-            List<Integer> subArrList  = Arrays.stream(subList).boxed().collect(Collectors.toList());
+            List<Integer> inputArrList = Arrays.stream(inputList).boxed().toList();
+            List<Integer> subArrList  = Arrays.stream(subList).boxed().toList();
             int indexStart = Collections.indexOfSubList(inputArrList, subArrList);
             int indexEnd = indexStart + (subList.length);
             int DateIMin = getMinute(Constants.OPEN_HOUR) + indexStart * interval;
             int DateEMin = getMinute(Constants.OPEN_HOUR) + indexEnd * interval;
             System.out.println("Input list:\n"+Arrays.toString(inputList));
             System.out.println("Contiguous sublist with maximum sum:\n"+Arrays.toString(subList));
-            System.out.println("Sum: "+sum(subList));
+            System.out.println("Sum: "+controller.sumSublist(subList));
             System.out.println("[" + day + " " + fromMinutesToHHmm(DateIMin) + ", " + day + " " + fromMinutesToHHmm(DateEMin) + "]");
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -66,46 +62,17 @@ public class PerformanceAnalysisUI implements Runnable {
         }
     }
     private int[] getInputList(int interval,String day){
-       return controller.inputList(interval,day);
+       return controller.getInputList(interval,day);
     }
     private int[] getMaxSublist(int[] subsequence) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         return controller.getMaxSublist(subsequence);
     }
 
-    /**
-     * Sum int.
-     *
-     * @param arr the arr
-     * @return the int
-     */
-    public static int sum(int[] arr)
-    {
-        int sum = 0;
-
-        for (int i = 0; i < arr.length; i++)
-            sum += arr[i];
-
-        return sum;
-    }
-
-    /**
-     * From minutes to h hmm string.
-     *
-     * @param minutes the minutes
-     * @return the string
-     */
-    public static String fromMinutesToHHmm(int minutes) {
+    public String fromMinutesToHHmm(int minutes) {
         long hours = TimeUnit.MINUTES.toHours(Long.valueOf(minutes));
         long remainMinutes = minutes - TimeUnit.HOURS.toMinutes(hours);
         return  String.format("%02d:%02d", hours, remainMinutes);
     }
-
-    /**
-     * Gets minute.
-     *
-     * @param timeString the time string
-     * @return the minute
-     */
     public static int getMinute(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[HH][H]:mm");
         LocalTime time = LocalTime.parse(timeString, formatter);

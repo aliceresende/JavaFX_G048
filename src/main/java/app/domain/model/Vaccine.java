@@ -41,6 +41,7 @@ public class Vaccine {
         this.administration = administration;
     }
 
+
     /**
      * Get designation string.
      *

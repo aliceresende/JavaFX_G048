@@ -2,8 +2,10 @@ package app.domain.model.CSV;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +14,8 @@ import java.util.Scanner;
  */
 public class CSVWithDates implements CSV {
     final private String splitBy = ";";
-    private final SimpleDateFormat dateTimeForm = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private final SimpleDateFormat programFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private final SimpleDateFormat csvFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
     /**
      * Instantiates a new Csv with dates.
@@ -20,7 +23,8 @@ public class CSVWithDates implements CSV {
     public CSVWithDates() {
     }
     @Override
-    public List<List<String>> readFile(String filePath, List<List<String>> listcsvInfo) throws FileNotFoundException {
+    public List<List<String>> readFile(String filePath, List<List<String>> listcsvInfo) throws FileNotFoundException, ParseException {
+        List<List<String>> csvInfo = new ArrayList<>();
         List<String> csvlineinfo = new ArrayList<String>();
         Scanner in = new Scanner(new FileReader(filePath));
         String header = in.nextLine(); //removes header info
@@ -42,17 +46,25 @@ public class CSVWithDates implements CSV {
             csvlineinfo.add(info[3]); //lotnumber
 
 
-            info[4]= dateTimeForm.format(info[4]);
-            csvlineinfo.add(info[4]); //schedule date
-            info[5]= dateTimeForm.format(info[5]);
-            csvlineinfo.add(info[5]); //arrival date
-            info[6] = dateTimeForm.format(info[6]);
-            csvlineinfo.add(info[6]); //administration date
-            info[7] = dateTimeForm.format(info[7]);
-            csvlineinfo.add(info[7]); //leaving date
+            Date s = csvFormat.parse(info[4]);
+            String sf = programFormat.format(s);
+            csvlineinfo.add(sf); //schedule date
 
-            listcsvInfo.add(csvlineinfo);
+            Date a = csvFormat.parse(info[5]);
+            String af = programFormat.format(a);
+            csvlineinfo.add(af); //arrival date
+
+            Date na = csvFormat.parse(info[6]);
+            String naf = programFormat.format(na);
+            csvlineinfo.add(naf); //administration date
+
+            Date l = csvFormat.parse(info[7]);
+            String lf = programFormat.format(l);
+            csvlineinfo.add(lf); //leaving date
+
+            csvInfo.add(csvlineinfo);
         }
+        listcsvInfo = csvInfo;
         return listcsvInfo;
     }
 }

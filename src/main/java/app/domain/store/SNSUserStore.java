@@ -484,6 +484,17 @@ public class SNSUserStore extends PasswordGenerator {
 
     //--------------------valid snsuser per number----------------------
 
+    public List<List<String>> validPDUser(List<List<String>> csvInfo) {
+        boolean val = true;
+        for (List<String> lineInfo : csvInfo) {
+            val = snsUserNumberExists(lineInfo);
+            if (val = false) {
+                csvInfo.remove(lineInfo);
+            }
+        }
+        return csvInfo;
+    }
+
     public boolean snsUserNumberExists(List<String> lineInfo){
         boolean exists = false;
         String snsUserNumber = lineInfo.get(0);

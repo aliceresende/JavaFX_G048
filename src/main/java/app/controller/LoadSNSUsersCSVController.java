@@ -25,7 +25,7 @@ public class LoadSNSUsersCSVController {
     private SNSUserStore userStore;
     private SNSUser user;
 
-    private List<SNSUser> listSNSUsers = new ArrayList<>();
+    private List<SNSUser> listSNSUsers ;
 
     /**
      * Gets company.
@@ -53,6 +53,7 @@ public class LoadSNSUsersCSVController {
         this.company = company;
         userStore = company.getSNSUserStore();
         this.user = null;
+        this.listSNSUsers = new ArrayList<>();
 
     }
 
@@ -83,9 +84,7 @@ public class LoadSNSUsersCSVController {
                 return listSNSUsers = null;
             }
 
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (ParseException | IOException e) {
             throw new RuntimeException(e);
         }
     }

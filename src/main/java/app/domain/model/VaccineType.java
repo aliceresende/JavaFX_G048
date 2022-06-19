@@ -14,7 +14,7 @@ public class VaccineType {
      */
     private String code;
     private String type;
-    private String tech;
+    private String tech; //short description
 
     /**
      * Constructor of the VaccineType, it calls methods in order to validate the parameters
@@ -28,6 +28,10 @@ public class VaccineType {
         this.code = code;
         this.type = type;
         this.tech = tech;
+    }
+
+    public String getTech() {
+        return tech;
     }
 
     /**

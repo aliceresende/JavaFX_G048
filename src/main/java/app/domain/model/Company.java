@@ -1,6 +1,7 @@
 package app.domain.model;
 
 import app.domain.model.CSV.CSV;
+import app.domain.model.CSV.CSVWithDates;
 import app.domain.store.*;
 import org.apache.commons.lang3.StringUtils;
 import pt.isep.lei.esoft.auth.AuthFacade;
@@ -19,8 +20,6 @@ public class Company {
 
     private String designation;
     private AuthFacade authFacade;
-
-    private String Vaccine;
     private SNSUserStore uses;
     private EmployeeStore employees;
     private EmployeeRoleStore roles;
@@ -28,12 +27,14 @@ public class Company {
     private VaccinationCenterStore centers;
     private VaccineScheduleStore vSStore;
     private NewVaccineStore vstore;
-    private NewAdministrationProcessStore apstore;
-
     private ArrivalOfSNSUserStore arrivalStore;
+    private PerformanceDataStore performanceDataStore;
+    private VaccineAdministrationStore administrationStore;
 
-    private AdministrationStore administrationStore;
+
+   
     private ReactionStore reactionStore;
+
 
 
     /**
@@ -56,8 +57,14 @@ public class Company {
         this.centers = new VaccinationCenterStore();
         this.arrivalStore = new ArrivalOfSNSUserStore();
         this.vstore= new NewVaccineStore();
-        this.administrationStore = new AdministrationStore();
+
+        this.administrationStore = new VaccineAdministrationStore();
         this.reactionStore = new ReactionStore();
+
+
+        this.performanceDataStore = new PerformanceDataStore();
+
+
     }
 
     /**
@@ -140,14 +147,6 @@ public class Company {
         return vSStore;
     }
 
-    /**
-     * Returns the administration process store from the company
-     *
-     * @return the administration process store from the company
-     */
-    public NewAdministrationProcessStore getAdministrationProcess() {
-        return apstore;
-    }
 
     /**
      * Returns the arrival of the SNS user store from the company
@@ -163,9 +162,16 @@ public class Company {
      *
      * @return the administration store
      */
-    public AdministrationStore getAdministrationStore() {return administrationStore;}
+
+    public VaccineAdministrationStore getAdministrationStore() {return administrationStore;}
     public ReactionStore getReactionStore() {
         return reactionStore;
+    }
+
+
+    public PerformanceDataStore getPerformanceDataStore() {
+        return performanceDataStore;
+
     }
 
     /**
@@ -186,9 +192,9 @@ public class Company {
      * @throws IllegalAccessException    the illegal access exception
      */
     public CSV knowsFileType(String filepath) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Class<?> header = Class.forName("app.domain.model.CSVFile.CSVFileReaderWithHeader");
-        Class<?> noheader = Class.forName("app.domain.model.CSVFile.CSVFileReaderNoHeader");
-        Class<?> dates = Class.forName("app.domain.model.CSVFile.CSVFileReaderWithDates");
+        Class<?> header = Class.forName("app.domain.model.CSV.CSVWithHeader");
+        Class<?> noheader = Class.forName("app.domain.model.CSV.CSVNoHeader");
+        Class<?> dates = Class.forName("app.domain.model.CSV.CSVWithDates");
         CSV csv;
         String line, splitby = "\n";
         BufferedReader br = new BufferedReader(new FileReader(filepath));
@@ -197,6 +203,7 @@ public class Company {
         String[] headerInformation = line2.split(";");
         if(line2.contains(":")){
             csv = (CSV) dates.getDeclaredConstructor().newInstance();
+            //CSV cs = new CSVWithDates();
             return csv;
         }else if (line.contains(";")) {
             csv = (CSV) header.getDeclaredConstructor().newInstance();
@@ -207,6 +214,14 @@ public class Company {
         }
 
     }
+
+    //public void savePerformanceData (List<PerformanceData> perdata){
+    //    this.performanceData = perdata;
+   // }
+
+    //public List<PerformanceData> getPerformanceData (){
+     //   return this.performanceData;
+    //}
 
 }
 

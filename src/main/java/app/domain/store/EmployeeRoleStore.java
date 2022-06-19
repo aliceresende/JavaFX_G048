@@ -1,6 +1,8 @@
 package app.domain.store;
 
+import app.controller.App;
 import app.domain.shared.Constants;
+import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.domain.model.UserRole;
 
 import java.util.ArrayList;
@@ -46,6 +48,15 @@ public class EmployeeRoleStore {
         return false;
 
     }
+
+    private void addUserRolesToSystem(){
+        AuthFacade authFacade = App.getInstance().getCompany().getAuthFacade();
+
+        for(UserRole u : roles){
+            authFacade.addUserRole(u.getId(),u.getDescription());
+        }
+    }
+
 
     /**
      * This method returns a list with all the roles

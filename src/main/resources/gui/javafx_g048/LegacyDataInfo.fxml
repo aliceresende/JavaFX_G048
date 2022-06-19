@@ -15,25 +15,12 @@
                 <Font name="Arial Rounded MT Bold" size="24.0" />
             </font>
         </Label>
-        <ImageView fitHeight="144.0" fitWidth="253.0" layoutX="394.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="144.0" fitWidth="173.0" layoutX="366.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../images/csv.png" />
             </image></ImageView>
         <VBox layoutX="20.0" layoutY="122.0" prefHeight="300.0" prefWidth="448.0" spacing="10.0">
             <children>
-                <Label text=" Please introduce your email: ">
-                    <font>
-                        <Font name="Arial Bold" size="21.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="email" prefHeight="28.0" prefWidth="206.0" style="-fx-border-color: #7fb5b1;">
-                    <VBox.margin>
-                        <Insets left="5.0" right="150.0" />
-                    </VBox.margin>
-                    <font>
-                        <Font name="Arial" size="14.0" />
-                    </font>
-                </TextField>
             <Label layoutX="10.0" layoutY="10.0" text=" Please select the file (csv only): ">
                <font>
                   <Font name="Arial Bold" size="21.0" />
@@ -55,9 +42,38 @@
                   <Insets left="5.0" />
                </padding>
             </HBox>
-            <ComboBox fx:id="algorithm" prefHeight="51.0" prefWidth="227.0" />
-            <ComboBox fx:id="criteria" prefHeight="51.0" prefWidth="227.0" />
-            <ComboBox fx:id="order" prefHeight="51.0" prefWidth="227.0" />
+            <HBox prefHeight="21.0" prefWidth="448.0">
+               <children>
+                  <ImageView fx:id="timeimage" fitHeight="43.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@../../images/time.png" />
+                   </image>
+                  </ImageView>
+                   <ComboBox fx:id="criteria" prefHeight="16.0" prefWidth="227.0">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="26.0" prefWidth="448.0">
+               <children>
+                  <ImageView fx:id="timeimage1" fitHeight="61.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/sortorder.jpg" />
+                     </image>
+                  </ImageView>
+                  <ComboBox fx:id="order" prefHeight="30.0" prefWidth="227.0">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin></ComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></HBox>
             </children></VBox>
         <Button layoutX="471.0" layoutY="407.0" mnemonicParsing="false" onAction="#seeButton" prefHeight="29.0" prefWidth="95.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="Confirm">
             <font>

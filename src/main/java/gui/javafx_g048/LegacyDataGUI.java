@@ -1,59 +1,70 @@
 package gui.javafx_g048;
 
-import app.controller.App;
+
 import app.controller.LoadLegacyDataController;
-import app.domain.model.Company;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
-import pt.isep.lei.esoft.auth.AuthFacade;
+import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Properties;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class LegacyDataGUI implements Initializable {
 
 
     @FXML
-    private TextField email;
-    @FXML
     private Button file;
 
     private String filePath;
     @FXML
     private ListView filename;
-
-    private Company company;
-    private AuthFacade authFacade;
     private gui.javafx_g048.App mainApp;
-
     private LoadLegacyDataController controller;
     @FXML
     private ComboBox criteria;
     @FXML
     private ComboBox order;
+
+    private Stage infoStage;
     @FXML
-    private ComboBox algorithm;
+    private ImageView timeimage;
+    @FXML
+    private ImageView timeimage1;
 
 
+    /**
+     * this method iniatializes the gui and the ComboBox's
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            company = App.getInstance().getCompany();
-            authFacade = company.getAuthFacade();
-
-            algorithm.getItems().addAll("Insertion Sort", "Merge Sort");
 
             criteria.getItems().addAll("Arrival Time","Leaving Time");
             order.getItems().addAll("Ascendent","Descendent");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LegacyDataShow.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            infoStage = new Stage();
+            infoStage.initModality(Modality.APPLICATION_MODAL);
+            infoStage.setScene(scene);
+            LegacyDataShow showdata = loader.getController();
+            showdata.associarParentUI(this);
+
 
 
         }catch(Exception e){
@@ -67,10 +78,9 @@ public class LegacyDataGUI implements Initializable {
     public void setMainApp(gui.javafx_g048.App mainApp) {
         this.mainApp = mainApp;
     }
-    //======================================================
 
-    public void email(ActionEvent actionEvent) {
-        controller.getVaccCenterName(String.valueOf(email));
+    public LoadLegacyDataController getLegacyDataController() {
+        return controller;
     }
 
     //=======================FILEPATH========================
@@ -86,83 +96,46 @@ public class LegacyDataGUI implements Initializable {
         fileChooser.getExtensionFilters().addAll( new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         File selectedFile = fileChooser.showOpenDialog(null);
         filePath = selectedFile.getAbsolutePath(); //gets absolute path
-        controller.readFile(filePath); // sends filepath tho controller
         filename.getItems().add(selectedFile.getName());// displays the name of the selected file
     }
 
 
 
-//===================================================
+//=================CONFIRM====================================
 
     /**
-     * method to set the chosen sorting algorithm in the configuration file
-     * @param algorithm
-     * @throws IOException
+     * method to send the confirmed data to controller
+     * @param actionEvent
      */
-    private void setConfig(String algorithm) throws IOException {
-        if (algorithm == null) {
-            throw new IllegalArgumentException("Please choose an algorithm so that the process can run.");
-        } else {
-            Properties prop =new Properties();
-            String value;
-
-            switch (algorithm){
-                case "Merge Sort":
-                    prop.load(new FileInputStream("config.properties"));
-                    value = "app.domain.algorithms.sorting.MergeSort";
-                    prop.setProperty("Company.Algorithms.sorting", value);
-                    prop.store(new FileOutputStream("configuration.conf"),null);
-                    break;
-                case "Insertion Sort":
-                    prop.load(new FileInputStream("config.properties"));
-                    value = "app.domain.algorithms.sorting.InsertionSort";
-                    prop.setProperty("Company.Algorithms.sorting", value);
-                    prop.store(new FileOutputStream("configuration.conf"),null);
-                    break;
-            }
-        }
-    }
-
-
-    //=================CONFIRM=================
 
     @FXML
-    public void seeButton(ActionEvent actionEvent) {
-        try{
-            setConfig(String.valueOf(algorithm.getValue())); // set algorithm to use
+    public void seeButton(ActionEvent actionEvent) throws RuntimeException {
 
-            String time = String.valueOf(criteria.getSelectionModel().getSelectedItem());
-            String ordering = String.valueOf(order.getSelectionModel().getSelectedItem());
+        String time = String.valueOf(criteria.getSelectionModel().getSelectedItem());
+        String ordering = String.valueOf(order.getSelectionModel().getSelectedItem());
 
-            switch (time){
-                case "Arrival Time":
-                     if(ordering.equals("Ascendent")) {
-                         controller.sortingCriteria("5", "ascendent");
-                     }else if(ordering.equals("Descendent")){
-                         controller.sortingCriteria("5", "descendent");
-                     }
-                    break;
-                case "Leaving Time":
-                    if(ordering.equals("Ascendent")) {
-                        controller.sortingCriteria("7", "ascendent");
-                    }else if(ordering.equals("Descendent")){
-                        controller.sortingCriteria("7", "descendent");
-            }
-                    break;
-            }
+        controller = new LoadLegacyDataController();
 
-
-        } catch (Exception e) {
-            Alert.AlertType type = Alert.AlertType.WARNING;
-            Alert alert = new Alert(type, "");
-
-            alert.initModality(Modality.APPLICATION_MODAL);
-            //alert.initOwner(mainApp.getStage());
-
-            alert.getDialogPane().setContentText(e.getMessage());
-            alert.getDialogPane().setHeaderText("Error while doing the process");
-
-            alert.showAndWait();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("LegacyDataShow.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(fxmlLoader.load(), 630, 400);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+        Stage stage = new Stage();
+        stage.setTitle("New Window");
+        stage.setScene(scene);
+        stage.show();
+
+
+        try {
+            controller.loadLegacyData(filePath,time,ordering); // sends information to controller
+        } catch (IOException | ParseException | ClassNotFoundException | InstantiationException |
+                 IllegalAccessException e) {
+            System.out.println("Somehting went wrong with the file");
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-package app.domain.algorithms.subsequence;
+package app.service.algorithms.subsequence;
 
 import java.util.Arrays;
 

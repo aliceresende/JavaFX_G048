@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="452.0" prefWidth="600.0" style="-fx-background-color: #90C2BE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.javafx_g048.LegacyDataShow">
+
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="25.0" prefHeight="72.0" prefWidth="558.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffff;" text="Load Legacy Data" textFill="WHITE">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Label>
+      <ListView fx:id="infolist" layoutX="20.0" layoutY="108.0" prefHeight="327.0" prefWidth="558.0" />
+    </children>
+
+</AnchorPane>

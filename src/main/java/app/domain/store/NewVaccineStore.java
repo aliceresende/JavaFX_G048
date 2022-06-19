@@ -200,4 +200,43 @@ public class NewVaccineStore {
         }
     }
 
+    //-------------------------validVaccineExist----------------------
+
+    public boolean validPDVaccine(List<List<String>> csvInfo) {
+        boolean val= true;
+        for(List<String> lineInfo: csvInfo){
+            val = vaccineNameExists(lineInfo);
+            if(!val){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean onlyLetters (String name){
+        boolean letter = false;
+        String[] numbers = name.split("");
+        for (int i = 0; i < name.length(); i++) {
+            if(numbers[i].matches("[a-zA-Z]")) { // verifica a existência de letras
+                letter = true;
+            }else{
+                letter = false;
+            }
+        }
+        return letter;
+    }
+    public boolean vaccineNameExists(List<String> lineInfo){
+        boolean exists = false;
+        String vaccineName = lineInfo.get(1);
+        if (onlyLetters(vaccineName)){
+            for (Vaccine vac : array1) {
+                if (vaccineName.equals(vac.get_designation())) {  //exist name
+                    exists = true;
+                }
+            }
+        }
+        return exists;
+    }
+
+
 }

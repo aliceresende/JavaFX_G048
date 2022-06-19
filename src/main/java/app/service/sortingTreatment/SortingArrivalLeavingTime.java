@@ -2,7 +2,8 @@ package app.service.sortingTreatment;
 
 import app.domain.model.PerformanceData;
 import app.domain.shared.Constants;
-import app.service.algorithms.sorting.SortAlgorithm;
+import app.service.algorithm.performance.CenterPerformanceCSV;
+import app.service.algorithm.sorting.SortAlgorithm;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,7 +19,6 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
     private final String leaving = "Leaving Time";
 
     private final String ascendent = "Ascendent" ;
-
     private final String descendant = "Descendent";
 
 
@@ -27,7 +27,7 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
         return sortList(toSort,time,ordering);
     }
 
-    /*public void sortingCriteria (String time, String ordering) {
+   /* public void sortingCriteria (String time, String ordering) {
         try {
             switch (time) {
                 case arrival:
@@ -75,10 +75,11 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
             throw new RuntimeException(e);
         }
         in.close();
+        //-------------------------------------------------------------
 
         List<PerformanceData> infoOrdered = new ArrayList<>();
-        String[] sorted = sortDateTime(info,time,sortAlgorithm);
-        infoOrdered = sortAllData(sorted,info,time,order);
+        String[] dateToSort = sortDateTime(info,time,sortAlgorithm);
+        infoOrdered = sortAllData(dateToSort,info,time,order);
         return infoOrdered;
     }
 
@@ -98,7 +99,8 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
 
         if(time.equals(arrival)){
             for(PerformanceData line : info){
-                timeToSort[i] = line.getArrival();
+                String arr = line.getArrival();
+                timeToSort[i] = arr;
                 i++;
             }
         }else if(time.equals(leaving)){
@@ -128,11 +130,12 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
      */
     public List<PerformanceData> sortAllData(String[] timeSorted, List<PerformanceData> info, String time,String order){
 
+
         List<PerformanceData> infoToOrder = info;
         int i = 0;
 
         if(time.equals(arrival)) {
-            for (PerformanceData pd : infoToOrder) {
+            for (PerformanceData pd : info) {
                 if (pd.getArrival().equals(timeSorted[i])) {
                     infoToOrder.set(i,pd);
                     i++;
@@ -147,13 +150,11 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
             }
         }
 
-
         if(order.equals(descendant)){
             Collections.reverse(infoToOrder);
         }
 
         return infoToOrder;
-
     }
     //----------------------------------------Dates transformation--------------------------------------
 
@@ -171,7 +172,8 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
      */
 
     public String[] datesFormattedToSort(String[] datesInput) throws ParseException {
-        String[] formattedDateTime = new String[datesInput.length];
+        int length = datesInput.length;
+        String[] formattedDateTime = new String[length];
 
         for (int i = 0; i < datesInput.length; i++) {
             Date d = printingFormat.parse(datesInput[i]);

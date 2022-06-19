@@ -2,11 +2,8 @@ package app.controller;
 
 import app.domain.model.Company;
 import app.domain.model.VaccineType;
-import app.domain.store.NewVaccineTypeStore;
+import app.store.NewVaccineTypeStore;
 
-/**
- * The type Specify new vaccine type controller.
- */
 public class SpecifyNewVaccineTypeController {
     /**
      * Controller of the UserStory 12: Specify a new vaccine type
@@ -17,9 +14,11 @@ public class SpecifyNewVaccineTypeController {
     private NewVaccineTypeStore store;
 
 
+
     /**
      * Constructor of the class, gets an instance of the company class
      */
+
     public SpecifyNewVaccineTypeController(){
         this(App.getInstance().getCompany());
     }
@@ -29,16 +28,11 @@ public class SpecifyNewVaccineTypeController {
      *
      * @param company instance of Company
      */
+
     public SpecifyNewVaccineTypeController(Company company) {
         this.company = company;
         this.vt = null;
     }
-
-    /**
-     * Give company.
-     *
-     * @param st the st
-     */
     public void giveCompany(NewVaccineTypeStore st){
         st = store;
     }
@@ -46,9 +40,9 @@ public class SpecifyNewVaccineTypeController {
     /**
      * Creates a new VaccineType  instance, firstly creates a instance of VaccineTypeStore and then call the method of this instance that creates the Vaccinetype instance
      *
-     * @param code id of the Vaccine type
-     * @param type name of the Vaccine type
-     * @param tech email of the Vaccine type
+     * @param code           id of the Vaccine type
+     * @param type         name of the Vaccine type
+     * @param tech        email of the Vaccine type
      */
     public void createVaccineType(String code,String type, String tech) {
         store=company.getVaccineTypeList();
@@ -58,8 +52,6 @@ public class SpecifyNewVaccineTypeController {
     }
 
     /**
-     * Gets vt.
-     *
      * @return String that represents the VaccineType instance
      */
     public VaccineType getVt() {

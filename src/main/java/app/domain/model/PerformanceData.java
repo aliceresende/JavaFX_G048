@@ -3,6 +3,7 @@ package app.domain.model;
 import java.io.Serializable;
 
 public class PerformanceData implements Serializable {
+
     private String snsUserNumber;
     private String vaccineName;
     private String dose;
@@ -21,8 +22,6 @@ public class PerformanceData implements Serializable {
         this.arrival = arrival;
         this.administration = administration;
         this.leaving = leaving;
-
-
     }
 
     public String getSnsUserNumber() {
@@ -102,4 +101,5 @@ public class PerformanceData implements Serializable {
                 ", leaving='" + leaving + '\'' +
                 '}';
     }
+
 }

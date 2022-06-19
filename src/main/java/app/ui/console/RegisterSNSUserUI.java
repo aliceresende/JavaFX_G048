@@ -11,13 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * The type Register sns user ui.
- */
 public class RegisterSNSUserUI implements Runnable{
-    /**
-     * The Read.
-     */
     static Scanner read = new Scanner(System.in);
     private final RegisterSNSUserController snsUserC = new RegisterSNSUserController();
 
@@ -51,7 +45,7 @@ public class RegisterSNSUserUI implements Runnable{
         boolean validPhoneNumber;
         phoneNumber = Utils.readLineFromConsole("Phone Number (9 digits): ");
         do {
-            if (phoneNumber.length() != 9 || !phoneNumber.startsWith("9")) {
+            if (phoneNumber.length() != 9) {
                 validPhoneNumber = false;
                 System.out.println("Invalid phone number");
                 phoneNumber = Utils.readLineFromConsole("Enter a valid phone Number:");
@@ -76,13 +70,13 @@ public class RegisterSNSUserUI implements Runnable{
         } while (!validEmail);
 
 
-        Date birthDate = Utils.readDateFromConsole("Birth day (dd-mm-yyyy): ");
+        Date birthDate = Utils.readDateFromConsole("Birthday (dd/mm/yyyy): ");
 
 
-        String SNSUserNumber = Utils.readLineFromConsole("SNS User Number (10 digits): ");
+        String SNSUserNumber = Utils.readLineFromConsole("SNS User Number (9 digits): ");
         boolean validSnsNumber;
         do {
-            if (SNSUserNumber.length() != 10) {
+            if (SNSUserNumber.length() != 9) {
                 validSnsNumber = false;
                 System.out.println("Invalid SNS Number");
                 SNSUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (10 digits):");

@@ -1,23 +1,17 @@
  package app.ui.console;
 
- import app.controller.RecepcionistRequestVaccineController;
- import app.domain.model.ComunityMassVaccinationCenter;
- import app.domain.model.Vaccine;
- import app.mappers.SNSUserMapper;
- import app.ui.console.utils.Utils;
+import app.controller.RecepcionistRequestVaccineController;
+import app.domain.model.Vaccine;
+import app.domain.model.ComunityMassVaccinationCenter;
+import app.ui.console.utils.Utils;
+import app.mappers.SNSUserMapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
- import java.util.ArrayList;
- import java.util.List;
- import java.util.Scanner;
+public class RecepcionistRequestVaccinationUI implements Runnable{
 
- /**
-  * The type Recepcionist request vaccination ui.
-  */
- public class RecepcionistRequestVaccinationUI implements Runnable{
-     /**
-      * The Ler.
-      */
-     static Scanner ler = new Scanner(System.in);
+    static Scanner ler = new Scanner(System.in);
     private final RecepcionistRequestVaccineController vaccineSchedule = new RecepcionistRequestVaccineController();
     private final RecepcionistRequestVaccineController requestVaccineController = new RecepcionistRequestVaccineController();
     private SNSUserMapper SNSUserMapper;
@@ -113,23 +107,20 @@
         boolean cont;
         cont = Utils.confirm("The following vaccine schedule was created do you want to save? \n----> Yes or No? <----\n");
 
+        String dateAndHour = date + " " + hour;
+
         if (cont) {
-            vaccineSchedule.createVaccineSchedule(vaccineName, date, hour, vaccinationCenterName, snsUserNumber);
+            vaccineSchedule.createVaccineSchedule(vaccineName, dateAndHour, vaccinationCenterName, snsUserNumber);
             vaccineSchedule.saveVaccineSchedule();
             System.out.println("Success");
 
         } else if (!cont) {
-            new RequestVaccineUI().run();
+            new RecepcionistRequestVaccinationUI().run();
         }
+        vaccineSchedule.show();
     }
 
-     /**
-      * Vaccination center name list.
-      *
-      * @param vaccinationCenter the vaccination center
-      * @return the list
-      */
-     public List<String> vaccinationCenterName(List<ComunityMassVaccinationCenter> vaccinationCenter) {
+    public List<String> vaccinationCenterName(List<ComunityMassVaccinationCenter> vaccinationCenter) {
         List<String> vaccinationCenterName = new ArrayList<>();
         for(ComunityMassVaccinationCenter vc : vaccinationCenter) {
             vaccinationCenterName.add(vc.getName());
@@ -137,13 +128,7 @@
         return vaccinationCenterName;
     }
 
-     /**
-      * Vaccine name list.
-      *
-      * @param vaccine the vaccine
-      * @return the list
-      */
-     public List<String> vaccineName(List<Vaccine> vaccine) {
+    public List<String> vaccineName(List<Vaccine> vaccine) {
         List<String> vaccineName = new ArrayList<>();
         for(Vaccine v : vaccine){
             vaccineName.add(v.get_disease());

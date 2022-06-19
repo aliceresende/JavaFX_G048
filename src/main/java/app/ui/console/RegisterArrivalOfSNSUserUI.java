@@ -8,18 +8,11 @@ import app.mappers.dto.VaccinationCenterDTO;
 import app.ui.console.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-/**
- * The type Register arrival of sns user ui.
- */
 public class RegisterArrivalOfSNSUserUI implements Runnable{
-    /**
-     * The Read.
-     */
     static Scanner read = new Scanner(System.in);
     private final RegisterArrivalOfSNSUserController arrivalUserC = new RegisterArrivalOfSNSUserController();
     private final SelectVaccinationCenterController selectCenterController = new SelectVaccinationCenterController();
@@ -65,6 +58,7 @@ public class RegisterArrivalOfSNSUserUI implements Runnable{
             System.out.print("\nError:");
             System.out.print(e.getMessage());
         }
+        arrivalUserC.show();
     }
 
     /**

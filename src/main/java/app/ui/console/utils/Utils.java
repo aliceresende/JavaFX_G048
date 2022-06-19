@@ -10,18 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * The type Utils.
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
 public class Utils {
 
-    /**
-     * Read line from console string.
-     *
-     * @param prompt the prompt
-     * @return the string
-     */
     static public String readLineFromConsole(String prompt)
     {
         try
@@ -39,12 +32,6 @@ public class Utils {
         }
     }
 
-    /**
-     * Read integer from console int.
-     *
-     * @param prompt the prompt
-     * @return the int
-     */
     static public int readIntegerFromConsole(String prompt)
     {
         do
@@ -63,12 +50,6 @@ public class Utils {
         } while (true);
     }
 
-    /**
-     * Read double from console double.
-     *
-     * @param prompt the prompt
-     * @return the double
-     */
     static public double readDoubleFromConsole(String prompt)
     {
         do
@@ -87,12 +68,6 @@ public class Utils {
         } while (true);
     }
 
-    /**
-     * Read date from console date.
-     *
-     * @param prompt the prompt
-     * @return the date
-     */
     static public Date readDateFromConsole(String prompt)
     {
         do
@@ -113,12 +88,6 @@ public class Utils {
         } while (true);
     }
 
-    /**
-     * Confirm boolean.
-     *
-     * @param message the message
-     * @return the boolean
-     */
     static public boolean confirm(String message) {
         String input;
         do {
@@ -128,38 +97,16 @@ public class Utils {
         return input.equalsIgnoreCase("yes");
     }
 
-    /**
-     * Show and select one object.
-     *
-     * @param list   the list
-     * @param header the header
-     * @return the object
-     */
     static public Object showAndSelectOne(List list, String header)
     {
         showList(list,header);
         return selectsObject(list);
     }
-
-    /**
-     * Show and select index int.
-     *
-     * @param list   the list
-     * @param header the header
-     * @return the int
-     */
     static public int showAndSelectIndex(List list, String header)
     {
         showList(list,header);
         return selectsIndex(list);
     }
-
-    /**
-     * Show list.
-     *
-     * @param list   the list
-     * @param header the header
-     */
     static public void showList(List list, String header)
     {
         System.out.println(header);
@@ -175,12 +122,6 @@ public class Utils {
         System.out.println("0 - Cancel");
     }
 
-    /**
-     * Selects object object.
-     *
-     * @param list the list
-     * @return the object
-     */
     static public Object selectsObject(List list)
     {
         String input;
@@ -200,12 +141,6 @@ public class Utils {
         }
     }
 
-    /**
-     * Selects index int.
-     *
-     * @param list the list
-     * @return the int
-     */
     static public int selectsIndex(List list)
     {
         String input;

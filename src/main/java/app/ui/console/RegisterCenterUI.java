@@ -6,9 +6,6 @@ import app.ui.console.utils.Utils;
 
 import java.io.IOException;
 
-/**
- * The type Register center ui.
- */
 public class RegisterCenterUI implements Runnable {
 
     private RegisterCenterController centerC = new RegisterCenterController();
@@ -34,7 +31,7 @@ public class RegisterCenterUI implements Runnable {
 
         boolean validPhoneNumber;
         do {
-            if (phoneNumber.length() != 9 || !phoneNumber.startsWith("9")) {
+            if (phoneNumber.length() != 9 || !phoneNumber.startsWith("2")) {
                 validPhoneNumber = false;
                 System.out.println("Invalid phone number");
                 phoneNumber = Utils.readLineFromConsole("Enter a valid phone Number:");

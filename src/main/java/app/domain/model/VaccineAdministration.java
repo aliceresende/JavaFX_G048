@@ -1,78 +1,60 @@
 package app.domain.model;
 
-/**
- * The type Administration.
- */
+import app.mappers.dto.VaccineDTO;
+
 public class VaccineAdministration {
     private String exitTime;
 
     private String snsUserNumber;
 
-    private String vaccine;
+    private VaccineDTO vaccine;
 
-    private String dose;
+    private int dose;
 
     private String additionalNotes;
 
-    /**
-     * Instantiates a new Administration.
-     *
-     * @param exitTime        the exit time
-     * @param snsUserNumber   the sns user number
-     * @param vaccine         the vaccine
-     * @param dose            the dose
-     * @param additionalNotes the additional notes
-     */
-    public VaccineAdministration(String exitTime, String snsUserNumber, String vaccine, String dose, String additionalNotes) {
+    private String administrationTime;
+
+    private String lotNumber;
+
+
+
+    public VaccineAdministration(String administrationTime, String exitTime, String snsUserNumber, VaccineDTO vaccine, int dose, String additionalNotes, String lotNumber) {
+
+        this.administrationTime = administrationTime;
         this.exitTime = exitTime;
         this.snsUserNumber = snsUserNumber;
         this.vaccine = vaccine;
         this.dose = dose;
         this.additionalNotes = additionalNotes;
+        this.lotNumber = lotNumber;
     }
 
-    /**
-     * Gets exit time.
-     *
-     * @return the exit time
-     */
     public String getExitTime() {
         return exitTime;
     }
 
-    /**
-     * Gets sns user number.
-     *
-     * @return the sns user number
-     */
     public String getSnsUserNumber() {
         return snsUserNumber;
     }
 
-    /**
-     * Gets vaccine.
-     *
-     * @return the vaccine
-     */
-    public String getVaccine() {
+    public VaccineDTO getVaccine() {
         return vaccine;
     }
 
-    /**
-     * Gets dose.
-     *
-     * @return the dose
-     */
-    public String getDose() {
+    public int getDose() {
         return dose;
     }
 
-    /**
-     * Gets additional notes.
-     *
-     * @return the additional notes
-     */
     public String getAdditionalNotes() {
         return additionalNotes;
+    }
+
+    public String getAdministrationTime() {
+        return administrationTime;
+    }
+
+    public String getLotNumber() {
+        return lotNumber;
     }
 }

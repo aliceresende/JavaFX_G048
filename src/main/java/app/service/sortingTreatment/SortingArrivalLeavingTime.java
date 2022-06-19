@@ -10,10 +10,7 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class SortingArrivalLeavingTime implements SortingTreatment {
 
@@ -30,7 +27,7 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
         return sortList(toSort,time,ordering);
     }
 
-    public void sortingCriteria (String time, String ordering) {
+    /*public void sortingCriteria (String time, String ordering) {
         try {
             switch (time) {
                 case arrival:
@@ -51,7 +48,7 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     /**
      * Sort list list.
@@ -80,7 +77,8 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
         in.close();
 
         List<PerformanceData> infoOrdered = new ArrayList<>();
-        infoOrdered = sortAllData(sortDateTime(info,time,sortAlgorithm),info,time,order);
+        String[] sorted = sortDateTime(info,time,sortAlgorithm);
+        infoOrdered = sortAllData(sorted,info,time,order);
         return infoOrdered;
     }
 
@@ -101,10 +99,12 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
         if(time.equals(arrival)){
             for(PerformanceData line : info){
                 timeToSort[i] = line.getArrival();
+                i++;
             }
         }else if(time.equals(leaving)){
             for(PerformanceData line : info){
                 timeToSort[i] = line.getLeaving();
+                i++;
             }
         }
 
@@ -129,22 +129,19 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
     public List<PerformanceData> sortAllData(String[] timeSorted, List<PerformanceData> info, String time,String order){
 
         List<PerformanceData> infoToOrder = info;
-        List<PerformanceData> infoOrdered = new ArrayList<>();
         int i = 0;
 
         if(time.equals(arrival)) {
             for (PerformanceData pd : infoToOrder) {
                 if (pd.getArrival().equals(timeSorted[i])) {
-                    infoOrdered.add(pd);
-                    infoToOrder.remove(pd);
+                    infoToOrder.set(i,pd);
                     i++;
                 }
             }
         } else if(time.equals(leaving)){
             for (PerformanceData pd : infoToOrder) {
                 if (pd.getLeaving().equals(timeSorted[i])) {
-                    infoOrdered.add(pd);
-                    infoToOrder.remove(pd);
+                    infoToOrder.set(i,pd);
                     i++;
                 }
             }
@@ -152,10 +149,10 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
 
 
         if(order.equals(descendant)){
-            Collections.reverse(infoOrdered);
+            Collections.reverse(infoToOrder);
         }
 
-        return infoOrdered;
+        return infoToOrder;
 
     }
     //----------------------------------------Dates transformation--------------------------------------
@@ -173,11 +170,13 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
      * @throws ParseException the parse exception
      */
 
-    public String[] datesFormattedToSort(String[] datesInput)  {
+    public String[] datesFormattedToSort(String[] datesInput) throws ParseException {
         String[] formattedDateTime = new String[datesInput.length];
 
         for (int i = 0; i < datesInput.length; i++) {
-            formattedDateTime[i] = sortingFormat.format(datesInput[i]);
+            Date d = printingFormat.parse(datesInput[i]);
+            String s = sortingFormat.format(d);
+            formattedDateTime[i] = s ;
         }
 
         return formattedDateTime;
@@ -191,11 +190,13 @@ public class SortingArrivalLeavingTime implements SortingTreatment {
      * @throws ParseException the parse exception
      */
 
-    public String[] datesFormattedToPrint(String[] datesOutput)  {
+    public String[] datesFormattedToPrint(String[] datesOutput) throws ParseException {
         String[] formattedDateTime = new String[datesOutput.length];
 
         for (int i = 0; i < datesOutput.length; i++) {
-            formattedDateTime[i] = printingFormat.format(datesOutput[i]);
+            Date d = sortingFormat.parse(datesOutput[i]);
+            String s = printingFormat.format(d);
+            formattedDateTime[i] = s ;
         }
 
         return formattedDateTime;

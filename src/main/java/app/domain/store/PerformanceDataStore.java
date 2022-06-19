@@ -1,12 +1,14 @@
 package app.domain.store;
 
-import app.domain.model.Employee;
 import app.domain.model.PerformanceData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PerformanceDataStore {
+
+    public PerformanceDataStore() {
+        this.knows = knows;
+    }
 
     private ArrayList <PerformanceData> knows = new ArrayList<>();
 

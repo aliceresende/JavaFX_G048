@@ -1,6 +1,8 @@
 package app.domain.model;
 
-public class PerformanceData {
+import java.io.Serializable;
+
+public class PerformanceData implements Serializable {
     private String snsUserNumber;
     private String vaccineName;
     private String dose;
@@ -19,6 +21,8 @@ public class PerformanceData {
         this.arrival = arrival;
         this.administration = administration;
         this.leaving = leaving;
+
+
     }
 
     public String getSnsUserNumber() {

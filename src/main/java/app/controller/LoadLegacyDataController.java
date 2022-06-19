@@ -88,19 +88,19 @@ public class LoadLegacyDataController {
         csvInfo = readFile(filePath,csv);
         csvInfo = userStore.validPDUser(csvInfo);
 
-        if(!vaccineStore.validPDVaccine(csvInfo)){
-            //throw IllegalArgumentException ("The vaccine is not registered in the system!");
-        }else{
+        if(!csvInfo.isEmpty()){
+            if(!vaccineStore.validPDVaccine(csvInfo)){
+                //throw IllegalArgumentException ("The vaccine is not registered in the system!");
+            }else{
+                for(List<String> i : csvInfo){
+                    PerformanceData pd = perfdataStore.createPerformanceData(i.get(0),i.get(1),i.get(2),i.get(3),i.get(4),i.get(5),i.get(6),i.get(7)) ;
+                    this.importedData.add(pd);
+                    perfdataStore.savePerformanceData(pd);
+                }
 
-            for(List<String> i : csvInfo){
-                PerformanceData pd = perfdataStore.createPerformanceData(i.get(0),i.get(1),i.get(2),i.get(3),i.get(4),i.get(5),i.get(6),i.get(7)) ;
-                this.importedData.add(pd);
-                perfdataStore.savePerformanceData(pd);
+                SortingArrivalLeavingTime s = new SortingArrivalLeavingTime();
+                this.importedData = s.sortPerfData(importedData, sCriteria, sOrder);
             }
-
-
-            SortingArrivalLeavingTime s = new SortingArrivalLeavingTime();
-            this.importedData = s.sortPerfData(importedData, sCriteria, sOrder);
         }
 
 

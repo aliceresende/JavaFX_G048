@@ -33,6 +33,7 @@ public class Company {
     private ArrivalOfSNSUserStore arrivalStore;
 
     private AdministrationStore administrationStore;
+    private ReactionStore reactionStore;
 
 
     /**
@@ -56,7 +57,7 @@ public class Company {
         this.arrivalStore = new ArrivalOfSNSUserStore();
         this.vstore= new NewVaccineStore();
         this.administrationStore = new AdministrationStore();
-
+        this.reactionStore = new ReactionStore();
     }
 
     /**
@@ -163,7 +164,9 @@ public class Company {
      * @return the administration store
      */
     public AdministrationStore getAdministrationStore() {return administrationStore;}
-
+    public ReactionStore getReactionStore() {
+        return reactionStore;
+    }
 
     /**
      * Instantiates a new Company.

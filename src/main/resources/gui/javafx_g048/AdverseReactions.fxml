@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="597.0" prefWidth="684.0" style="-fx-background-color: #90C2BE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.javafx_g048.AdverseReactionsUI">
+   <children>
+      <Label layoutX="21.0" layoutY="29.0" prefHeight="72.0" prefWidth="558.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffff;" text="          Analyze the performance of a Center" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lblInterval" layoutX="35.0" layoutY="137.0" prefHeight="24.0" prefWidth="303.0" style="-fx-border-color: #7fb5b1;">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+      <ChoiceBox fx:id="Allergybox" layoutX="433.0" layoutY="168.0" prefHeight="31.0" prefWidth="56.0" />
+      <Label layoutX="35.0" layoutY="115.0" text="SNSUser name">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="175.0" text="Does the user have any allergy of important mention?" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="245.0" text="Has the user ever had an allergic reaction from a Vaccine?" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="287.0" text="Has the user ever had and anaphylactic reaction?" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="Vaccineallergybox" layoutX="478.0" layoutY="238.0" prefHeight="31.0" prefWidth="56.0" />
+      <ChoiceBox fx:id="Anaphylacticbox" layoutX="405.0" layoutY="280.0" prefHeight="31.0" prefWidth="56.0" />
+      <ChoiceBox fx:id="BloodClottingbox" layoutX="377.0" layoutY="322.0" prefHeight="31.0" prefWidth="56.0" />
+      <Label layoutX="35.0" layoutY="329.0" text="Does the user have a blood clotting disorder?" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="Immunodeficiencybox" layoutX="422.0" layoutY="360.0" prefHeight="31.0" prefWidth="56.0" />
+      <Label layoutX="35.0" layoutY="367.0" text="Does the user have some kind of immunodeficiency?" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="Chemobox" layoutX="478.0" layoutY="402.0" prefHeight="31.0" prefWidth="56.0" />
+      <Label layoutX="35.0" layoutY="409.0" text="Is the user going under any kind of chemo therapy session?" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="Dosebox" layoutX="614.0" layoutY="448.0" prefHeight="31.0" prefWidth="56.0" />
+      <Label layoutX="35.0" layoutY="455.0" text="Has the user ever had a dose of the Vaccine about to be administered?(yes/no)" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lblInterval1" layoutX="35.0" layoutY="210.0" prefHeight="24.0" prefWidth="303.0" style="-fx-border-color: #7fb5b1;">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="lblInterval2" layoutX="35.0" layoutY="497.0" prefHeight="24.0" prefWidth="303.0" style="-fx-border-color: #7fb5b1;">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="label1" layoutX="35.0" layoutY="191.0" text="Write it here" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="label2" layoutX="35.0" layoutY="479.0" text="Secondary effects? (Can write &quot;none&quot;)" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="Formulary" layoutX="489.0" layoutY="488.0" mnemonicParsing="false" onAction="#Action" prefHeight="38.0" prefWidth="162.0" text="Submit Formulary" />
+   </children>
+</AnchorPane>

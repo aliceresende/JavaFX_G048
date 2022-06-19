@@ -3,10 +3,12 @@ package app.controller;
 
 import app.domain.model.*;
 import app.domain.model.CSV.CSV;
-import app.domain.store.*;
 import app.mappers.PerformanceDataMapper;
-import app.mappers.dto.PerformanceDataDTO;
-import app.service.sortingTreatment.SortingArrivalLeavingTime;
+import app.service.algorithms.sorting.SortingTimeService;
+import app.store.NewVaccineStore;
+import app.store.NewVaccineTypeStore;
+import app.store.PerformanceDataStore;
+import app.store.SNSUserStore;
 
 
 import java.io.IOException;
@@ -98,7 +100,7 @@ public class LoadLegacyDataController {
                     perfdataStore.savePerformanceData(pd);
                 }
 
-                SortingArrivalLeavingTime s = new SortingArrivalLeavingTime();
+                SortingTimeService s = new SortingTimeService();
                 this.importedData = s.sortPerfData(importedData, sCriteria, sOrder);
             }
         }
@@ -123,9 +125,21 @@ public class LoadLegacyDataController {
     }
     //--------------------------------------------------------------------------
 
-    public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
+    public List<PerformanceData> getPerformanceDataAndExtras() {
         List<PerformanceData> importedData = this.importedData;
-        return pdmapper.multipleToDTO(importedData);
+        List<String> name = new ArrayList<>();
+        List<String> descr = new ArrayList<>();
+        String vaccid ;
+
+        for(PerformanceData id: importedData){
+            name.add(userStore.username(id.getSnsUserNumber()));
+            vaccid = vaccineStore.vaccID(id.getVaccineName());
+            descr.add(typeStore.vaccDescription(vaccid));
+        }
+
+        //return pdmapper.multipleToDTO(importedData);
+
+        return importedData;
     }
 
 
@@ -157,7 +171,8 @@ public class LoadLegacyDataController {
      * @return list of PerformanceData with extras
      */
 
-    public String username(String usernumber){
+
+   /* public String username(String usernumber){
         List<SNSUser> u = userStore.getSnsUserList();
         String username = "";
         for(SNSUser user: u){
@@ -183,7 +198,7 @@ public class LoadLegacyDataController {
             }
         }
         return description;
-    }
+    }*/
 
    /* public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
         return pdmapper.multipleToDTO(perfdata);
@@ -191,9 +206,9 @@ public class LoadLegacyDataController {
 
 
 
- //============================DTO_TO_PRINT=======================================================
+    //============================DTO_TO_PRINT=======================================================
 
     //=====================================
 
-}
 
+}

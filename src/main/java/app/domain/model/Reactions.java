@@ -1,11 +1,11 @@
 package app.domain.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
+import java.io.Serializable;
 public class Reactions implements Serializable{
     String snsnumber;
-
+    String sns_name;
     String allergy;
     String Vaccine_reaction;
     String anaphylactic_reaction;
@@ -15,7 +15,7 @@ public class Reactions implements Serializable{
     String this_vaccine;
 
 
-    public Reactions(String snsnumber, String allergy, String Vaccine_reaction, String anaphylactic_reaction, String blood_clotting_disorders,
+    public Reactions(String snsnumber,String sns_name,String allergy,String Vaccine_reaction,String anaphylactic_reaction,String blood_clotting_disorders,
                      String immunodeficiency, String chemo, String this_vaccine){
         this.allergy=allergy;
         this.Vaccine_reaction=Vaccine_reaction;
@@ -25,7 +25,7 @@ public class Reactions implements Serializable{
         this.chemo=chemo;
         this.this_vaccine=this_vaccine;
         this.snsnumber=snsnumber;
-
+        this.sns_name=sns_name;
 
     }
 
@@ -33,7 +33,7 @@ public class Reactions implements Serializable{
     public String toString() {
         return "Reactions{" +
                 "snsnumber='" + snsnumber + '\'' +
-
+                ", sns_name='" + sns_name + '\'' +
                 ", allergy='" + allergy + '\'' +
                 ", Vaccine_reaction='" + Vaccine_reaction + '\'' +
                 ", anaphylactic_reaction='" + anaphylactic_reaction + '\'' +
@@ -65,7 +65,9 @@ public class Reactions implements Serializable{
         return snsnumber;
     }
 
-
+    public String getSns_name() {
+        return sns_name;
+    }
 
     public String getImmunodeficiency() {
         return immunodeficiency;
@@ -78,7 +80,7 @@ public class Reactions implements Serializable{
     public String getThis_vaccine() {
         return this_vaccine;
     }
-    /*public void checkRules(List<SNSUser> user){
+    public void checkRules(List<SNSUser> user){
         boolean res;
         int count=0;
         for (SNSUser U : user){
@@ -90,5 +92,5 @@ public class Reactions implements Serializable{
         if(count==0){
             throw new IllegalArgumentException("SNS User does not exist in the data base");
         }
-    }*/
+    }
 }

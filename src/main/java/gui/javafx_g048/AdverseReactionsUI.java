@@ -3,7 +3,7 @@ package gui.javafx_g048;
 import app.controller.App;
 import app.controller.ReactionsController;
 import app.domain.model.Company;
-import app.domain.store.ReactionStore;
+import app.store.ReactionStore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import pt.isep.lei.esoft.auth.AuthFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdverseReactionsUI implements Initializable {
+/*public class AdverseReactionsUI implements Initializable {
 
     ObservableList <String> option= FXCollections.observableArrayList("Yes", "No");
     public ChoiceBox Allergybox;
@@ -114,4 +114,4 @@ public class AdverseReactionsUI implements Initializable {
         ctrl.registerReaction(usernumber, allergy, Vaccineallergy, Anaphylactic, BloodClotting, Immunodeficiency, Chemo, dose);
         ctrl.validateReaction();
     }
-}
+}*/

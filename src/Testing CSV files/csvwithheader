@@ -1,0 +1,4 @@
+Name;Sex;Birth Date;Adress;Phone Number; Email;snsUserNumber;ccnumber;
+Alice;female;20/09/2002;Rua Isep|200|4000-300|Porto;912345678;alice@gmail.com;12345678;87654321;
+Diogo;male;13/03/2004;Rua Felix |200|4000-300|Porto;987654321;diogo@gmail.com;87654321;12345678;
+Pessoa;n/a;04/05/2000; Rua Algures|200|4000-300|Porto;988765432;pessoa@gmail.com;88765432;11234567;

@@ -1,20 +1,13 @@
 package app.domain.model.CSV;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * The type Csv with header.
- */
 public class CSVWithHeader implements CSV {
     final private String splitBy = ";";
 
-    /**
-     * Instantiates a new Csv with header.
-     */
     public CSVWithHeader() {
     }
 

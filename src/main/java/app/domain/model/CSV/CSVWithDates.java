@@ -9,28 +9,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * The type Csv with dates.
- */
 public class CSVWithDates implements CSV {
     final private String splitBy = ";";
     private final SimpleDateFormat programFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     private final SimpleDateFormat csvFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
-    /**
-     * Instantiates a new Csv with dates.
-     */
     public CSVWithDates() {
     }
     @Override
     public List<List<String>> readFile(String filePath, List<List<String>> listcsvInfo) throws FileNotFoundException, ParseException {
         List<List<String>> csvInfo = new ArrayList<>();
-        List<String> csvlineinfo = new ArrayList<String>();
         Scanner in = new Scanner(new FileReader(filePath));
         String header = in.nextLine(); //removes header info
         String line;
 
         while (in.hasNextLine()) {
+            List<String> csvlineinfo = new ArrayList<String>();
             line = in.nextLine();
             String[] info = line.split(splitBy);
 
@@ -44,7 +38,6 @@ public class CSVWithDates implements CSV {
             csvlineinfo.add(info[1]); //vaccinename
             csvlineinfo.add(info[2]); //dose
             csvlineinfo.add(info[3]); //lotnumber
-
 
             Date s = csvFormat.parse(info[4]);
             String sf = programFormat.format(s);

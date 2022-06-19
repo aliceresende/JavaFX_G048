@@ -1,54 +1,41 @@
 package app.domain.model;
 
-import java.util.Date;
+import app.domain.States.VaccinationProcessStates;
+import app.domain.States.VaccinationStates;
 
-/**
- * The type Vaccine schedule.
- */
-public class VaccineSchedule {
+import java.text.SimpleDateFormat;
+import java.io.Serializable;
+
+
+public class VaccineSchedule implements Serializable{
+
     private String vaccineName;
-    private Date date;
-    private String dateString;
-    private String hour;
-    private VaccinationCenter vaccinationCenter;
     private String vaccinationCenterName;
-    private SNSUser snsUser;
     private String snsUserNumber;
+    private String dateAndHour;
+    private VaccinationCenter vaccinationCenter;
+    private SNSUser snsUser;
+
 
     /**
      * Builds an instance of the vaccine schedule receiving the vaccine name, date, hour, vaccination center name and sns user number
      *
-     * @param vaccineName           the name of the virus the vaccine was made for confronting
-     * @param dateString            the day scheduled for the vaccine
-     * @param hour                  the hour scheduled for the vaccination
-     * @param vaccinationCenterName the name of the vaccination center
-     * @param snsUserNumber         the sns user number
-     */
-    public VaccineSchedule(String vaccineName, String dateString, String hour, String vaccinationCenterName, String snsUserNumber) {
-        this.vaccineName = vaccineName;
-        this.dateString = dateString;
-        this.hour = hour;
-        this.vaccinationCenterName = vaccinationCenterName;
-        this.snsUserNumber = snsUserNumber;
-    }
-/*
-    /**
-     * Builds an instance of the vaccine schedule receiving the vaccine name, date, hour, vaccination center name and sns user number
      * @param vaccineName the name of the virus the vaccine was made for confronting
-     * @param date the day scheduled for the vaccine
-     * @param hour the hour scheduled for the vaccination
+     * @param dateAndHour the date and hour scheduled for the vaccine;
      * @param vaccinationCenterName the name of the vaccination center
      * @param snsUserNumber the sns user number
      */
-/*
-    public VaccineSchedule(String vaccineName, Date date, String hour, String vaccinationCenterName, String snsUserNumber) {
+
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+    public VaccineSchedule(String vaccineName, String dateAndHour, String vaccinationCenterName, String snsUserNumber) {
         this.vaccineName = vaccineName;
-        this.date = date;
-        this.hour = hour;
+        this.dateAndHour = dateAndHour;
         this.vaccinationCenterName = vaccinationCenterName;
         this.snsUserNumber = snsUserNumber;
     }
-*/
+
+
 
     /**
      * Returns the name of the virus the vaccine was made for confronting
@@ -61,28 +48,11 @@ public class VaccineSchedule {
     }
 
     /**
-     * Returns the day scheduled for the vaccination
-     *
-     * @return the day scheduled for the vaccination
-     */
-    public Date getDate() {
-        return date;
-    }
-
-    /**
-     * Returns the hour scheduled for the vaccination
-     *
-     * @return the hour scheduled for the vaccination
-     */
-    public String getHour() {
-        return hour;
-    }
-
-    /**
      * Returns the name of the vaccination center
      *
      * @return the name of the vaccination center
      */
+
     public String getVaccinationCenterName() {
         return vaccinationCenterName;
     }
@@ -92,17 +62,9 @@ public class VaccineSchedule {
      *
      * @return the sns user number
      */
+
     public String getSNSUserNumber() {
         return snsUserNumber;
-    }
-
-    /**
-     * Returns the date
-     *
-     * @return the date
-     */
-    public String getDateString() {
-        return dateString;
     }
 
     /**
@@ -110,6 +72,7 @@ public class VaccineSchedule {
      *
      * @return the vaccination center
      */
+
     public VaccinationCenter getVaccinationCenter() {
         return vaccinationCenter;
     }
@@ -119,6 +82,7 @@ public class VaccineSchedule {
      *
      * @return the sns user
      */
+
     public SNSUser getSnsUser() {
         return snsUser;
     }
@@ -128,17 +92,34 @@ public class VaccineSchedule {
      *
      * @return the sns user number
      */
+
     public String getSnsUserNumber() {
         return snsUserNumber;
     }
 
     /**
+     * Returns the dateAndHour
+     *
+     * @return the dateAndHour
+     */
+
+    public String getDateAndHour() {
+        return dateAndHour;
+    }
+
+    /**
      * Returns the textual description of the vaccine schedule
+     *
      * @return vaccine schedule features
      */
 
     @Override
     public String toString() {
-        return "\nVaccine Schedule\nVaccine Name: " + vaccineName + "\nDate: " + dateString + "\nHour: " + hour + "\nVaccination Center: " + vaccinationCenterName + "\nSNS User Number: " + snsUserNumber;
+        return "\nVaccine Schedule\nVaccine Name: " + vaccineName + "\nDate and Hour: " + dateAndHour + "\nVaccination Center: " + vaccinationCenterName + "\nSNS User Number: " + snsUserNumber;
     }
+
+
 }
+
+
+

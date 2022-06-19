@@ -6,15 +6,9 @@ import app.ui.console.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The type Receptionist ui.
- */
 public class ReceptionistUI implements Runnable {
     private static VaccinationCenterDTO vCenterDTO = null;
 
-    /**
-     * Instantiates a new Receptionist ui.
-     */
     public ReceptionistUI(){
 
     }

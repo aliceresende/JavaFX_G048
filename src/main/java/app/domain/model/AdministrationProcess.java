@@ -1,9 +1,9 @@
 package app.domain.model;
-
-/**
- * The type Administration process.
- */
-public class AdministrationProcess {
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+public class AdministrationProcess implements Serializable {
 
     private String Processcode;
     private String vaccine_name;
@@ -13,16 +13,6 @@ public class AdministrationProcess {
     private String description;
 
 
-    /**
-     * Instantiates a new Administration process.
-     *
-     * @param Processcode  the processcode
-     * @param vaccine_name the vaccine name
-     * @param doses        the doses
-     * @param ageGroup     the age group
-     * @param dosage       the dosage
-     * @param description  the description
-     */
     public AdministrationProcess(String Processcode, String vaccine_name, int doses, String ageGroup, int dosage, String description){
         this.Processcode = Processcode;
         this.vaccine_name = vaccine_name;
@@ -33,6 +23,31 @@ public class AdministrationProcess {
 
 
     }
+
+    public String getProcesscode() {
+        return Processcode;
+    }
+
+    public String getVaccine_name() {
+        return vaccine_name;
+    }
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
+    public int getDoses() {
+        return doses;
+    }
+
+    public int getDosage() {
+        return dosage;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public String toString() {
         return "Administration Process : \n"
                 + "Code = " + this.Processcode +
@@ -41,4 +56,5 @@ public class AdministrationProcess {
                 "\nDoses= " + this.doses + "\nDosage To Be Administered = " + this.dosage + "ml"+
                 "\nVaccine description: " + this.description + "\n";
     }
+
 }

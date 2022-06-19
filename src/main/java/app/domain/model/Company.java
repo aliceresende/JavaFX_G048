@@ -1,8 +1,7 @@
 package app.domain.model;
 
 import app.domain.model.CSV.CSV;
-import app.domain.model.CSV.CSVWithDates;
-import app.domain.store.*;
+import app.store.*;
 import org.apache.commons.lang3.StringUtils;
 import pt.isep.lei.esoft.auth.AuthFacade;
 
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * The type Company.
  *
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
@@ -28,18 +26,20 @@ public class Company {
     private VaccineScheduleStore vSStore;
     private NewVaccineStore vstore;
     private ArrivalOfSNSUserStore arrivalStore;
+
     private PerformanceDataStore performanceDataStore;
     private VaccineAdministrationStore administrationStore;
 
 
 
     private ReactionStore reactionStore;
+    private VaccineAdministrationStore vaccineAdministrationStore;
+    private VaccinationProcessStore vaccProcessStore;
 
 
 
     /**
      * Builds an instance of the Company receiving the designation
-     *
      * @param designation of the Company
      */
     public Company(String designation)
@@ -57,36 +57,23 @@ public class Company {
         this.centers = new VaccinationCenterStore();
         this.arrivalStore = new ArrivalOfSNSUserStore();
         this.vstore= new NewVaccineStore();
-
-        this.administrationStore = new VaccineAdministrationStore();
-        this.reactionStore = new ReactionStore();
-
-
+        this.vaccProcessStore = new VaccinationProcessStore();
+        this.reactionStore=new ReactionStore();
+        this.vaccineAdministrationStore = new VaccineAdministrationStore();
         this.performanceDataStore = new PerformanceDataStore();
-
 
     }
 
-    /**
-     * Get employee role store employee role store.
-     *
-     * @return the employee role store
-     */
+
+
     public EmployeeRoleStore getEmployeeRoleStore(){
         return this.roles;
 
     }
 
-    /**
-     * Get vaccine type list new vaccine type store.
-     *
-     * @return the new vaccine type store
-     */
     public NewVaccineTypeStore getVaccineTypeList(){return this.vtstore;}
-
     /**
      * Returns the SNS user store from the company
-     *
      * @return the SNS user store from the company
      */
 
@@ -96,23 +83,24 @@ public class Company {
 
     /**
      * Returns the SNS user store from the company
-     *
      * @return the SNS user store from the company
      */
     public SNSUserStore getSNSUserStore() {
         return uses;
     }
 
+    public ReactionStore getReactionStore() {
+        return reactionStore;
+    }
+
     /**
      * Returns the SNS user store from the company
-     *
      * @return the SNS user store from the company
      */
     public VaccinationCenterStore getRegisterCenterStore(){ return centers;}
 
     /**
      * Returns the SNS user store from the company
-     *
      * @return the SNS user store from the company
      */
     public EmployeeStore getEmployeeStore() {
@@ -121,17 +109,14 @@ public class Company {
 
     /**
      * Returns the designation from the company
-     *
      * @return the designation from the company
      */
     public String getDesignation() {
-
         return designation;
     }
 
     /**
      * Returns the auth facade from the company
-     *
      * @return the auth facade from the company
      */
     public AuthFacade getAuthFacade() {
@@ -140,7 +125,6 @@ public class Company {
 
     /**
      * Returns the vaccine schedule store from the company
-     *
      * @return the vaccine schedule store from the company
      */
     public VaccineScheduleStore getVaccineScheduleStore() {
@@ -150,60 +134,47 @@ public class Company {
 
     /**
      * Returns the arrival of the SNS user store from the company
-     *
      * @return the arrival of the SNS user store from the company
      */
     public ArrivalOfSNSUserStore getArrivalStore() {
         return arrivalStore;
     }
 
-    /**
-     * Gets administration store.
-     *
-     * @return the administration store
-     */
+    public VaccineAdministrationStore getAdministrationStore() {return vaccineAdministrationStore;}
 
-    public VaccineAdministrationStore getAdministrationStore() {return administrationStore;}
-    public ReactionStore getReactionStore() {
-        return reactionStore;
+
+    public VaccinationProcessStore getVaccinationProcessStore() {
+        return vaccProcessStore;
     }
-
-
     public PerformanceDataStore getPerformanceDataStore() {
         return performanceDataStore;
-
     }
 
-    /**
-     * Instantiates a new Company.
-     */
     public Company() {}
 
     /**
      * Reflection technique to return the instance of the interface CSVFileReader according to the csv file path entered
      *
-     * @param filepath the filepath
-     * @return CSVFileReader csv
-     * @throws IOException               the io exception
-     * @throws ClassNotFoundException    the class not found exception
-     * @throws NoSuchMethodException     the no such method exception
-     * @throws InvocationTargetException the invocation target exception
-     * @throws InstantiationException    the instantiation exception
-     * @throws IllegalAccessException    the illegal access exception
+     * @param filepath
+     * @return CSVFileReader
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
      */
     public CSV knowsFileType(String filepath) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> header = Class.forName("app.domain.model.CSV.CSVWithHeader");
         Class<?> noheader = Class.forName("app.domain.model.CSV.CSVNoHeader");
         Class<?> dates = Class.forName("app.domain.model.CSV.CSVWithDates");
         CSV csv;
-        String line, splitby = "\n";
+        String line,line2;
         BufferedReader br = new BufferedReader(new FileReader(filepath));
         line = br.readLine();
-        String line2 = br.readLine();
-        String[] headerInformation = line2.split(";");
+        line2 = br.readLine();
         if(line2.contains(":")){
             csv = (CSV) dates.getDeclaredConstructor().newInstance();
-            //CSV cs = new CSVWithDates();
             return csv;
         }else if (line.contains(";")) {
             csv = (CSV) header.getDeclaredConstructor().newInstance();
@@ -215,13 +186,6 @@ public class Company {
 
     }
 
-    //public void savePerformanceData (List<PerformanceData> perdata){
-    //    this.performanceData = perdata;
-   // }
-
-    //public List<PerformanceData> getPerformanceData (){
-     //   return this.performanceData;
-    //}
 
 }
 

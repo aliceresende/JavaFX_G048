@@ -1,66 +1,35 @@
 package app.controller;
 
+import app.domain.model.ArrivalOfSNSUser;
 import app.domain.model.Company;
-import app.domain.store.ArrivalOfSNSUserStore;
-import app.mappers.VaccinationCenterMapper;
+import app.domain.model.ComunityMassVaccinationCenter;
+import app.store.VaccinationCenterStore;
+import java.util.*;
 
-/**
- * The type Record daily number of vaccinated people controller.
- */
+import static java.lang.System.getProperties;
+
 public class RecordDailyNumberOfVaccinatedPeopleController {
-private App app;
-private Company company;
-private String date;
-private VaccinationCenterMapper vCenterMapper;
-
-private ArrivalOfSNSUserStore storeArrival;
-private int DailyAmountOfUsers;
-
+    private App app;
+    private ArrayList<ComunityMassVaccinationCenter> knows = new ArrayList<>();
+    private Company company = App.getInstance().getCompany();
+    private VaccinationCenterStore CommunityMassVaccinationCenter = company.getRegisterCenterStore();
+    private Date time1;
+    int dailyNumberOfVaccinatedPeople = knows.size();
 
     /**
      * Constructor
-     *
-     * @return the company
      */
-    public Company getCompany() { return this.company; }
-
-    /**
-     * Instantiates a new Record daily number of vaccinated people controller.
-     */
-    public RecordDailyNumberOfVaccinatedPeopleController() { this(App.getInstance().getCompany());
+    public Company getCompany() {
+        return this.company;
     }
-
-    /**
-     * Instantiates a new Record daily number of vaccinated people controller.
-     *
-     * @param company the company
-     */
     public RecordDailyNumberOfVaccinatedPeopleController(Company company) {
-        this.date = date;
-        this.vCenterMapper = new VaccinationCenterMapper();
-        storeArrival = company.getArrivalStore();
-
+        this.company = company;
     }
-
-    /**
-     * Save record daily number of vaccinated people.
-     *
-     * @param vaccinationCenterName the vaccination center name
-     * @param date                  the date
-     * @param hour                  the hour
-     * @param DailyAmountOfUsers    the daily amount of users
-     */
-    public void saveRecordDailyNumberOfVaccinatedPeople(String vaccinationCenterName,String date, String hour,int DailyAmountOfUsers){
-
+    public RecordDailyNumberOfVaccinatedPeopleController() {
+        this(App.getInstance().getCompany());
     }
-
-
-
-
-
-
-
-
-
+    public ArrayList<ArrivalOfSNSUser> ListOfVaccinatedUsers = company.getArrivalStore().GetArrivalOfSNSUsers();
 
 }
+
+

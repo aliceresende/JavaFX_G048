@@ -2,20 +2,15 @@ package app.ui.console;
 
 import app.controller.RequestVaccineController;
 import app.domain.model.ComunityMassVaccinationCenter;
+import app.domain.model.Schedule;
+import app.domain.model.VaccinationCenter;
 import app.domain.model.Vaccine;
 import app.ui.console.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.*;
 
-/**
- * The type Request vaccine ui.
- */
 public class RequestVaccineUI implements Runnable{
-    /**
-     * The Read.
-     */
     static Scanner read = new Scanner(System.in);
     private final RequestVaccineController vaccineSC = new RequestVaccineController();
 
@@ -68,7 +63,7 @@ public class RequestVaccineUI implements Runnable{
             }
         }
 
-        String date = Utils.readLineFromConsole("Day (DD-MM-YYYY): ");
+        String date = Utils.readLineFromConsole("Day (DD/MM/YYYY): ");
         System.out.println();
 
         String hour = null;
@@ -108,22 +103,19 @@ public class RequestVaccineUI implements Runnable{
         boolean cont;
         cont = Utils.confirm("The following vaccine schedule was created do you want to save? \n----> Yes or No? <----\n");
 
+        String dateAndHour = date + " " + hour;
+
         if (cont) {
-            vaccineSC.createVaccineSchedule(vaccineName, date, hour, vaccinationCenterName, snsUserNumber);
+            vaccineSC.createVaccineSchedule(vaccineName, dateAndHour, vaccinationCenterName, snsUserNumber);
             vaccineSC.saveVaccineSchedule();
             System.out.println("Success");
 
         } else if (!cont) {
             new RequestVaccineUI().run();
         }
+
     }
 
-    /**
-     * Vaccination center name list.
-     *
-     * @param vaccinationCenter the vaccination center
-     * @return the list
-     */
     public List<String> vaccinationCenterName(List<ComunityMassVaccinationCenter> vaccinationCenter) {
         List<String> vaccinationCenterName = new ArrayList<>();
         for(ComunityMassVaccinationCenter cmvc : vaccinationCenter) {
@@ -132,12 +124,6 @@ public class RequestVaccineUI implements Runnable{
         return vaccinationCenterName;
     }
 
-    /**
-     * Vaccine name list.
-     *
-     * @param vaccine the vaccine
-     * @return the list
-     */
     public List<String> vaccineName(List<Vaccine> vaccine) {
         List<String> vaccineName = new ArrayList<>();
         for(Vaccine v : vaccine){

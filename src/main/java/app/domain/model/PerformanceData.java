@@ -89,6 +89,22 @@ public class PerformanceData implements Serializable {
         this.leaving = leaving;
     }
 
+    public int compareToByArrivalTime(PerformanceData arrivalTime){
+
+        int res;
+        res = this.arrival.compareTo(arrivalTime.getArrival());
+
+        return res;
+    }
+
+    public int compareToByLeavingTime(PerformanceData leaveTime){
+
+        int res;
+        res = this.leaving.compareTo(leaveTime.getLeaving());
+
+        return res;
+    }
+
     @Override
     public String toString() {
         return "PerformanceData{" +

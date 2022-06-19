@@ -1,5 +1,9 @@
 package app.service.algorithms.sorting;
 
+import app.domain.model.PerformanceData;
+
+import java.util.List;
+
 /**
  * The interface Sorting algorithm.
  */
@@ -10,5 +14,5 @@ public interface SortAlgorithm {
      * @param input the array
      * @return the list
      */
-    public String[] sort(String[] input);
+    public List<PerformanceData> sort(List<PerformanceData> input, String timeCriteria);
 }

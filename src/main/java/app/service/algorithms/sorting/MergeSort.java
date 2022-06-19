@@ -1,67 +1,105 @@
 package app.service.algorithms.sorting;
 
+import app.domain.model.PerformanceData;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MergeSort implements SortAlgorithm {
+
+
+    private String index;
     @Override
-    public  String[] sort(String[] array) {
-        mergeSort(array,0, array.length-1);
-
-        return array;
+    public List<PerformanceData> sort(List<PerformanceData> input, String timeCriteria) {
+        this.index = timeCriteria;
+        mergeSort(input);
+        return null;
     }
 
-
-    // Divide the array into two subarrays, sort them and merge them
-    public static void mergeSort(String[] a, int from, int to) {
-        if (from == to) {
-            return;
-        }
-        int mid = (from + to) / 2;
-        mergeSort(a, from, mid);
-        mergeSort(a, mid + 1, to);
-        merge(a, from, mid, to);
-    }
-
-    // Merge two subarrays L and M into arr
-    public static void merge(String[] a, int from, int mid, int to) {
-        int n = to - from + 1;
-        String[] b = new String[n];
-        int i1 = from;
-        int i2 = mid + 1;
-        int j = 0;
-
-
-        // Until we reach either end of either Left or Right, pick larger among
-        // elements Left and Right and place them in the correct position at A[left..right]
-        while (i1 <= mid && i2 <= to) {
-            if (a[i1].compareTo(a[i2]) < 0) {
-                b[j] = a[i1];
-                i1++;
-            } else {
-                b[j] = a[i2];
-                i2++;
+    public List<PerformanceData> mergeSort(List<PerformanceData> original) {
+        List<PerformanceData> left = new ArrayList<>();
+        List<PerformanceData> right = new ArrayList<>();
+        int center;
+        if (original.size() == 1) {
+            return original;
+        } else {
+            center = original.size() / 2;
+            for (int i = 0; i < center; i++) {
+                left.add(original.get(i));
             }
-            j++;
+            for (int i = center; i < original.size(); i++) {
+                right.add(original.get(i));
+            }
+            left = mergeSort(left);
+            right = mergeSort(right);
+            if(index=="Arrival Time"){
+                mergeArrival(left,right,original);
+            }else if(index == "Leaving Time") {
+                mergeLeaving(left, right, original);
+            }
+        }
+        return original;
+    }
 
+    private void mergeArrival(List<PerformanceData>left, List<PerformanceData>right, List<PerformanceData>original) {
+        int leftIndex=0;
+        int rightIndex=0;
+        int originalIndex=0;
+
+        while(leftIndex<left.size()&& rightIndex<right.size()) {
+
+            if(left.get(leftIndex).compareToByArrivalTime(right.get(rightIndex))<0) {
+                original.set(originalIndex, left.get(leftIndex));
+                leftIndex++;
+            }else {
+                original.set(originalIndex, right.get(rightIndex));
+                rightIndex++;
+            }
+            originalIndex++;
         }
 
-        // When we run out of elements in either Left or Right,
-        // pick up the remaining elements and put in A[left..right]
-        while (i1 <= mid) {
-            b[j] = a[i1];
-            i1++;
-            j++;
-
+        while(leftIndex<left.size()) {
+            original.set(originalIndex, left.get(leftIndex));
+            originalIndex++;
+            leftIndex++;
         }
-
-        while (i2 <= to) {
-            b[j] = a[i2];
-            i2++;
-            j++;
-
-        }
-
-
-        for (j = 0; j < n; j++) {
-            a[from + j] = b[j];
+        while(rightIndex<right.size()) {
+            original.set(originalIndex, right.get(rightIndex));
+            originalIndex++;
+            rightIndex++;
         }
     }
+
+    private void mergeLeaving(List<PerformanceData>left, List<PerformanceData>right, List<PerformanceData>original) {
+        int leftIndex=0;
+        int rightIndex=0;
+        int originalIndex=0;
+
+        while(leftIndex<left.size()&& rightIndex<right.size()) {
+
+            if(left.get(leftIndex).compareToByLeavingTime(right.get(rightIndex))<0) {
+                original.set(originalIndex, left.get(leftIndex));
+                leftIndex++;
+            }else {
+                original.set(originalIndex, right.get(rightIndex));
+                rightIndex++;
+            }
+            originalIndex++;
+        }
+
+        while(leftIndex<left.size()) {
+            original.set(originalIndex, left.get(leftIndex));
+            originalIndex++;
+            leftIndex++;
+        }
+        while(rightIndex<right.size()) {
+            original.set(originalIndex, right.get(rightIndex));
+            originalIndex++;
+            rightIndex++;
+        }
+    }
+
+
+
+
 }

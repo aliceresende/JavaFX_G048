@@ -5,8 +5,7 @@ import app.domain.model.*;
 import app.domain.model.CSV.CSV;
 import app.domain.store.*;
 import app.mappers.PerformanceDataMapper;
-import app.mappers.dto.PerformanceDataDTO;
-import app.service.sortingTreatment.SortingArrivalLeavingTime;
+import app.service.algorithms.sorting.SortingTimeService;
 
 
 import java.io.IOException;
@@ -98,7 +97,7 @@ public class LoadLegacyDataController {
                     perfdataStore.savePerformanceData(pd);
                 }
 
-                SortingArrivalLeavingTime s = new SortingArrivalLeavingTime();
+                SortingTimeService s = new SortingTimeService();
                 this.importedData = s.sortPerfData(importedData, sCriteria, sOrder);
             }
         }
@@ -123,9 +122,20 @@ public class LoadLegacyDataController {
     }
     //--------------------------------------------------------------------------
 
-    public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
+    public List<PerformanceData> getPerformanceDataAndExtras() {
         List<PerformanceData> importedData = this.importedData;
-        return pdmapper.multipleToDTO(importedData);
+        List<String> name = new ArrayList<>();
+        List<String> descr = new ArrayList<>();
+        String vaccid ;
+
+        for(PerformanceData id: importedData){
+            name.add(userStore.username(id.getSnsUserNumber()));
+            vaccid = vaccineStore.vaccID(id.getVaccineName());
+            descr.add(typeStore.vaccDescription(vaccid));
+        }
+
+        //return pdmapper.multipleToDTO(importedData);
+        return importedData;
     }
 
 
@@ -157,33 +167,9 @@ public class LoadLegacyDataController {
      * @return list of PerformanceData with extras
      */
 
-    public String username(String usernumber){
-        List<SNSUser> u = userStore.getSnsUserList();
-        String username = "";
-        for(SNSUser user: u){
-            if(user.getSnsUserNumber().equals(usernumber)){
-                username = user.getName();
-            }
-        }
-        return username;
-    }
 
-    public String vaccDescription (String vaccinename){
-        List<Vaccine> vacc = vaccineStore.ArrayList();
-        List<VaccineType> type = typeStore.getVaccineTypeList();
-        String description = "", id ="";
-        for(Vaccine v: vacc){
-            if(v.get_designation().equals(vaccinename)){
-                id=v.get_code();
-                for(VaccineType t: type){
-                    if(t.getCode().equals(id)) {
-                        description = t.getTech();
-                    }
-                }
-            }
-        }
-        return description;
-    }
+
+
 
    /* public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
         return pdmapper.multipleToDTO(perfdata);

@@ -508,5 +508,17 @@ public class SNSUserStore extends PasswordGenerator {
         return exists;
     }
 
+    //-------------------------------------------------------
+    public String username (String usernumber){
+        List<SNSUser> u = this.knows;
+        String username = "";
+        for(SNSUser user: u){
+            if(user.getSnsUserNumber().equals(usernumber)){
+                username = user.getName();
+            }
+        }
+        return username;
+    }
+
 
 }

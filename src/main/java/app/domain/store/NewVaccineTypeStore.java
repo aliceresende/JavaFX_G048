@@ -1,5 +1,6 @@
 package app.domain.store;
 
+import app.domain.model.Vaccine;
 import app.domain.model.VaccineType;
 import app.domain.shared.Constants;
 
@@ -136,5 +137,18 @@ public class NewVaccineTypeStore {
 
     public List<VaccineType> getVaccineTypeList() {
         return array;
+    }
+
+    //--------------------------------------------------------
+
+    public String vaccDescription (String id){
+        List<VaccineType> type = this.array;
+        String description = "";
+        for(VaccineType t: type){
+            if(t.getCode().equals(id)) {
+                description = t.getTech();
+            }
+        }
+        return description;
     }
 }

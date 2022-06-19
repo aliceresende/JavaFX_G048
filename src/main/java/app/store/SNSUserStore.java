@@ -1,15 +1,13 @@
 package app.store;
 import java.io.Serializable;
 import app.domain.model.CSV.CSV;
-import app.domain.model.ComunityMassVaccinationCenter;
 import app.domain.model.PasswordGenerator;
 
 import app.domain.model.SNSUser;
 
-import app.ui.Persistence;
-
 import app.domain.model.VaccinationProcess;
 
+import app.ui.Persistence;
 import pt.isep.lei.esoft.auth.AuthFacade;
 
 import java.io.*;

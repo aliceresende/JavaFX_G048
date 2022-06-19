@@ -1,9 +1,9 @@
 package app.ui;
 
 import app.controller.App;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Persistence {
     public static Object readObjectFromFile(String file) throws IOException, ClassNotFoundException {

@@ -3,9 +3,6 @@ import app.domain.model.AdministrationProcess;
 import app.domain.model.Vaccine;
 import app.ui.Persistence;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

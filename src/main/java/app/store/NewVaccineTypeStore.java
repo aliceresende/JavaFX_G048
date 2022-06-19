@@ -1,9 +1,6 @@
 package app.store;
 
-import app.domain.model.SNSUser;
-import app.domain.model.Vaccine;
 import app.domain.model.VaccineType;
-import app.domain.shared.Constants;
 import app.ui.Persistence;
 
 import java.util.ArrayList;
@@ -24,12 +21,7 @@ public class NewVaccineTypeStore {
         }catch (Exception e){
             //System.out.println("The clientStore was not loaded :)");
         }
-        /*array.add(new VaccineType("12345", Constants.TECH_1, Constants.TECH_1_TYPE));
-        array.add(new VaccineType("12346", Constants.TECH_2, Constants.TECH_2_TYPE));
-        array.add(new VaccineType("12347", Constants.TECH_3, Constants.TECH_3_TYPE));
-        array.add(new VaccineType("12348", Constants.TECH_4, Constants.TECH_4_TYPE));
-        array.add(new VaccineType("12349", Constants.TECH_5, Constants.TECH_5_TYPE));
-        array.add(new VaccineType("12350", Constants.TECH_6, Constants.TECH_6_TYPE));*/
+
     }
 
     /**

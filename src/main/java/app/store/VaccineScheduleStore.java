@@ -1,6 +1,5 @@
 package app.store;
 
-import app.domain.model.Vaccine;
 import app.domain.model.VaccineSchedule;
 import app.ui.Persistence;
 

@@ -1,8 +1,10 @@
 package app.controller;
 
 import app.domain.model.Company;
+import app.service.vaccinated_users.CSVFileCreatorVaccinatedUsers;
 import app.service.vaccinated_users.CSVFileVaccinatedUsersReader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ public class VaccinatedUsersController {
     private Company company;
     private String[][] vaccinatedUsersData;
     private CSVFileVaccinatedUsersReader csv = new CSVFileVaccinatedUsersReader();
+    private CSVFileCreatorVaccinatedUsers creator = new CSVFileCreatorVaccinatedUsers();
 
     public Company getCompany() {
         return this.company;
@@ -31,7 +34,7 @@ public class VaccinatedUsersController {
         this.vaccinatedUsersData = csv.getFileContents();
     }
 
-    public String NumberOfVaccinatedUsers(String date) {
+    public String numberOfVaccinatedUsers(String date) {
         for (int i = 0; i < vaccinatedUsersData.length; i++) {
             if (Objects.equals(date, vaccinatedUsersData[i][0])) {
                 dateList.add(date);
@@ -41,7 +44,11 @@ public class VaccinatedUsersController {
         return null;
     }
 
-    public ArrayList<String> getDateList() {
-        return dateList;
+    public void CSVFileCreatorVaccinatedUsers(String filePath) throws IOException {
+        creator.CSVFileCreatorVaccinatedUsers(filePath, dateList, vaccinatedUsersData);
     }
+
+    /* public ArrayList<String> getDateList() {
+        return dateList;
+    }*/
 }

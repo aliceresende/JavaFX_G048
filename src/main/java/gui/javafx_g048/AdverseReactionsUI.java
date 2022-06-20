@@ -17,7 +17,7 @@ import pt.isep.lei.esoft.auth.AuthFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/*public class AdverseReactionsUI implements Initializable {
+public class AdverseReactionsUI implements Initializable {
 
     ObservableList <String> option= FXCollections.observableArrayList("Yes", "No");
     public ChoiceBox Allergybox;
@@ -111,7 +111,7 @@ import java.util.ResourceBundle;
         Immunodeficiency = String.valueOf(Immunodeficiencybox.getSelectionModel().getSelectedItem());
         Chemo = String.valueOf(Chemobox.getSelectionModel().getSelectedItem());
         Vaccineallergy = String.valueOf(Vaccineallergybox.getSelectionModel().getSelectedItem());
-        ctrl.registerReaction(usernumber, allergy, Vaccineallergy, Anaphylactic, BloodClotting, Immunodeficiency, Chemo, dose);
+        //ctrl.registerReaction(usernumber, allergy, Vaccineallergy, Anaphylactic, BloodClotting, Immunodeficiency, Chemo, dose);
         ctrl.validateReaction();
     }
-}*/
+}

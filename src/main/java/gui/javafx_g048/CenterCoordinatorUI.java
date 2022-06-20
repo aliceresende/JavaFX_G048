@@ -13,6 +13,20 @@ public class CenterCoordinatorUI {
     @FXML
     private Label welcomeText;
 
+    public void Bvaccinatedusers(ActionEvent actionEvent) {
+        Scene scene = null;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("VaccinatedUsers.fxml"));
+            scene = new Scene(fxmlLoader.load(), 600, 450);
+            Stage stage = new Stage();
+            stage.setTitle("Check vaccination statistics");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void ActionButton1(ActionEvent actionEvent) {
         Scene scene = null;
@@ -27,7 +41,6 @@ public class CenterCoordinatorUI {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void legacyData (ActionEvent actionEvent) {
@@ -43,8 +56,5 @@ public class CenterCoordinatorUI {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
-
-
 }

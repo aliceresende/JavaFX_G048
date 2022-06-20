@@ -26,10 +26,16 @@ public class Company {
     private VaccineScheduleStore vSStore;
     private NewVaccineStore vstore;
     private ArrivalOfSNSUserStore arrivalStore;
+
+    private PerformanceDataStore performanceDataStore;
+    private VaccineAdministrationStore administrationStore;
+
+
+
     private ReactionStore reactionStore;
     private VaccineAdministrationStore vaccineAdministrationStore;
     private VaccinationProcessStore vaccProcessStore;
-    private PerformanceDataStore performanceDataStore;
+
 
 
     /**

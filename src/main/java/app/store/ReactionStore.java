@@ -2,10 +2,8 @@ package app.store;
 
 import app.domain.model.Reactions;
 import app.domain.model.SNSUser;
-import app.domain.model.VaccineSchedule;
 import app.ui.Persistence;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

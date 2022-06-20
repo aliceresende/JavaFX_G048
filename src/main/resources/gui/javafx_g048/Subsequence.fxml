@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="452.0" prefWidth="600.0" style="-fx-background-color: #90C2BE;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.javafx_g048.SubsequenceUI">
+<AnchorPane prefHeight="452.0" prefWidth="600.0" style="-fx-background-color: #90C2BE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.javafx_g048.SubsequenceUI">
    <children>
       <VBox layoutX="20.0" layoutY="122.0" prefHeight="297.0" prefWidth="448.0" spacing="10.0">
          <children>
@@ -34,7 +35,10 @@
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Label>
-            <VBox fx:id="vboxSubsequence" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #bce8e5;" />
+            <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <VBox fx:id="vbox" prefHeight="112.0" prefWidth="448.0" />
+               </content></ScrollPane>
          </children></VBox>
       <Label layoutX="20.0" layoutY="25.0" prefHeight="72.0" prefWidth="558.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffff;" text="          Analyze the performance of a Center" textAlignment="CENTER" textFill="WHITE">
          <font>

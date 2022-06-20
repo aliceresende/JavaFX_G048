@@ -7,6 +7,7 @@ import app.domain.shared.Constants;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import pt.isep.lei.esoft.auth.AuthFacade;
 
@@ -26,6 +27,8 @@ public class SubsequenceUI implements Initializable {
     public DatePicker datePickerDay;
     public TextField lblInterval;
     public VBox vboxSubsequence;
+    public ScrollPane scroll;
+    public VBox vbox;
     private Company company;
     private AuthFacade authFacade;
 
@@ -53,8 +56,7 @@ public class SubsequenceUI implements Initializable {
 
     public void seeButton(ActionEvent actionEvent) {
         try{
-            vboxSubsequence.getChildren().clear();
-            vboxSubsequence.setOpacity(1);
+            scroll.setVisible(true);
             controller = new PerformanceAnalysisController();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             int[] inputList = controller.getInputList(Integer.parseInt(lblInterval.getText()), datePickerDay.getValue().format(formatter));
@@ -65,14 +67,9 @@ public class SubsequenceUI implements Initializable {
             int indexEnd = indexStart + (subList.length);
             int DateIMin = getMinute(Constants.OPEN_HOUR) + indexStart * Integer.parseInt(lblInterval.getText());
             int DateEMin = getMinute(Constants.OPEN_HOUR) + indexEnd * Integer.parseInt(lblInterval.getText());
-            Label labelInputList = new Label("Input list: "+Arrays.toString(inputList));
-            Label labelSubsequence = new Label("Contiguous sublist of maximum output sum: "+Arrays.toString(subList));
-            Label labelSum = new Label("Sum: "+controller.sumSublist(subList));
-            Label labelInterval = new Label("Interval: [" + datePickerDay.getValue().format(formatter) + " " + fromMinutesToHHmm(DateIMin) + ", " + datePickerDay.getValue().format(formatter) + " " + fromMinutesToHHmm(DateEMin) + "]");
-            vboxSubsequence.getChildren().add(labelInputList);
-            vboxSubsequence.getChildren().add(labelSubsequence);
-            vboxSubsequence.getChildren().add(labelSum);
-            vboxSubsequence.getChildren().add(labelInterval);
+            Label labelOutput = new Label("Input list: "+Arrays.toString(inputList)+"\nContiguous sublist of maximum output sum: "+Arrays.toString(subList)+"\nSum:"+controller.sumSublist(subList)+"\nInterval: [" + datePickerDay.getValue().format(formatter) + " " + fromMinutesToHHmm(DateIMin) + ", " + datePickerDay.getValue().format(formatter) + " " + fromMinutesToHHmm(DateEMin) + "]");
+            scroll.setContent(labelOutput);
+
 
 
         }catch(Exception e){

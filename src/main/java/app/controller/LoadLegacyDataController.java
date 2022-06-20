@@ -4,7 +4,7 @@ package app.controller;
 import app.domain.model.*;
 import app.domain.model.CSV.CSV;
 import app.mappers.PerformanceDataMapper;
-import app.service.sortingTreatment.SortingArrivalLeavingTime;
+import app.service.algorithm.sorting.SortingTimeService;
 import app.store.NewVaccineStore;
 import app.store.NewVaccineTypeStore;
 import app.store.PerformanceDataStore;
@@ -100,7 +100,7 @@ public class LoadLegacyDataController {
                     perfdataStore.savePerformanceData(pd);
                 }
 
-                SortingArrivalLeavingTime s = new SortingArrivalLeavingTime();
+                SortingTimeService s = new SortingTimeService();
                 this.importedData = s.sortPerfData(importedData, sCriteria, sOrder);
             }
         }
@@ -127,6 +127,18 @@ public class LoadLegacyDataController {
 
     public List<PerformanceData> getPerformanceDataAndExtras() {
         List<PerformanceData> importedData = this.importedData;
+        List<String> name = new ArrayList<>();
+        List<String> descr = new ArrayList<>();
+        String vaccid ;
+
+        for(PerformanceData id: importedData){
+            name.add(userStore.username(id.getSnsUserNumber()));
+            vaccid = vaccineStore.vaccID(id.getVaccineName());
+            descr.add(typeStore.vaccDescription(vaccid));
+        }
+
+        //return pdmapper.multipleToDTO(importedData);
+
         return importedData;
     }
 
@@ -158,6 +170,7 @@ public class LoadLegacyDataController {
      *
      * @return list of PerformanceData with extras
      */
+
 
    /* public String username(String usernumber){
         List<SNSUser> u = userStore.getSnsUserList();

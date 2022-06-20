@@ -23,10 +23,7 @@ public class PerformanceDataStore {
     }
 
     public PerformanceDataStore() {
-        knows.add(new PerformanceData("123456789","121211","primeira","2","30/05/2022 8:00","30/05/2022 8:10","30/05/2022 8:40","30/05/2022 8:40"));
-        knows.add(new PerformanceData("123456789","121211","primeira","2","30/05/2022 8:00","30/05/2022 8:30","30/05/2022 9:00","30/05/2022 9:00"));
-        knows.add(new PerformanceData("123456789","121211","primeira","2","30/05/2022 8:00","30/05/2022 8:20","30/05/2022 8:50","30/05/2022 8:50"));
-        knows.add(new PerformanceData("123456789","121211","primeira","2","30/05/2022 8:00","30/05/2022 8:35","30/05/2022 8:49","30/05/2022 8:49"));
+
     }
 
     public boolean addPerfData(PerformanceData perfdata){

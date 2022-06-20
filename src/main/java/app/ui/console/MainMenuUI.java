@@ -1,11 +1,11 @@
 package app.ui.console;
 
+import app.ui.Persistence;
 import app.ui.console.utils.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import app.ui.Persistence;
 
 /**
  *

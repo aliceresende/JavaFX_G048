@@ -2,22 +2,23 @@ package gui.javafx_g048;
 
 
 import app.controller.LoadLegacyDataController;
+import app.domain.model.PerformanceData;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LegacyDataGUI implements Initializable {
@@ -41,6 +42,8 @@ public class LegacyDataGUI implements Initializable {
     private ImageView timeimage;
     @FXML
     private ImageView timeimage1;
+    @FXML
+    private ListView list;
 
 
     /**
@@ -54,17 +57,7 @@ public class LegacyDataGUI implements Initializable {
 
             criteria.getItems().addAll("Arrival Time","Leaving Time");
             order.getItems().addAll("Ascendent","Descendent");
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LegacyDataShow.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            infoStage = new Stage();
-            infoStage.initModality(Modality.APPLICATION_MODAL);
-            infoStage.setScene(scene);
-            LegacyDataShow showdata = loader.getController();
-            showdata.associarParentUI(this);
-
+            list.setVisible(false);
 
 
         }catch(Exception e){
@@ -92,7 +85,6 @@ public class LegacyDataGUI implements Initializable {
     @FXML
     public void fileButton(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:\\"));
         fileChooser.getExtensionFilters().addAll( new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         File selectedFile = fileChooser.showOpenDialog(null);
         filePath = selectedFile.getAbsolutePath(); //gets absolute path
@@ -109,33 +101,33 @@ public class LegacyDataGUI implements Initializable {
      */
 
     @FXML
-    public void seeButton(ActionEvent actionEvent) throws RuntimeException {
+    public void seeButton(ActionEvent actionEvent) throws RuntimeException, IOException {
 
         String time = String.valueOf(criteria.getSelectionModel().getSelectedItem());
         String ordering = String.valueOf(order.getSelectionModel().getSelectedItem());
 
         controller = new LoadLegacyDataController();
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("LegacyDataShow.fxml"));
-        Scene scene;
-        try {
-            scene = new Scene(fxmlLoader.load(), 630, 400);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = new Stage();
-        stage.setTitle("New Window");
-        stage.setScene(scene);
-        stage.show();
+        Scene scene = null;
 
+        //FXMLLoader fxmlLoader = new FXMLLoader();
+        //fxmlLoader.setLocation(getClass().getResource("LegacyDataShow.fxml"));
+        //scene = new Scene(fxmlLoader.load(), 600, 450);
+        //Stage stage = new Stage();
+        //stage.setTitle("Legacy Data");
+        //stage.setScene(scene);
+        //stage.show();
 
         try {
             controller.loadLegacyData(filePath,time,ordering); // sends information to controller
-        } catch (IOException | ParseException | ClassNotFoundException | InstantiationException |
-                 IllegalAccessException e) {
+        } catch (IOException | ParseException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             System.out.println("Somehting went wrong with the file");
+            throw new RuntimeException(e);
         }
+
+        List<PerformanceData> data = controller.getPerformanceDataAndExtras();
+        list.setVisible(true);
+        list.setItems(FXCollections.observableList(data));
 
     }
 }

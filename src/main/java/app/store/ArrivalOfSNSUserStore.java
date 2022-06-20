@@ -1,33 +1,18 @@
 package app.store;
 
 import app.domain.model.ArrivalOfSNSUser;
+import app.domain.model.VaccineAdministration;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ArrivalOfSNSUserStore {
     private ArrayList<ArrivalOfSNSUser> knows = new ArrayList<>();
 
     public ArrivalOfSNSUserStore() {
-       // knows.add(new ArrivalOfSNSUser("1234567890","21:05","Unilabs Aveiro"));
-
-       // knows.add(new ArrivalOfSNSUser("1234567891","22:05","Unilabs Aveiro"));
-       // knows.add(new ArrivalOfSNSUser("0987654321","22:00","Centro de Vacinação Coimbra"));
-        knows.add(new ArrivalOfSNSUser("1234567890","06/06/2020 8:00","Unilabs Aveiro"));
-        knows.add(new ArrivalOfSNSUser("1234567891","06/06/2020 8:01","Unilabs Aveiro"));
-        knows.add(new ArrivalOfSNSUser("0987654321","06/06/2020 8:02","Centro de Vacinação Coimbra"));
-        knows.add(new ArrivalOfSNSUser("1987654321","06/06/2020 8:04","Centro de Vacinação Porto"));
-        knows.add(new ArrivalOfSNSUser("9987654321","06/06/2020 8:10","Centro de Vacinação Porto"));
-        knows.add(new ArrivalOfSNSUser("9987654311","06/06/2020 8:16","Centro de Vacinação Porto"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 8:20","Centro de Vacinação Braga"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:10","Centro de Vacinação Braga"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:11","Centro de Vacinação Braga"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:12","Centro de Vacinação Braga"));
-        knows.add(new ArrivalOfSNSUser("098765432","06/06/2020 9:13","Centro de Vacinação Braga"));
-
-        knows.add(new ArrivalOfSNSUser("1234567891","22:05","Unilabs Aveiro"));
-        knows.add(new ArrivalOfSNSUser("0987654321","22:00","Centro de Vacinação Coimbra"));
-        knows.add(new ArrivalOfSNSUser("0987854321","18:05","Centro de Vacinação Coimbra"));
+        Collections.sort(knows, new SortByDate());
 
     }
 
@@ -135,4 +120,11 @@ public void show(){
             System.out.println(a);
         }
 }
+    static class SortByDate implements Comparator<ArrivalOfSNSUser> {
+
+        @Override
+        public int compare(ArrivalOfSNSUser o1, ArrivalOfSNSUser o2) {
+            return o1.getTimeOfArrival().compareTo(o2.getTimeOfArrival());
+        }
+    }
 }

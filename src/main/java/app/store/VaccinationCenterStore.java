@@ -3,10 +3,10 @@ package app.store;
 
 import app.domain.model.*;
 import app.domain.shared.Constants;
-import app.ui.Persistence;
 
 import app.domain.model.ComunityMassVaccinationCenter;
 import app.domain.model.Schedule;
+import app.ui.Persistence;
 
 
 import java.time.LocalTime;
@@ -25,10 +25,7 @@ public class VaccinationCenterStore {
         }catch (Exception e){
             //System.out.println("The clientStore was not loaded :)");
         }
-        /*Schedule sche = new Schedule("12:00","24:00");
-        knows.add(new ComunityMassVaccinationCenter("123","Centro de Vacinação Aveiro", "Rua Santa Maria", "987654321", "centro@gmail.com","1234567890","www.centro",sche,"2","2"));
-        knows.add(new ComunityMassVaccinationCenter("321","Unilabs Aveiro", "Rua das Arrotinhas", "987654321", "centro@gmail.com","1234567890","www.centro",sche,"2","2"));
-        knows.add(new ComunityMassVaccinationCenter("323","Centro de Vacinação Coimbra", "Rua de S.Miguel", "987654321", "centro@gmail.com","1234567890","www.centro",sche,"2","2"));*/
+
     }
 
     public List<ComunityMassVaccinationCenter> getKnows() {

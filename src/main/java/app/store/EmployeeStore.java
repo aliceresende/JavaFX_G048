@@ -3,14 +3,11 @@ package app.store;
 import app.domain.model.CenterCoordinator;
 import app.domain.model.Employee;
 import app.domain.model.PasswordGenerator;
-import app.domain.model.Vaccine;
-import app.domain.shared.Constants;
 import app.mappers.dto.VaccinationCenterDTO;
 import app.ui.Persistence;
 import pt.isep.lei.esoft.auth.AuthFacade;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class EmployeeStore {
     private ArrayList<Employee> knows = new ArrayList<Employee>();

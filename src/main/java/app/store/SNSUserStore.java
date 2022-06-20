@@ -1,15 +1,13 @@
 package app.store;
 import java.io.Serializable;
 import app.domain.model.CSV.CSV;
-import app.domain.model.ComunityMassVaccinationCenter;
 import app.domain.model.PasswordGenerator;
 
 import app.domain.model.SNSUser;
 
-import app.ui.Persistence;
-
 import app.domain.model.VaccinationProcess;
 
+import app.ui.Persistence;
 import pt.isep.lei.esoft.auth.AuthFacade;
 
 import java.io.*;
@@ -479,6 +477,18 @@ public class SNSUserStore extends PasswordGenerator implements Serializable {
             }
         }
         return exists;
+    }
+
+    //-------------------------------------------------------
+    public String username (String usernumber){
+        List<SNSUser> u = this.knows;
+        String username = "";
+        for(SNSUser user: u){
+            if(user.getSnsUserNumber().equals(usernumber)){
+                username = user.getName();
+            }
+        }
+        return username;
     }
 
 

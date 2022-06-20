@@ -6,7 +6,9 @@ import app.domain.model.PerformanceData;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -99,13 +101,22 @@ public class LegacyDataGUI implements Initializable {
      */
 
     @FXML
-    public void seeButton(ActionEvent actionEvent) throws RuntimeException {
+    public void seeButton(ActionEvent actionEvent) throws RuntimeException, IOException {
 
         String time = String.valueOf(criteria.getSelectionModel().getSelectedItem());
         String ordering = String.valueOf(order.getSelectionModel().getSelectedItem());
 
         controller = new LoadLegacyDataController();
 
+        Scene scene = null;
+
+        //FXMLLoader fxmlLoader = new FXMLLoader();
+        //fxmlLoader.setLocation(getClass().getResource("LegacyDataShow.fxml"));
+        //scene = new Scene(fxmlLoader.load(), 600, 450);
+        //Stage stage = new Stage();
+        //stage.setTitle("Legacy Data");
+        //stage.setScene(scene);
+        //stage.show();
 
         try {
             controller.loadLegacyData(filePath,time,ordering); // sends information to controller

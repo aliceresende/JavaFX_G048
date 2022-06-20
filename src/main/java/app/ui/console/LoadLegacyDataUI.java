@@ -22,8 +22,8 @@ public class LoadLegacyDataUI implements Runnable {
     @Override
     public void run() {
         String filePath = Utils.readLineFromConsole("Please indicate the file path of the file you want to upload: ");
-        String time = "Arrival Time";
-        String order = "Ascendent";
+        String time = Utils.readLineFromConsole("Arrival Time or Leaving Time");
+        String order = Utils.readLineFromConsole("Ascendent or Descendent");
 
         try {
             controller.loadLegacyData(filePath, time, order);
@@ -37,7 +37,6 @@ public class LoadLegacyDataUI implements Runnable {
         for(PerformanceData p: m){
             System.out.println("SNSUserNumber: "+ p.getSnsUserNumber() +" |  Arrival: " + p.getArrival() + " | Leaving: "+ p.getLeaving());
         }
-
 
     }
 }

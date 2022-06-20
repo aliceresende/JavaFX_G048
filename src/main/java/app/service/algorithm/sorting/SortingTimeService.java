@@ -1,8 +1,7 @@
-package app.service.algorithms.sorting;
+package app.service.algorithm.sorting;
 
 import app.domain.model.PerformanceData;
 import app.domain.shared.Constants;
-import app.service.algorithms.sorting.SortAlgorithm;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -65,13 +64,14 @@ public class SortingTimeService {
         sortAlgorithm.sort(infoOrdered,index);
         long endTime = System.nanoTime();
 
-        System.out.println("Time to perform:" + (endTime-startTime));
-
-        datesFormattedToPrint(infoOrdered);
+        System.out.println("Time:" + (endTime-startTime));
 
         if(order == descendant){
             Collections.reverse(infoOrdered);
         }
+
+
+        datesFormattedToPrint(infoOrdered);
         return infoOrdered;
     }
 

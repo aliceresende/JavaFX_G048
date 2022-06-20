@@ -4,7 +4,7 @@ package app.controller;
 import app.domain.model.*;
 import app.domain.model.CSV.CSV;
 import app.mappers.PerformanceDataMapper;
-import app.service.algorithms.sorting.SortingTimeService;
+import app.service.algorithm.sorting.SortingTimeService;
 import app.store.NewVaccineStore;
 import app.store.NewVaccineTypeStore;
 import app.store.PerformanceDataStore;

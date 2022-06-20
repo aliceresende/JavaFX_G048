@@ -109,9 +109,9 @@ public class LegacyDataGUI implements Initializable {
 
         try {
             controller.loadLegacyData(filePath,time,ordering); // sends information to controller
-        } catch (IOException | ParseException | ClassNotFoundException | InstantiationException |
-                 IllegalAccessException e) {
+        } catch (IOException | ParseException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             System.out.println("Somehting went wrong with the file");
+            throw new RuntimeException(e);
         }
 
         List<PerformanceData> data = controller.getPerformanceDataAndExtras();

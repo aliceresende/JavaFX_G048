@@ -32,70 +32,71 @@ public class MergeSort implements SortAlgorithm {
             }
             left = mergeSort(left);
             right = mergeSort(right);
-            if (index == "Arrival Time") {
-                mergeArrival(left, right, original);
-            } else if (index == "Leaving Time") {
+            if(index=="Arrival Time"){
+                mergeArrival(left,right,original);
+            }else if(index == "Leaving Time") {
                 mergeLeaving(left, right, original);
             }
         }
         return original;
     }
 
-    private void mergeArrival(List<PerformanceData> left, List<PerformanceData> right, List<PerformanceData> original) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int originalIndex = 0;
+    private void mergeArrival(List<PerformanceData>left, List<PerformanceData>right, List<PerformanceData>original) {
+        int leftIndex=0;
+        int rightIndex=0;
+        int originalIndex=0;
 
-        while (leftIndex < left.size() && rightIndex < right.size()) {
+        while(leftIndex<left.size()&& rightIndex<right.size()) {
 
-            if (left.get(leftIndex).compareToByArrivalTime(right.get(rightIndex)) < 0) {
+            if(left.get(leftIndex).compareToByArrivalTime(right.get(rightIndex))<0) {
                 original.set(originalIndex, left.get(leftIndex));
                 leftIndex++;
-            } else {
+            }else {
                 original.set(originalIndex, right.get(rightIndex));
                 rightIndex++;
             }
             originalIndex++;
         }
 
-        while (leftIndex < left.size()) {
+        while(leftIndex<left.size()) {
             original.set(originalIndex, left.get(leftIndex));
             originalIndex++;
             leftIndex++;
         }
-        while (rightIndex < right.size()) {
+        while(rightIndex<right.size()) {
             original.set(originalIndex, right.get(rightIndex));
             originalIndex++;
             rightIndex++;
         }
     }
 
-    private void mergeLeaving(List<PerformanceData> left, List<PerformanceData> right, List<PerformanceData> original) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int originalIndex = 0;
+    private void mergeLeaving(List<PerformanceData>left, List<PerformanceData>right, List<PerformanceData>original) {
+        int leftIndex=0;
+        int rightIndex=0;
+        int originalIndex=0;
 
-        while (leftIndex < left.size() && rightIndex < right.size()) {
+        while(leftIndex<left.size()&& rightIndex<right.size()) {
 
-            if (left.get(leftIndex).compareToByLeavingTime(right.get(rightIndex)) < 0) {
+            if(left.get(leftIndex).compareToByLeavingTime(right.get(rightIndex))<0) {
                 original.set(originalIndex, left.get(leftIndex));
                 leftIndex++;
-            } else {
+            }else {
                 original.set(originalIndex, right.get(rightIndex));
                 rightIndex++;
             }
             originalIndex++;
         }
 
-        while (leftIndex < left.size()) {
+        while(leftIndex<left.size()) {
             original.set(originalIndex, left.get(leftIndex));
             originalIndex++;
             leftIndex++;
         }
-        while (rightIndex < right.size()) {
+        while(rightIndex<right.size()) {
             original.set(originalIndex, right.get(rightIndex));
             originalIndex++;
             rightIndex++;
         }
     }
+
 }

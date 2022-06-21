@@ -32,10 +32,10 @@ public class LoadLegacyDataUI implements Runnable {
             throw new RuntimeException(e);
         }
 
-        List<PerformanceData> m = controller.getPerformanceDataAndExtras();
+        List<List<String>> m = controller.getPerformanceDataAndExtras();
 
-        for(PerformanceData p: m){
-            System.out.println("SNSUserNumber: "+ p.getSnsUserNumber() +" |  Arrival: " + p.getArrival() + " | Leaving: "+ p.getLeaving());
+        for(List<String> p: m){
+            System.out.println("SNSUserNumber: "+ p.get(0) +" |  Arrival: " + p.get(7) + " | Leaving: "+ p.get(9));
         }
 
     }

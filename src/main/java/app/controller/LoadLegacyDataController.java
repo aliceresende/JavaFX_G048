@@ -125,84 +125,40 @@ public class LoadLegacyDataController {
     }
     //--------------------------------------------------------------------------
 
-    public List<PerformanceData> getPerformanceDataAndExtras() {
+    public void toDTO() {
         List<PerformanceData> importedData = this.importedData;
-        List<String> name = new ArrayList<>();
-        List<String> descr = new ArrayList<>();
-        String vaccid ;
+        String name, descr, vaccid;
+
+        List<List<String>> output = new ArrayList<>();
 
         for(PerformanceData id: importedData){
-            name.add(userStore.username(id.getSnsUserNumber()));
+            name=userStore.username(id.getSnsUserNumber());
             vaccid = vaccineStore.vaccID(id.getVaccineName());
-            descr.add(typeStore.vaccDescription(vaccid));
+            descr= typeStore.vaccDescription(vaccid);
+
+            List<String> lineData = new ArrayList<>();
+
+            lineData.add(id.getSnsUserNumber());
+            lineData.add(name);
+            lineData.add(id.getVaccineName());
+            lineData.add(descr);
+            lineData.add(id.getDose());
+            lineData.add(id.getLotNumber());
+            lineData.add(id.getSchedule());
+            lineData.add(id.getArrival());
+            lineData.add(id.getAdministration());
+            lineData.add(id.getLeaving());
+
+            output.add(lineData);
         }
 
-        //return pdmapper.multipleToDTO(importedData);
 
-        return importedData;
+
+        return output;
     }
 
 
-    /*public List<List<String>> getPerformanceDataAndExtras(){
 
-        List<List<String>> order = new ArrayList<>();
-        List<String> lineData = new ArrayList<>();
-        for (PerformanceData d: perfdata){
-            lineData.add(d.getSnsUserNumber());
-            lineData.add(username(d.getSnsUserNumber()));
-            lineData.add(d.getVaccineName());
-            lineData.add(vaccDescription(d.getVaccineName()));
-            lineData.add(d.getDose());
-            lineData.add(d.getLotNumber());
-            lineData.add(d.getSchedule());
-            lineData.add(d.getArrival());
-            lineData.add(d.getAdministration());
-            lineData.add(d.getLeaving());
-
-            order.add(lineData);
-        }
-
-        return order;
-
-    }
-    /**
-     * Gets the list of PerformanceData with extras
-     *
-     * @return list of PerformanceData with extras
-     */
-
-
-   /* public String username(String usernumber){
-        List<SNSUser> u = userStore.getSnsUserList();
-        String username = "";
-        for(SNSUser user: u){
-            if(user.getSnsUserNumber().equals(usernumber)){
-                username = user.getName();
-            }
-        }
-        return username;
-    }
-
-    public String vaccDescription (String vaccinename){
-        List<Vaccine> vacc = vaccineStore.ArrayList();
-        List<VaccineType> type = typeStore.getVaccineTypeList();
-        String description = "", id ="";
-        for(Vaccine v: vacc){
-            if(v.get_designation().equals(vaccinename)){
-                id=v.get_code();
-                for(VaccineType t: type){
-                    if(t.getCode().equals(id)) {
-                        description = t.getTech();
-                    }
-                }
-            }
-        }
-        return description;
-    }*/
-
-   /* public List<PerformanceDataDTO> getPerformanceDataAndExtras() {
-        return pdmapper.multipleToDTO(perfdata);
-    }*/
 
 
 

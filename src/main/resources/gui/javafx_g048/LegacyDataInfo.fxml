@@ -80,7 +80,6 @@
                 <Font name="Arial Bold" size="14.0" />
             </font>
         </Button>
-      <ListView fx:id="list" prefHeight="452.0" prefWidth="600.0" />
     </children>
 
 </AnchorPane>

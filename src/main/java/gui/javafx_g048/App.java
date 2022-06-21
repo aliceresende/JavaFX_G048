@@ -19,6 +19,7 @@ public class App extends Application {
             stage.setTitle("Authentication");
             stage.setScene(scene);
             stage.show();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

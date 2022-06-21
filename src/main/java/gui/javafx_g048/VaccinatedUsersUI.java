@@ -1,15 +1,17 @@
 package gui.javafx_g048;
 
 import app.controller.VaccinatedUsersController;
-import app.domain.model.Company;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -19,6 +21,7 @@ public class VaccinatedUsersUI implements Initializable {
     ObservableList<String> option= FXCollections.observableArrayList("Yes", "No");
 
     private VaccinatedUsersController controller = new VaccinatedUsersController();
+    private String folderPath;
 
     @FXML
     private ChoiceBox<String> check;
@@ -33,7 +36,7 @@ public class VaccinatedUsersUI implements Initializable {
     private Button file;
 
     @FXML
-    private ListView<String> foldername;
+    private ListView foldername;
 
     @FXML
     private Button seebutton;
@@ -41,9 +44,13 @@ public class VaccinatedUsersUI implements Initializable {
     @FXML
     private TextField tfData;
 
+    @FXML
+    private Label filepathtitle;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            filepathtitle.setVisible(false);
             check.setVisible(false);
             createcsvfile.setVisible(false);
             file.setVisible(false);
@@ -53,7 +60,8 @@ public class VaccinatedUsersUI implements Initializable {
                 Object answer = check.getSelectionModel().getSelectedItem();
                 if (answer == "Yes") {
                     createcsvfile.setVisible(false);
-                    check.setVisible(false);
+                    filepathtitle.setVisible(false);
+
                 } else {
                     createcsvfile.setVisible(true);
                 }
@@ -69,7 +77,9 @@ public class VaccinatedUsersUI implements Initializable {
 
     @FXML
     void createCsv(ActionEvent event) {
+        filepathtitle.setVisible(true);
         foldername.setVisible(true);
+        file.setVisible(true);
     }
 
     @FXML
@@ -81,7 +91,11 @@ public class VaccinatedUsersUI implements Initializable {
     }
 
     @FXML
-    void fileButton(ActionEvent event) {
-
+    void fileButton(ActionEvent event) throws IOException {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(null);
+        folderPath = selectedDirectory.getAbsolutePath();
+        foldername.getItems().add(selectedDirectory.getName());
+        controller.CSVFileCreatorVaccinatedUsers(folderPath);
     }
 }

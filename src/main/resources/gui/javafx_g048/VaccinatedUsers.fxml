@@ -16,6 +16,11 @@
 
 <AnchorPane prefHeight="452.0" prefWidth="600.0" style="-fx-background-color: #90C2BE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.javafx_g048.VaccinatedUsersUI">
    <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="25.0" prefHeight="72.0" prefWidth="558.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffff;" text="Number of Vaccinated Users" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
       <VBox layoutX="20.0" layoutY="122.0" prefHeight="297.0" prefWidth="448.0" spacing="10.0">
          <children>
             <Label text=" Day: ">
@@ -23,8 +28,8 @@
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Label>
-            <DatePicker fx:id="datePickerDay" onAction="#date" prefHeight="29.0" prefWidth="259.0" style="-fx-border-color: #7fb5b1;" />
-            <Button fx:id="seebutton" mnemonicParsing="false" text="Ok" />
+            <DatePicker fx:id="datePickerDay" prefHeight="29.0" prefWidth="259.0" style="-fx-border-color: #7fb5b1;" />
+            <Button fx:id="seebutton" mnemonicParsing="false" onAction="#date" text="Ok" />
             <Label layoutX="10.0" layoutY="84.0" prefHeight="25.0" prefWidth="220.0" text="Nº Vaccinated Users :">
                <font>
                   <Font name="Arial Bold" size="21.0" />
@@ -32,7 +37,7 @@
             </Label>
             <TextField fx:id="tfData" prefHeight="139.0" prefWidth="448.0" />
             <ChoiceBox fx:id="check" prefWidth="150.0" />
-            <Label prefHeight="25.0" prefWidth="107.0" text="File Path:">
+            <Label fx:id="filepathtitle" prefHeight="25.0" prefWidth="107.0" text="File Path:">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
@@ -55,22 +60,12 @@
                </children>
             </HBox>
          </children></VBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="25.0" prefHeight="72.0" prefWidth="558.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffff;" text="Number of Vaccinated Users" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font>
-      </Label>
-      <Button fx:id="createcsvfile" layoutX="482.0" layoutY="386.0" mnemonicParsing="false" onAction="#createCsv" prefHeight="33.0" prefWidth="107.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="Create CSV">
+      <Button fx:id="createcsvfile" layoutX="478.0" layoutY="386.0" mnemonicParsing="false" onAction="#createCsv" prefHeight="33.0" prefWidth="107.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="Create CSV">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="nocsvfile" layoutX="503.0" layoutY="345.0" mnemonicParsing="false" onAction="#close" prefHeight="29.0" prefWidth="65.0" style="-fx-background-color: #7fb5b1; -fx-border-color: #ffffff;" text="Close">
-         <font>
-            <Font name="Arial Bold" size="14.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="149.0" fitWidth="138.0" layoutX="462.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="138.0" fitWidth="158.0" layoutX="442.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../../Downloads/image-removebg-preview.png" />
          </image>

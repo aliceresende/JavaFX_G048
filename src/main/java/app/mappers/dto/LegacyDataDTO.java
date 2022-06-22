@@ -108,16 +108,16 @@ public class LegacyDataDTO {
 
     @Override
     public String toString() {
-        return  "SNS User Number: " + snsUserNumber + '\'' +
-                "| SNS User Name: " + snsUserName + '\'' +
-                "| Vaccine Name: " + vaccineName + '\'' +
-                "| Vaccine Description: " + vaccDescription + '\'' +
-                "| Dose: " + dose + '\'' +
-                "| Lot Number: " + lotNumber + '\'' +
-                "| Schedule: " + schedule + '\'' +
-                "| Arrival: " + arrival + '\'' +
-                "| Administration: " + administration + '\'' +
-                "| Leaving: " + leaving + '\'';
+        return  "SNS User Number: " + snsUserNumber +
+                " | SNS User Name: " + snsUserName+
+                " | Vaccine Name: " + vaccineName +
+                " | Vaccine Description: " + vaccDescription  +
+                " | Dose: " + dose  +
+                " | Lot Number: " + lotNumber  +
+                " | Schedule: " + schedule +
+                " | Arrival: " + arrival +
+                " | Administration: " + administration  +
+                " | Leaving: " + leaving ;
     }
 
 

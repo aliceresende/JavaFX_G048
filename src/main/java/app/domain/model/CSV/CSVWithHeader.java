@@ -20,13 +20,13 @@ public class CSVWithHeader implements CSV {
 
     @Override
     public List<List<String>> readFile(String filePath, List<List<String>> listcsvInfo) throws FileNotFoundException {
-        List<String> csvlineinfo = new ArrayList<String>();
         Scanner in = new Scanner(new FileReader(filePath));
         String header = in.nextLine(); //removes header info
         String line;
         int cont = 0;
 
         while (in.hasNextLine()) {
+            List<String> csvlineinfo = new ArrayList<String>();
             line = in.nextLine();
             String[] atributes = line.split(splitBy);
             String[] address = atributes[3].split("\\|"); // atributes[3] - 4 attributes of address

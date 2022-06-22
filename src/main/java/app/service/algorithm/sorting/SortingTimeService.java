@@ -70,7 +70,6 @@ public class SortingTimeService {
             Collections.reverse(infoOrdered);
         }
 
-
         datesFormattedToPrint(infoOrdered);
         return infoOrdered;
     }

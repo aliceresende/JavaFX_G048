@@ -1,24 +1,30 @@
 package app.mappers;
 
-import app.domain.model.Company;
+import app.mappers.dto.LegacyDataDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class LegacyDataMapper {
 
-    private final SNSUserMapper usermapp;
-
-    private final VaccineMapper vaccmapp;
-
-    private final VaccineTypeMapper typemapp;
-
-    private final Company company;
-
-    public LegacyDataMapper(SNSUserMapper usermapp, Company company, VaccineMapper vaccmapp, VaccineTypeMapper typemapp) {
-        this.usermapp = usermapp;
-        this.company = company;
-        this.vaccmapp = vaccmapp;
-        this.typemapp = typemapp;
+    public LegacyDataMapper() {
     }
+
+    public List<LegacyDataDTO> multipletoDTO(List<List<String>> info){
+        List<LegacyDataDTO> listDTO = new ArrayList<>();
+        for(List<String> s: info){
+            listDTO.add(toDTO(s));
+        }
+        return listDTO;
+    }
+
+
+    public LegacyDataDTO toDTO(List<String> u){
+        return new LegacyDataDTO(u.get(0),u.get(1),u.get(2),u.get(3),u.get(4),u.get(5), u.get(6),u.get(7), u.get(8),u.get(9));
+    }
+
+
 
 
 }

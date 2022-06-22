@@ -24,11 +24,11 @@ public class SNSUserStore extends PasswordGenerator implements Serializable {
     private PasswordGenerator pwd;
     private VaccinationProcess vp;
 
-    public SNSUserStore(ArrayList<SNSUser> knows, AuthFacade auth, PasswordGenerator pwd) throws ParseException {
+    public SNSUserStore() {
         try{
             knows = (ArrayList<SNSUser>) Persistence.readObjectFromFile("SNSUser.bin");
         }catch (Exception e){
-            //System.out.println("The clientStore was not loaded :)");
+            System.out.println("The clientStore was not loaded :)");
         }
         this.knows = knows;
         this.auth = auth;
@@ -99,12 +99,6 @@ public class SNSUserStore extends PasswordGenerator implements Serializable {
         return validation;
     }
 
-    /**
-     * Constructs a SNSUserStore instance, initializing the list of SNS Users
-     */
-    public SNSUserStore() {
-        knows.add(new SNSUser("joao",new Date(2002,10,22),"0987854321","987654324","joao@gmail.com","rua do joao","99","4444-333","gaia","Male","11111111"));
-    }
 
     public ArrayList<SNSUser> getSnsUserList() {
         return knows;

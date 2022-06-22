@@ -3,7 +3,8 @@ package app.controller;
 
 import app.domain.model.*;
 import app.domain.model.CSV.CSV;
-import app.mappers.PerformanceDataMapper;
+import app.mappers.LegacyDataMapper;
+import app.mappers.dto.LegacyDataDTO;
 import app.service.algorithm.sorting.SortingTimeService;
 import app.store.NewVaccineStore;
 import app.store.NewVaccineTypeStore;
@@ -32,7 +33,7 @@ public class LoadLegacyDataController {
     private PerformanceDataStore perfdataStore;
     private List<PerformanceData> importedData;
 
-    private PerformanceDataMapper pdmapper;
+    private LegacyDataMapper mapper;
 
     /**
      * Gets company.
@@ -59,6 +60,8 @@ public class LoadLegacyDataController {
         vaccineStore = company.getVaccineStore();
         typeStore = company.getVaccineTypeList();
         perfdataStore = company.getPerformanceDataStore();
+
+        this.mapper = new LegacyDataMapper();
 
         this.importedData = new ArrayList<>();
 
@@ -125,19 +128,18 @@ public class LoadLegacyDataController {
     }
     //--------------------------------------------------------------------------
 
-    public void toDTO() {
+    public List<LegacyDataDTO> getPerformanceDataAndExtras() {
         List<PerformanceData> importedData = this.importedData;
         String name, descr, vaccid;
 
         List<List<String>> output = new ArrayList<>();
 
         for(PerformanceData id: importedData){
-            name=userStore.username(id.getSnsUserNumber());
+            name = userStore.username(id.getSnsUserNumber());
             vaccid = vaccineStore.vaccID(id.getVaccineName());
-            descr= typeStore.vaccDescription(vaccid);
+            descr = typeStore.vaccDescription(vaccid);
 
             List<String> lineData = new ArrayList<>();
-
             lineData.add(id.getSnsUserNumber());
             lineData.add(name);
             lineData.add(id.getVaccineName());
@@ -148,13 +150,12 @@ public class LoadLegacyDataController {
             lineData.add(id.getArrival());
             lineData.add(id.getAdministration());
             lineData.add(id.getLeaving());
-
             output.add(lineData);
         }
 
+        List<LegacyDataDTO> data = mapper.multipletoDTO(output);
 
-
-        return output;
+        return data;
     }
 
 

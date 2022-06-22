@@ -142,7 +142,6 @@ public class Company {
 
     public VaccineAdministrationStore getAdministrationStore() {return vaccineAdministrationStore;}
 
-
     public VaccinationProcessStore getVaccinationProcessStore() {
         return vaccProcessStore;
     }

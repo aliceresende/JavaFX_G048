@@ -22,7 +22,6 @@ public class NewVaccineTypeStore {
         }catch (Exception e){
             //System.out.println("The clientStore was not loaded :)");
         }
-
     }
 
     /**
@@ -141,7 +140,7 @@ public class NewVaccineTypeStore {
         String description = "";
         for(VaccineType t: type){
             if(t.getCode().equals(id)) {
-                //description = t.getTech();
+                description = t.getTech();
             }
         }
         return description;

@@ -30,6 +30,10 @@ public class VaccineType implements Serializable{
     public String getCode(){return this.code;}
     public String getType(){return this.type;}
 
+    public String getTech() {
+        return tech;
+    }
+
     /**
      * This method checks if the code provided meets the requirements, if not it throws an exception making the execution to stop
      *

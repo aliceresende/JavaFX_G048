@@ -3,6 +3,7 @@ package app.ui.console;
 import app.controller.LoadLegacyDataController;
 import app.domain.model.PerformanceData;
 import app.domain.model.SNSUser;
+import app.mappers.dto.LegacyDataDTO;
 import app.store.PerformanceDataStore;
 import app.ui.console.utils.Utils;
 
@@ -16,8 +17,10 @@ import java.util.List;
 public class LoadLegacyDataUI implements Runnable {
 
     private final LoadLegacyDataController controller = new LoadLegacyDataController();
+    private LegacyDataDTO dto;
 
-    public LoadLegacyDataUI(){}
+    public LoadLegacyDataUI(){
+    }
 
     @Override
     public void run() {
@@ -32,10 +35,10 @@ public class LoadLegacyDataUI implements Runnable {
             throw new RuntimeException(e);
         }
 
-        List<List<String>> m = controller.getPerformanceDataAndExtras();
+        List<LegacyDataDTO> m = controller.getPerformanceDataAndExtras();
 
-        for(List<String> p: m){
-            System.out.println("SNSUserNumber: "+ p.get(0) +" |  Arrival: " + p.get(7) + " | Leaving: "+ p.get(9));
+        for(LegacyDataDTO d: m){
+            System.out.println(d);
         }
 
     }

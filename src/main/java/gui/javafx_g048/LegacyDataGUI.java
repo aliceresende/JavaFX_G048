@@ -3,15 +3,18 @@ package gui.javafx_g048;
 
 import app.controller.LoadLegacyDataController;
 import app.domain.model.PerformanceData;
+import app.mappers.dto.LegacyDataDTO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -44,6 +47,8 @@ public class LegacyDataGUI implements Initializable {
     private ImageView timeimage1;
     @FXML
     private ListView list;
+    @FXML
+    private TableView table;
 
 
     /**
@@ -57,6 +62,7 @@ public class LegacyDataGUI implements Initializable {
 
             criteria.getItems().addAll("Arrival Time","Leaving Time");
             order.getItems().addAll("Ascendent","Descendent");
+            table.setVisible(false);
             list.setVisible(false);
 
 
@@ -108,15 +114,15 @@ public class LegacyDataGUI implements Initializable {
 
         controller = new LoadLegacyDataController();
 
-        Scene scene = null;
+       /* FXMLLoader loader = new FXMLLoader(getClass().getResource("LegacyDataShow.fxml"));
+        Parent root = loader.load(); // for new window
+        infoStage = new Stage();
+        Scene scene = new Scene(root);
 
-        //FXMLLoader fxmlLoader = new FXMLLoader();
-        //fxmlLoader.setLocation(getClass().getResource("LegacyDataShow.fxml"));
-        //scene = new Scene(fxmlLoader.load(), 600, 450);
-        //Stage stage = new Stage();
-        //stage.setTitle("Legacy Data");
-        //stage.setScene(scene);
-        //stage.show();
+        infoStage.initModality(Modality.APPLICATION_MODAL);
+        infoStage.setTitle("Legacy Data");
+        infoStage.setScene(scene);
+        infoStage.show();*/
 
         try {
             controller.loadLegacyData(filePath,time,ordering); // sends information to controller
@@ -125,7 +131,8 @@ public class LegacyDataGUI implements Initializable {
             throw new RuntimeException(e);
         }
 
-        List<PerformanceData> data = controller.getPerformanceDataAndExtras();
+        List<LegacyDataDTO> data = controller.getPerformanceDataAndExtras();
+
         list.setVisible(true);
         list.setItems(FXCollections.observableList(data));
 

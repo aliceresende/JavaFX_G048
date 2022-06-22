@@ -80,6 +80,13 @@
                 <Font name="Arial Bold" size="14.0" />
             </font>
         </Button>
+      <TableView fx:id="table" prefHeight="452.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <ListView fx:id="list" prefHeight="452.0" prefWidth="600.0" />
     </children>
 
 </AnchorPane>

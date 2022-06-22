@@ -215,10 +215,10 @@ public class VaccineAdministrationUI implements Runnable {
 
         boolean validSnsNumber;
         do {
-            if (snsUserNumber.length() != 10) {
+            if (snsUserNumber.length() != 9) {
                 validSnsNumber = false;
                 System.out.println("Invalid SNS Number");
-                snsUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (10 digits):");
+                snsUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (9 digits):");
             } else {
                 try {
                     Long.parseLong(snsUserNumber);
@@ -226,7 +226,7 @@ public class VaccineAdministrationUI implements Runnable {
                 } catch (Exception e) {
                     System.out.println("Invalid SNS Number");
                     validSnsNumber = false;
-                    snsUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (10 digits):");
+                    snsUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (9 digits):");
                 }
             }
         }while (!validSnsNumber);

@@ -93,7 +93,7 @@ public class AuthUI implements Initializable {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("Nurse.fxml"));
-                    s = new Scene(fxmlLoader.load(), 600, 430);
+                    s = new Scene(fxmlLoader.load(), 600, 400);
                     Stage stage = new Stage();
                     stage.setTitle("Nurse Dashboard");
                     stage.setScene(s);

@@ -23,4 +23,19 @@ public class NurseUI {
         }
 
     }
+
+    public void RegisterVaccine(ActionEvent actionEvent) {
+        Scene scene = null;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("VaccineAdministration.fxml"));
+            scene = new Scene(fxmlLoader.load(), 684, 543);
+            Stage stage = new Stage();
+            stage.setTitle("Register Vaccine Administration");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

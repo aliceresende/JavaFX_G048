@@ -90,15 +90,15 @@ public class RecepcionistRequestVaccinationUI implements Runnable{
             }
         } while (!validHour);
 
-        String snsUserNumber = Utils.readLineFromConsole("SNS User Number (10 digits): ");
+        String snsUserNumber = Utils.readLineFromConsole("SNS User Number (9 digits): ");
         boolean validSnsUserNumber = false;
         do {
             if (snsUserNumber == null) {
                 validSnsUserNumber = false;
-            } else if (snsUserNumber.length() != 10) {
+            } else if (snsUserNumber.length() != 9) {
                 validSnsUserNumber = false;
                 System.out.println("Invalid SNS User Number");
-                snsUserNumber = Utils.readLineFromConsole("Enter a valid SNS User Number (10 digits): ");
+                snsUserNumber = Utils.readLineFromConsole("Enter a valid SNS User Number (9 digits): ");
             } else {
                 validSnsUserNumber = true;
             }
@@ -117,7 +117,7 @@ public class RecepcionistRequestVaccinationUI implements Runnable{
         } else if (!cont) {
             new RecepcionistRequestVaccinationUI().run();
         }
-        vaccineSchedule.show();
+        //vaccineSchedule.show();
     }
 
     public List<String> vaccinationCenterName(List<ComunityMassVaccinationCenter> vaccinationCenter) {

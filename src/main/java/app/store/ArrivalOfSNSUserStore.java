@@ -1,19 +1,26 @@
 package app.store;
 
 import app.domain.model.ArrivalOfSNSUser;
+import app.domain.model.Reactions;
 import app.domain.model.VaccineAdministration;
+import app.ui.Persistence;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ArrivalOfSNSUserStore {
+public class ArrivalOfSNSUserStore implements Serializable {
     private ArrayList<ArrivalOfSNSUser> knows = new ArrayList<>();
 
     public ArrivalOfSNSUserStore() {
         Collections.sort(knows, new SortByDate());
-
+        try{
+            knows = (ArrayList<ArrivalOfSNSUser>) Persistence.readObjectFromFile("WaitingRoom.bin");
+        }catch (Exception e){
+            //System.out.println("The clientStore was not loaded :)");
+        }
     }
 
     /**

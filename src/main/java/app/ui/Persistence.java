@@ -31,9 +31,8 @@ public class Persistence {
         saveObjectToFile(App.getInstance().getCompany().getRegisterCenterStore().getKnows(), "VaccinationCenter.bin");
         saveObjectToFile(App.getInstance().getCompany().getEmployeeStore().getKnows(), "Employees.bin");
         saveObjectToFile(App.getInstance().getCompany().getEmployeeStore().getCenterCoordinators(), "CenterCoordinator.bin");
-        saveObjectToFile(App.getInstance().getCompany().getArrivalStore().GetArrivalOfSNSUsers(),"UserArrival.bin");
         saveObjectToFile(App.getInstance().getCompany().getReactionStore().getReactionArray(),"EmployeeRoles.bin");
-
+        saveObjectToFile(App.getInstance().getCompany().getArrivalStore().GetArrivalOfSNSUsers(),"WaitingRoom.bin");
     }
 
 }

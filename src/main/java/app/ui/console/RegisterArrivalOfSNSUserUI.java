@@ -22,13 +22,13 @@ public class RegisterArrivalOfSNSUserUI implements Runnable{
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Register the arrival of a SNS User", new ShowTextUI("You have chosen to register the arrival of a SNS User")));
-        String SNSUserNumber = Utils.readLineFromConsole("SNS User Number (10 digits): ");
+        String SNSUserNumber = Utils.readLineFromConsole("SNS User Number (9 digits): ");
         boolean validSnsNumber;
         do {
-            if (SNSUserNumber.length() != 10) {
+            if (SNSUserNumber.length() != 9) {
                 validSnsNumber = false;
                 System.out.println("Invalid SNS Number");
-                SNSUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (10 digits):");
+                SNSUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (9 digits):");
             } else {
                 try {
                     Long.parseLong(SNSUserNumber);
@@ -36,7 +36,7 @@ public class RegisterArrivalOfSNSUserUI implements Runnable{
                 } catch (Exception e) {
                     System.out.println("Invalid SNS Number");
                     validSnsNumber = false;
-                    SNSUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (10 digits):");
+                    SNSUserNumber = Utils.readLineFromConsole("Enter a valid SNS Number (9 digits):");
                 }
             }
         } while (!validSnsNumber);
